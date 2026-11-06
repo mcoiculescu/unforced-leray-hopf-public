@@ -1,0 +1,209 @@
+\section{Closing the exact return and recovering the energy mode}
+\label{sec:spectral-assembly}
+
+We combine the preceding estimates on one fixed background. The tensor
+inverse acts on the sum of the thin and repair components, and the
+multiplier returns both. Write $R_\mu$ for the physical body inverse,
+$S_\mu$ for the full tensor inverse, and $M$ for the exact multiplier,
+including the prescribed normalization maps.
+
+\subsection{The exact two-block equation}
+
+Put $D=I+MS_\mu$, $D_N=I+MS_N$ and $S_{\rm far}=S_\mu-S_N$.
+Use the closed graph $\mathcal E_\nu$ and pair norm from
+\eqref{repair:pair-space}. The near graph lift is
+\[
+ \mathcal J(v)=
+ \bigl(D_N^{-1}Mv,\ v-S_ND_N^{-1}Mv\bigr).
+\]
+Its components satisfy $T=Mw$ exactly.
+
+Let $L$ be the complete old-thin-to-young-jet map
+\eqref{source-class:L}. The full old-source Ward fields $X,Y,h,E$
+and the physical affine fields, written $h_A=\widehat h_A$ and
+$r_A=\mathfrak r_A$ as in Lemma~\ref{ret:physical-affine}, satisfy
+\[
+ DM(Y+h)=MY+MR_\mu E,\qquad
+ DMh_A=MR_\mu(F_A+E_A+r_A).
+\]
+The nested cutoffs give $\chi_f LT=LT$. Therefore, with
+\[
+ HT=M(Y+h-h_{LT}),\qquad
+ v_Q(T)=S_{\rm far}T+Y+R_\mu(E-E_{LT}-r_{LT}),
+\]
+the exact transformed equation is
+\begin{equation}\label{closure:exact-normal-form}
+ D(I+H)T=D_NT-MR_\mu F_{LT}+Mv_Q(T).
+\end{equation}
+Every correction in $H$ has young support and depends only on old
+data. Thus $H^2=0$ and $(I+H)^{-1}=I-H$ at fixed parameters.
+
+Define
+\[
+ \mathcal P A=\mathcal J(R_\mu F_A),\qquad
+ \mathcal Q(T,w)=-\mathcal J(v_Q(T)),\qquad L(T,w)=LT.
+\]
+The force $F_A$ is unprojected; $R_\mu$ supplies the Cartesian Leray
+projection. The return system
+\begin{equation}\label{closure:exact-return-system}
+ V=\mathcal P x+y,\qquad x=LV,\qquad y=\mathcal QV
+\end{equation}
+has the two block equations
+\[
+ x=(L\mathcal P)x+Ly,\qquad
+ y=(\mathcal Q\mathcal P)x+\mathcal Qy.
+\]
+A solution gives zero on the right of
+\eqref{closure:exact-normal-form}. These are exact operators, before
+any asymptotic replacement.
+
+\subsection{One parameter budget for the two blocks}
+
+Choose $\sigma_0$ and the compact interval $K$ as in the phase-selection
+paragraph below before fixing the following constants and budgets.
+Write $J$ for the canonical Mellin function of
+Corollary~\ref{cor:short-mellin}.
+Fix the derivative budgets first, including $k=6$ in $\mathscr A$.
+Let $K_0$ and $k_0$ be the fixed exponents in the compact-output and
+separated-kernel window bounds. Put $d_0=\gamma/3$. Choose $a,b_{\rm win}>0$
+so that
+\[
+ K_0(a+b_{\rm win})<1/100,\quad k_0b_{\rm win}d_0<\gamma/1000,\quad
+ \vartheta=\min\{a/2,b_{\rm win}/2,1/100,3/22\}>0.
+\]
+Here $b_{\rm win}$ is the small exponent in $S=\epsilon^{-b_{\rm win}}$,
+distinct from the large fixed heat-clock endpoint $b$.
+Next choose $\delta,m_0>0$ with
+\[
+ \delta<\log(12/11),\qquad
+ \eta_\delta,m_0<\min\{\vartheta d_0/16,\gamma/1000\}.
+\]
+Fix the transverse-tail accuracy larger than the required losses.
+The background construction realizes this $m_0$; all its internal
+choices are then fixed. There is no incompatible lower bound on
+$a,b_{\rm win},\delta,m_0$ in the preceding estimates.
+
+The polynomial flat inverse and
+Proposition~\ref{near:equation-comparison} give, for some $c_N>0$,
+\[
+ \|g^{-1}D_N^{-1}g\|\le P_\nu,\qquad
+ \|g^{-1}(D_N^{-1}-D_0^{-1})g\|\le P_\nu e^{-c_N/\nu}.
+\]
+Decrease $c_N$ to include the body-source comparison and coefficient
+errors. Proposition~\ref{repair:complete-graph-error} gives
+\begin{equation}\label{closure:Q-small}
+ \|\mathcal Q\|_{\mathcal E_\nu\to\mathcal E_\nu}
+       \le P_\nu e^{-c_Q/\nu},\qquad c_Q=\gamma/100.
+\end{equation}
+This estimate covers all of $v_Q$, including full old repair,
+pressure, finite width, oscillatory phase and both stream transitions.
+The actual extracted jet has a polynomial age bound, so the estimate
+does not pay the exponential envelope of a general source.
+
+Now fix $a_s>0$ so small that
+\[
+ a_s<\gamma/16,\qquad 1.1a_s<\tfrac14\min\{c_N,c_Q\}.
+\]
+The general affine bounds and near reconstruction imply
+\begin{equation}\label{closure:source-and-extraction}
+ \|\mathcal P\|_{\mathscr A\to\mathcal E_\nu}
+      \le P_\nu e^{1.1a_s/\nu},\qquad
+ \|L\|_{\mathcal E_\nu\to\mathscr A}\le P_\nu .
+\end{equation}
+For the velocity component use
+$e^{-\gamma/(8\nu)}e^{\eta_\delta/\nu}\le1$; the second bound is
+\eqref{source-class:ambient-L}. No velocity witness is estimated
+solely by its stress.
+
+The curved body-column comparison is uniform over the unit ball
+of $\mathscr A$: the six conormal derivatives and the required fixed
+Gaussian spatial seminorms of its sources are bounded by
+$P_\nu e^{1.1a_s/\nu}$. The global-input body comparison followed
+by the near resolvent identity therefore gives
+\[
+ \|L\mathcal P-\mathcal K^{\rm flat}_{\mu,\nu}\|
+       \le P_\nu e^{-(c_N-1.1a_s)/\nu}.
+\]
+Here the inputs are prescribed smooth affine forces. No canonical
+moment error is passed through this inverse comparison.
+Proposition~\ref{source-class:flat-limit} yields
+\begin{equation}\label{closure:K-rank-one}
+ L\mathcal P=a_\mu\Lambda_{\mu,\nu}+\mathcal R_{\mu,\nu},
+ \qquad \sup\|\mathcal R_{\mu,\nu}\|\longrightarrow0,\qquad
+ \sup\|a_\mu\|\|\Lambda_{\mu,\nu}\|<\infty.
+\end{equation}
+The suprema are on the final bounded-gain spectral window. The
+algebraic and canonical-modulus errors retain their fixed constants.
+Moreover
+\[
+ \frac{\|L\|\|\mathcal Q\mathcal P\|}{1-\|\mathcal Q\|}
+ \le P_\nu e^{-(c_Q-1.1a_s)/\nu}\longrightarrow0.
+\]
+This is the second error in Lemma~\ref{closure:mixed-return}.
+All estimates are locally uniform in real $\mu$; kernels, resolvent
+identities, the near inverse and affine formulas give operator-norm
+continuity for each fixed geometry.
+
+\subsection{Phase selection and the scalar crossing}
+
+Put
+\[
+ \mathcal C(\mu)=\frac{63\pi i}{128}
+ \ell_+(H_0)\frac{\Gamma(\mu+5/2)}{\lambda^{\mu+5/2}}J(\mu),
+ \qquad N_\nu=e^{\lambda/\nu}\nu^{-\kappa},
+ \qquad \lambda=\gamma+i\omega.
+\]
+The planar construction gives $\gamma>0$, $\omega\ne0$,
+$\ell_+(H_0)\ne0$, and holomorphic, nonidentically zero $J$.
+Choose $\sigma_0\in(0,1/4)$ with $\mathcal C(\sigma_0)\ne0$ and
+fix a compact interval $K\Subset(0,1/4)$ around it.
+Choose $\nu_n\downarrow0$ satisfying
+\[
+ \frac{\omega}{\nu_n}-\operatorname{Im}\kappa\log\nu_n
+       +\arg\mathcal C(\sigma_0)
+   =2\pi n\operatorname{sign}\omega.
+\]
+The left side diverges with sign $\omega$ and has derivative
+$-\omega/\nu^2-\operatorname{Im}\kappa/\nu$ of fixed nonzero sign
+for small $\nu$, proving existence of this sequence. Set
+\[
+ \epsilon_n^3=
+ \frac{e^{-\gamma/\nu_n}
+       \nu_n^{\operatorname{Re}\kappa-5-2\sigma_0}}
+      {2|\mathcal C(\sigma_0)|},
+ \qquad c_n=\nu_n^{-2},\qquad P_n=2\epsilon_nc_n.
+\]
+Construct the background once at these parameters. The polynomial
+factor in $\epsilon_n$ is allowed throughout; equivalently
+$-\nu_n\log\epsilon_n\to d_0$. The background and geometry stay fixed
+as
+\[
+ \mu_n(z)=\sigma_0+\frac{z}{2|\log\nu_n|},\qquad -1\le z\le1,
+\]
+varies. The loop gain
+$\epsilon_n^3|N_{\nu_n}|\nu_n^{5+2\mu_n(z)}$
+stays between positive fixed constants. The signed unit response is
+\begin{align*}
+ \Lambda_{\mu_n(z),\nu_n}a_{\mu_n(z)}
+ &=2\epsilon_n^3\nu_n^{5+2\mu_n(z)}
+       \operatorname{Re}\{\mathcal C(\mu_n(z))N_{\nu_n}\}+o(1)\\
+ &=e^{-z}\operatorname{Re}
+       \frac{\mathcal C(\mu_n(z))}{\mathcal C(\sigma_0)}+o(1)
+ \longrightarrow e^{-z}
+\end{align*}
+uniformly. Lemma~\ref{closure:mixed-return} supplies $z_n\to0$
+and a real solution of \eqref{closure:exact-return-system} with
+$x\ne0$ at $\sigma_n=\mu_n(z_n)\in(0,1/4)$.
+
+Since $x=LT\ne0$, $T\ne0$. Nilpotency gives $T'=(I+H)T\ne0$,
+and \eqref{closure:exact-normal-form} gives $DT'=0$. Thus
+\[
+ b=-S_{\sigma_n}T',\qquad T'=Mb
+\]
+is nonzero, real, periodic and divergence-free, with the required symmetry
+and $b,\nabla b\in Y_2$. No injectivity of $M$ is needed: $b=0$
+would imply $T'=0$. The exact identities also give
+$b=w+Y+h-h_{LT}$, so the masked terms recombine into the physical
+equation with its full pressure. Together with the background and its
+heat remainder this proves Proposition~\ref{prop:unstable-background}.
+The localization argument below then proves Theorem~A.

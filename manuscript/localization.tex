@@ -1,0 +1,452 @@
+\section{From a growing periodic mode to finite-energy nonuniqueness}
+\label{sec:localization}
+
+\ifdefined\CompleteCandidate
+We now use the exact background and growing mode from
+Sections~\ref{short-bg:section} and~\ref{sec:spectral-assembly}. This is the instability
+and localization mechanism of Jia and \v Sver\'ak~\cite{jia-sverak2015},
+adapted here to a profile periodic in similarity time. A divergence-free
+cutoff localizes the common DSS datum while preserving it near the
+origin. A common heat correction and a family of nonlinear correctors then
+produce the finite-energy solutions. The periodic right inverse includes
+every faster unstable mode; no maximal-growth assumption is added.
+\fi
+
+We localize the initial datum and correct the background and its growing
+linear perturbation directly. The correction of the common heat tail
+decays as $e^{\tau/2}$, while the quadratic mode has size
+$e^{2\sigma\tau}$. A periodic spectral splitting at a rate
+$\sigma<\beta<2\sigma<1/2$ gives a right inverse below both forcing
+rates, without an upper bound on other unstable exponents.
+
+\begin{proposition}\label{short-loc:reduction}
+\ifdefined\CompleteCandidate
+The background and mode in Proposition~\ref{prop:unstable-background}
+imply Theorem~\ref{thm:finite-energy-target}.
+\else
+Let $\nu,P>0$. Suppose a nonzero real divergence-free field $a$, smooth away
+from zero, is axisymmetric without swirl and satisfies
+\[
+ a(e^{P/2}x)=e^{-P/2}a(x),\qquad
+ |D^ja(x)|\le C_j|x|^{-1-j}\quad(0\le j\le4).
+\]
+Put
+\[
+ H_\nu[a](y,\tau)=e^{\tau/2}
+       [e^{\nu e^\tau\Delta}a](e^{\tau/2}y).
+\]
+Suppose $U=H_\nu[a]+Q$, $Q\in C_{\rm per}(\mathbb R;H^2(\mathbb R^3))$,
+is a real divergence-free $P$-periodic distributional solution of
+\[
+ \partial_\tau U=\nu\Delta U+\tfrac12y\cdot\nabla U+\tfrac12U
+       -\mathbb P\operatorname{div}(U\otimes U),
+\]
+also axisymmetric without swirl. Suppose, for some $0<\sigma<1/4$,
+there is a nonzero real $P$-periodic divergence-free field $b$ of the same
+symmetry satisfying
+\[
+ b,\nabla b\in L^2([0,P]\times\mathbb R^3),\qquad
+ (\partial_\tau+\sigma)b
+ =\nu\Delta b+\tfrac12y\cdot\nabla b+\tfrac12b
+   -\mathbb P\operatorname{div}(U\otimes b+b\otimes U).
+\]
+Then there are $T>0$, constants $0<c_*\le C_*<\infty$, a nonzero
+compactly supported real $u_0\in L^2_{\rm div}(\mathbb R^3)$, and
+axisymmetric no-swirl solutions $(u^{(\alpha)},p^{(\alpha)})$,
+$\alpha\in[0,1]$, of the unforced viscosity-one Navier--Stokes equation
+with this common datum. The datum is smooth away from zero and belongs
+to $L^{3,\infty}\cap\bigcap_{1\le q<3}L^q$, but not to $L^3$.
+Here $\|f\|_{3,\infty}=\sup_{s>0}s|\{|f|>s\}|^{1/3}$.
+Every branch satisfies
+\[
+ \begin{gathered}
+ u^{(\alpha)}\in C([0,T];L^2_{\rm div})\cap L^2(0,T;H^1),\qquad
+ u^{(\alpha)}\in C([\delta,T];H^2)\quad(0<\delta<T),\\
+ p^{(\alpha)}=\sum_{i,k}R_iR_k(u^{(\alpha)}_iu^{(\alpha)}_k)
+       \in L^{5/3}(\mathbb R^3\times(0,T)).
+ \end{gathered}
+\]
+They have the strong $L^2$ trace $u_0$, satisfy the distributional
+equation including the initial term $\int u_0\cdot\varphi(0)$,
+are smooth at positive times, and obey
+\[
+ \frac12\|u^{(\alpha)}(t_1)\|_2^2+
+ \int_{t_0}^{t_1}\|\nabla u^{(\alpha)}\|_2^2dt
+ =\frac12\|u^{(\alpha)}(t_0)\|_2^2
+ \quad(0\le t_0\le t_1\le T).
+\]
+They also satisfy the local energy equality
+\eqref{short-loc:local-energy}, including the initial term, and hence
+are suitable. The family is uniformly bounded in
+$L^\infty(0,T;L^{3,\infty})$ and, for each $1\le r\le\infty$,
+$2\le q\le\infty$ with $2/r+3/q>1$, in $L^r(0,T;L^q)$.
+For every $\alpha,\alpha'\in[0,1]$ and $0<t\le T$,
+\[
+ c_*|\alpha-\alpha'|t^{\sigma+1/4}
+ \le\|u^{(\alpha)}(t)-u^{(\alpha')}(t)\|_2
+ \le C_*|\alpha-\alpha'|t^{\sigma+1/4}.
+\]
+Consequently their squared $L^2$ distance has time integral at least
+$c_*^2|\alpha-\alpha'|^2T^{2\sigma+3/2}/(2\sigma+3/2)$.
+\fi
+\end{proposition}
+
+\ifdefined\CompleteCandidate
+\begin{proof}[Proof of Proposition~\ref{short-loc:reduction} and Theorem~A]
+The background construction and the return argument prove
+Proposition~\ref{prop:unstable-background}. It remains to localize these
+fields and construct the nonlinear solutions. Write $a=u_{\rm dss}$,
+$U=U_*$, $Q=r_{\rm heat}$, $b=b_*$ and $P=\mathcal T$.
+\else
+\begin{proof}
+\leavevmode
+\fi
+\paragraph{Periodic evolution and regularity of the mode.}
+The map $D_\nu f(y)=\nu^{-1/2}f(\sqrt \nu\,y)$ changes the profile viscosity
+to one: it commutes with the dilation drift and with $\mathbb P$,
+$\Delta D_\nu f=D_\nu(\nu\Delta f)$, and
+$\operatorname{div}(D_\nu f\otimes D_\nu g)
+=D_\nu\operatorname{div}(f\otimes g)$. Also
+$H_1[D_\nu a]=D_\nu H_\nu[a]$ and
+\[
+ \|\nabla^kD_\nu f\|_q=\nu^{(k-1)/2-3/(2q)}\|\nabla^kf\|_q.
+\]
+We apply this fixed normalization and retain the notation $a,U,Q,b$.
+All constants below may depend on these fixed profiles and on the
+spatial cutoff, but not on the terminal time $\tau_0\le0$ or on
+$\alpha,\alpha'\in[0,1]$.
+
+Let $X=H^1_{\rm div}(\mathbb R^3)$, $Z=H^2_{\rm div}(\mathbb R^3)$,
+and write
+\[
+ \mathcal A=\Delta+\tfrac12y\cdot\nabla+\tfrac12,
+ \qquad \mathcal B(\tau)f
+ =-\mathbb P\operatorname{div}(U(\tau)\otimes f+f\otimes U(\tau)),
+ \qquad \mathcal L=\mathcal A+\mathcal B.
+\]
+Gaussian convolution and the bounds on $a$ give
+$|D^jH_1[a](y,\tau)|\le C_j\langle y\rangle^{-1-j}$ for $j\le2$,
+uniformly in phase. Hence $U\in C_{\rm per}C_0$,
+$\nabla U\in C_{\rm per}L^3$, and
+\[
+ \mathcal B\in C_{\rm per}\mathcal L(X,L^2_{\rm div})
+                 \cap C_{\rm per}\mathcal L(Z,X).
+\]
+For the first bound use
+$\|U\|_\infty\|\nabla f\|_2+\|\nabla U\|_3\|f\|_6$;
+for the second use the $H^2$ product estimate on $Qf$ and the
+bounded derivatives of $H_1[a]$. The Leray multiplier is bounded on
+all the Sobolev spaces used here.
+
+The free evolution is
+\[
+ S(s)f(y)=e^{s/2}[e^{(e^s-1)\Delta}f](e^{s/2}y).
+\]
+It has $X\to X$ norm at most $Ce^{-s/4}$, and $L^2\to X$ and
+$X\to Z$ norms at most $Cs^{-1/2}$ for $0<s\le1$. The large-time
+gradient estimate follows by applying the heat gradient bound to $f$,
+rather than differentiating $f$. Volterra iteration therefore constructs
+the periodic evolution $E(\tau,s)$ of $\mathcal L$, bounded on
+$L^2,X,Z$ over bounded time strips, with these same short-time smoothing
+bounds. The iteration in the smoothing norm uses the integrable
+convolution of two kernels $r^{-1/2}$.
+
+These evolutions also represent the given weak mode. On a finite time
+interval set $g(x,\tau)=b(e^{-\tau/2}x,\tau)$ and
+$\widetilde U(x,\tau)=U(e^{-\tau/2}x,\tau)$. Then
+\[
+ g_\tau-e^\tau\Delta g+(\sigma-\tfrac12)g
+ +e^{\tau/2}\mathbb P\operatorname{div}
+       (\widetilde U\otimes g+g\otimes\widetilde U)=0.
+\]
+The energy hypotheses imply $g\in L^2H^1$, and this equation gives
+$g_\tau\in L^2H^{-1}$. Its form is bounded on $H^1\times H^1$;
+Young's inequality makes it coercive after adding $C\|g\|_2^2$,
+since $e^\tau$ has a positive minimum on the interval. The Hilbert
+triple energy identity gives a continuous $L^2$ trace and uniqueness
+from every initial time. Thus
+$b(\tau)=e^{-\sigma(\tau-s)}E(\tau,s)b(s)$ whenever $b(s)\in H^1$.
+Choosing such an earlier phase and using smoothing gives
+\begin{equation}\label{short-loc:mode-regularity}
+ b\in C_{\rm per}H^2,\qquad
+ m_b:=\min_{0\le\tau\le P}\|b(\tau)\|_2>0.
+\end{equation}
+Indeed a zero phase would, by forward uniqueness and periodicity,
+make the entire mode zero.
+
+\paragraph{A right inverse on the ancient interval.}
+We next construct an ancient right inverse, including every faster
+unstable mode. Multiplication by $U(\tau)\in C_0$ is compact
+$X\to L^2$, by compactness on balls and the small uniform spatial tail.
+Consequently $\mathcal B(\tau):X\to H^{-1}$ is compact.
+For positive $r$, $S(r)\mathcal B(\tau):X\to X$ is compact; its
+alternative factorization through $L^2$ has norm $O(r^{-1/2})$.
+The Duhamel formula applied to a weakly null sequence, followed by
+dominated convergence with this integrable bound, proves
+$E(t,s)-S(t-s)$ compact on $X$. For the monodromy
+$M=E(P,0)$, periodicity and the free decay therefore give
+\[
+ r_{\rm ess}(M)\le e^{-P/4}<1.
+\]
+The spectrum outside this disk consists of isolated eigenvalues with
+finite algebraic multiplicity. Choose
+$\sigma<\beta<2\sigma<1/2$ so that $|z|=e^{\beta P}$ avoids the
+spectrum. The Riesz projections $P_-$ inside that circle and
+$P_+=I-P_-$ are real, $P_+X$ is finite dimensional, and for some
+$\beta_-<\beta<\beta_+$,
+\[
+ \|M^nP_-\|\le Ce^{\beta_-nP},\qquad
+ \|(M|_{P_+X})^{-n}\|\le Ce^{-\beta_+nP},\quad n\ge0.
+\]
+These are the spectral-radius estimates for the two restrictions;
+no inverse of the full parabolic evolution is taken.
+
+For $0\le\theta\le P$ put
+\[
+ F_\theta=E(\theta,0)|_{P_+X},\qquad
+ G_\theta=(M|_{P_+X})^{-1}P_+E(P,\theta),\qquad
+ \Pi_+(\theta)=F_\theta G_\theta,\quad\Pi_-=I-\Pi_+.
+\]
+Here $G_\theta F_\theta=I$, and the endpoints agree. Extend the
+projections periodically. They intertwine the evolution. On the
+finite-dimensional exterior fibers its backward extension is
+\[
+ E_+(kP+\theta,lP+\phi)\Pi_+(\phi)
+       =F_\theta(M|_{P_+X})^{k-l}G_\phi.
+\]
+One-period smoothing shows $P_+X\subset Z$, since
+$P_+=M(M|_{P_+X})^{-1}P_+$. Factoring general intervals into
+periods and bounded phase strips now gives
+\[
+ \begin{aligned}
+ \|E(\tau,s)\Pi_-(s)\|_{X\to Z}
+   &\le C(1+(\tau-s)^{-1/2})e^{\beta_-(\tau-s)}&& (\tau>s),\\
+ \|E_+(\tau,s)\Pi_+(s)\|_{X\to Z}
+   &\le Ce^{\beta_+(\tau-s)}&& (\tau\le s).
+ \end{aligned}
+\]
+If $P_+X=0$, the second expression is zero. For continuous functions
+on $(-\infty,\tau_0]$ use the norms
+$\|f\|_{X_\beta}=\sup e^{-\beta\tau}\|f(\tau)\|_X$ and
+$\|f\|_{Z_\beta}=\sup e^{-\beta\tau}\|f(\tau)\|_Z$. Then
+\begin{equation}\label{short-loc:right-inverse}
+ (\mathcal R_\beta f)(\tau)
+ =\int_{-\infty}^{\tau}E(\tau,s)\Pi_-(s)f(s)\,ds
+  -\int_\tau^{\tau_0}E_+(\tau,s)\Pi_+(s)f(s)\,ds,
+ \qquad
+ \|\mathcal R_\beta f\|_{Z_\beta}\le C_\beta\|f\|_{X_\beta}.
+\end{equation}
+Both weighted kernels are integrable. The evolution law verifies
+$(\partial_\tau-\mathcal L)\mathcal R_\beta f=f$ and the terminal
+condition $\Pi_+(\tau_0)\mathcal R_\beta f(\tau_0)=0$.
+
+\paragraph{Divergence-free truncation of the datum and the common heat correction.}
+To obtain a compact datum, define
+\[
+ A(x)=-\int_0^1r\,x\times a(rx)\,dr,
+ \qquad u_0=\operatorname{curl}(\chi A),\qquad d=u_0-a,
+\]
+where $\chi$ is a smooth compact radial cutoff equal to one near zero.
+The derivative bounds give $|D^jA(x)|\le C_j|x|^{-j}$ and
+\[
+ \operatorname{curl}[r x\times a(rx)]
+       =-\partial_r[r^2a(rx)],\qquad \operatorname{curl}A=a.
+\]
+The latter identity holds across zero: the omitted spherical boundary
+term is $O(r^2)$. Thus $u_0$ is compact, divergence-free and in $L^2$.
+It is nonzero, since it equals $a$ near zero and DSS rescales any
+nonzero value of $a$ into that neighborhood. It is smooth off zero and
+$|u_0(x)|\le C|x|^{-1}$; compact support therefore gives
+$u_0\in L^{3,\infty}\cap\bigcap_{1\le q<3}L^q$.
+To exclude $L^3$, put $\lambda=e^{P/2}>1$ and
+$E=\{1<|x|<\lambda\}$. Nonvanishing, continuity and DSS imply
+$0<\int_E|a|^3<\infty$. Each of the disjoint annuli $\lambda^{-n}E$
+has this same integral, and $u_0=a$ on all sufficiently small such
+annuli. Thus $\int|u_0|^3=\infty$.
+The field $d$ is smooth,
+vanishes near zero, and satisfies inverse-radius derivative bounds.
+Set
+\[
+ H(x,t)=e^{t\Delta}d(x),\qquad
+ K(y,\tau)=e^{\tau/2}H(e^{\tau/2}y,e^\tau).
+\]
+For $\tau\le0$, $\|K(\tau)\|_{W^{2,\infty}}\le Ce^{\tau/2}$.
+Write
+\[
+ \mathcal N(f)=-\mathbb P\operatorname{div}(f\otimes f),\qquad
+ \mathcal C(f,g)=\mathbb P\operatorname{div}(f\otimes g+g\otimes f),
+ \qquad G=-\mathcal C(U,K)+\mathcal N(K).
+\]
+Then $\|G(\tau)\|_{H^1}\le Ce^{\tau/2}$. For the $Q$ contribution
+this follows from the $H^2$ product bound. For the other contributions,
+put $H_a=e^{t\Delta}a$. The physical force
+\[
+ -\mathbb P\operatorname{div}(H_a\otimes H+H\otimes H_a+H\otimes H)
+\]
+is uniformly bounded in $H^1$ for $0<t\le1$: on an inner ball the
+heat evolution of $d$ and its required derivatives are exponentially
+small, whereas derivatives of $H_a$ lose only powers of $t$; outside
+that ball the unprojected divergence and its derivative decay as
+$\langle x\rangle^{-3}$ and $\langle x\rangle^{-4}$. Apply
+$\mathbb P$ after these bounds. Multiplication by $t^{3/2}$ and
+evaluation at $\sqrt t\,y$ give $L^2$ and gradient norms bounded by
+$Ct^{3/4}$ and $Ct^{5/4}$, which prove the claim for $G$.
+
+\paragraph{Nonlinear correctors and their amplitude dependence.}
+Let $v=e^{\sigma\tau}b$. For $\alpha\in[0,1]$ solve in $Z_\beta$
+\begin{equation}\label{short-loc:fixed-point}
+ z_\alpha=\mathcal R_\beta\{G+\alpha^2\mathcal N(v)
+       -\alpha\mathcal C(K,v)
+       -\mathcal C(K+\alpha v,z_\alpha)+\mathcal N(z_\alpha)\}.
+\end{equation}
+The constant, linear and bilinear parts of this map have respective
+norms bounded, uniformly in $\alpha$, by
+\[
+ C_0(e^{(1/2-\beta)\tau_0}+e^{(2\sigma-\beta)\tau_0}),\qquad
+ C(e^{\tau_0/2}+e^{\sigma\tau_0}),\qquad Ce^{\beta\tau_0}.
+\]
+These follow from \eqref{short-loc:right-inverse}, the $H^2$ product
+estimate and the bound on $K$. The mixed constant term has the smaller
+size $Ce^{(1/2+\sigma-\beta)\tau_0}$. For sufficiently negative
+$\tau_0$, all these maps preserve the ball of radius
+\[
+ \rho=2C_0(e^{(1/2-\beta)\tau_0}+e^{(2\sigma-\beta)\tau_0})
+\]
+and have Lipschitz constants at most $1/2$. Indeed these constants are
+bounded by the displayed linear bound plus $2C\rho e^{\beta\tau_0}$,
+which tends to zero. The resulting real $z_\alpha$ satisfy
+$\|z_\alpha\|_{Z_\beta}\le\rho$.
+Expanding the quadratic terms in \eqref{short-loc:fixed-point} proves
+that $U+K+\alpha v+z_\alpha$ solves the exact profile equation.
+
+Subtract the fixed-point equations at $\alpha$ and $\alpha'$.
+The terms involving $z_\alpha-z_{\alpha'}$ are absorbed by the
+common contraction bound, while $|\alpha^2-\alpha'^2|\le2|\alpha-\alpha'|$.
+The remaining terms give
+\begin{equation}\label{short-loc:amplitude}
+ \|z_\alpha-z_{\alpha'}\|_{Z_\beta}
+ \le L_{\tau_0}|\alpha-\alpha'|,\qquad
+ L_{\tau_0}=C\bigl(e^{(2\sigma-\beta)\tau_0}
+       +e^{(1/2+\sigma-\beta)\tau_0}+\rho e^{\sigma\tau_0}\bigr).
+\end{equation}
+The three contributions come from $\mathcal N(v)$,
+$\mathcal C(K,v)$ and $\mathcal C(v,z_{\alpha'})$, respectively.
+Since
+\[
+ L_{\tau_0}e^{(\beta-\sigma)\tau_0}
+ \le C\bigl(e^{\sigma\tau_0}+e^{\tau_0/2}
+                    +\rho e^{\beta\tau_0}\bigr)\longrightarrow0,
+\]
+choose one $\tau_0$ so that this quantity is at most $m_b/2$ and
+the preceding contraction bounds hold. This choice is independent
+of both amplitudes.
+
+\paragraph{Finite energy, the common trace, and separation.}
+With $T=e^{\tau_0}$, the physical solutions are
+\begin{equation}\label{short-loc:finite-energy}
+ u^{(\alpha)}(x,t)=e^{t\Delta}u_0(x)
+       +t^{-1/2}[Q+\alpha v+z_\alpha](x/\sqrt t,\log t).
+\end{equation}
+The $L^2$ and gradient norms of $t^{-1/2}f(x/\sqrt t)$ are
+$t^{1/4}\|f\|_2$ and $t^{-1/4}\|\nabla f\|_2$. Thus the three
+remainders have $L^2$ orders $t^{1/4}$, $t^{\sigma+1/4}$ and
+$t^{\beta+1/4}$, and squared gradient orders $t^{-1/2}$,
+$t^{2\sigma-1/2}$ and $t^{2\beta-1/2}$. All dissipation powers are
+integrable. Heat energy and continuity yield the strong trace,
+$C_tL^2\cap L_t^2H^1$ and positive-time $C_tH^2$.
+The projected equation then gives $\partial_tu^{(\alpha)}\in C_tL^2$
+on every positive closed interval. Pairing it with $u^{(\alpha)}$ gives
+the energy equality there; strong trace and finite dissipation extend
+it to $t_0=0$. For $s\ge2$, the nonlinearity maps $H^s$ to $H^{s-1}$,
+and heat smoothing from $H^{s-1}$ to $H^{s+1/2}$ has the integrable
+kernel $(t-r)^{-3/4}$. Iteration on smaller positive-time intervals
+gives all spatial derivatives; the equation gives all time derivatives.
+
+The interpolation inequality
+$\|u\|_{10/3}^{10/3}\le C\|u\|_2^{4/3}\|\nabla u\|_2^2$
+gives $u^{(\alpha)}\in L^{10/3}_{x,t}$. The Riesz-transform bounds yield
+the stated $L^{5/3}$ pressure and recover the full equation.
+Integrating from a positive time and using the strong trace gives
+the distributional formulation including $u_0$.
+
+Orthogonal maps fixing the axis commute with the heat and
+Leray operators and the nonlinearity. They therefore commute with
+the evolution, its spectral projections, and $\mathcal R_\beta$.
+The potential $A$ is azimuthal, so $\operatorname{curl}(\chi A)$ is
+axisymmetric without swirl. Uniqueness in the common contraction ball
+preserves this symmetry for every $z_\alpha$ and
+\eqref{short-loc:finite-energy}. By \eqref{short-loc:mode-regularity}
+and \eqref{short-loc:amplitude}, for $\tau\le\tau_0$,
+\[
+ \begin{aligned}
+ \| (\alpha-\alpha')v+z_\alpha-z_{\alpha'}\|_2
+ &\ge |\alpha-\alpha'|e^{\sigma\tau}
+     \bigl(m_b-L_{\tau_0}e^{(\beta-\sigma)\tau_0}\bigr),\\
+ \| (\alpha-\alpha')v+z_\alpha-z_{\alpha'}\|_2
+ &\le |\alpha-\alpha'|e^{\sigma\tau}
+     \bigl(\max_{[0,P]}\|b\|_2+m_b/2\bigr).
+ \end{aligned}
+\]
+Physical scaling gives the two-sided separation with $c_*=m_b/2$;
+integrating its square gives the stated integral bound. In particular,
+$\alpha\mapsto u^{(\alpha)}-u^{(0)}$ is Lipschitz for the norm
+$\sup_{0<t\le T}t^{-\sigma-1/4}\|\cdot(t)\|_2$.
+
+\paragraph{Local energy equality and mixed norms.}
+For a fixed branch write $u=u^{(\alpha)}$, $p=p^{(\alpha)}$ and
+$e=|u|^2/2$. Its positive-time smoothness gives the classical local
+energy identity. For every real
+$\phi\in C_c^\infty(\mathbb R^3\times[0,T))$, integration from
+$\varepsilon>0$ and then passage to zero give
+\ifdefined\CompleteCandidate
+\eqref{short-loc:local-energy}.
+\else
+\begin{equation}\label{short-loc:local-energy}
+ \begin{aligned}
+ \int_0^T\!\int_{\mathbb R^3}|\nabla u|^2\phi\,dx\,dt
+ ={}&\int_0^T\!\int_{\mathbb R^3}
+       \bigl[e(\partial_t\phi+\Delta\phi)
+                    +(e+p)u\cdot\nabla\phi\bigr]\,dx\,dt\\
+ &+\frac12\int_{\mathbb R^3}|u_0|^2\phi(x,0)\,dx.
+ \end{aligned}
+\end{equation}
+\fi
+Indeed $|\nabla u|^2$ is integrable; $u\in L^{10/3}_{x,t}$ and
+$p\in L^{5/3}_{x,t}$ put both $|u|^3$ and $pu$ in $L^{10/9}_{x,t}$,
+hence in $L^1$ on the support of $\phi$. Strong $L^2$
+trace implies $|u(\varepsilon)|^2\to|u_0|^2$ in $L^1$.
+These facts justify every limit in the identity and, with nonnegative
+$\phi$, prove suitability.
+
+Put $F_\alpha=Q+\alpha v+z_\alpha$ and $H_0=e^{t\Delta}u_0$.
+The uniform $H^2$ bound on $F_\alpha$ gives, for $2\le q\le\infty$,
+\[
+ \|t^{-1/2}F_\alpha(x/\sqrt t,\log t)\|_q
+ \le C_qt^{(3/q-1)/2}.
+\]
+The pointwise bound on $u_0$ and Gaussian convolution give
+$|H_0(x,t)|\le C/(|x|+\sqrt t)$: rescale by $\sqrt t$ and split
+the convolution into $|y-x|<|x|/2$ and its complement when
+$|x|>2\sqrt t$. Hence $\|H_0(t)\|_{3,\infty}\le C$ and
+$\|H_0(t)\|_\infty\le Ct^{-1/2}$. Since the scaled remainder has
+uniform $L^3$ norm, \eqref{short-loc:finite-energy} proves the uniform
+weak-$L^3$ assertion.
+
+Heat contraction gives $\|H_0(t)\|_q\le\|u_0\|_q$ for $2\le q<3$.
+For $q\ge3$, integrate the distribution function of $|H_0|$,
+using its uniform $L^2$ and weak-$L^3$ bounds and its $Ct^{-1/2}$
+supremum. Together with the remainder estimate this yields
+\[
+ \|u^{(\alpha)}(t)\|_q\le C_q
+ \begin{cases}
+  1,&2\le q<3,\\
+  (1+|\log t|)^{1/3},&q=3,\\
+  t^{(3/q-1)/2},&3<q\le\infty.
+ \end{cases}
+\]
+For $q=3$ this is integrable to every finite time power. For $q>3$
+and finite $r$, the displayed power is integrable exactly when
+$r(1-3/q)/2<1$;
+for $q<3$ it is uniformly bounded in time. These conditions give
+every claimed strict mixed norm, with constants independent of $\alpha$.
+\end{proof}

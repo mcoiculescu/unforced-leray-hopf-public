@@ -1,0 +1,172 @@
+\subsection{A polynomial causal inverse in the gain norm}
+\label{sec:short-polynomial-causal}
+
+Retain the fixed spaces, actual train, and gain from
+Proposition~\ref{prop:short-full-clock}. Put
+\[
+ \mathcal H=L^2(s^{-3/2}ds;L^2_{\rm div}(dq/c\,d\eta)),\quad
+ \mathcal T=L^2(s^{-1/2}ds;L^2(dq/c\,d\eta)).
+\]
+Let $K$ be a fixed compact subset of $\{0<\Re\mu<1/4\}$ and
+$k_*:=\inf_K(\Re\mu+1/4)>0$. Constants below are uniform on $K$.
+
+\begin{proposition}\label{prop:short-polynomial-causal}
+For every planar symmetric tensor $F:C_c\times(0,\infty)\to
+\operatorname{Sym}_2$ with $g^{-1}F\in\mathcal T$, there is
+a unique causal zero-entrance energy solution of
+\begin{equation}\label{eq:short-causal-equation}
+ b_s+\frac\mu s b-\nu\Delta b+\mathbb P_0\operatorname{div}
+       (v\otimes b+b\otimes v)=\mathbb P_0\operatorname{div}F.
+\end{equation}
+Here zero entrance means $b\in\mathcal H$ near zero; no homogeneous
+$s^{-\mu}$ entrance is adjoined. The energy class also requires
+$\nabla b\in L^2_{\rm loc}((0,\infty);L^2)$. There is a finite
+$M$ such that
+\begin{equation}\label{eq:short-causal-bound}
+ \|g^{-1}b\|_{\mathcal H}
+ +\sqrt\nu\|\nabla(g^{-1}b)\|_{\mathcal T}
+ \le C\nu^{-M}\|g^{-1}F\|_{\mathcal T}.
+\end{equation}
+The response is locally continuous in $\mu$ with the geometry fixed.
+This is a bound after conjugation by $g$; its ordinary norm can contain
+$e^{\gamma/\nu}$.
+\end{proposition}
+
+\begin{proof}
+Use Proposition~\ref{prop:short-full-clock} with its fixed $b$,
+$H=\nu^{-1}((\nu b)^{-1}-1)$, and weak-source degree $M_s$.
+
+\emph{The zero-entrance construction and all ages.}
+Put $T=g^{-1}F$, $u=g^{-1}b$ and
+$h=g'/g=\gamma/(1+\nu s)^2\ge0$. Solve the free equation for $u_0$
+with scalar term $\mu/s+h$ and tensor $T$ by starting from zero at
+$s=\delta$ and taking $\delta\downarrow0$. The weighted energy is
+coercive and gives
+\[
+ \|u_0\|_{\mathcal H}\le(2\sqrt{k_*\nu})^{-1}\|T\|_{\mathcal T},
+ \qquad \|\nabla u_0\|_{\mathcal T}\le\nu^{-1}\|T\|_{\mathcal T}.
+\]
+Spatial coefficient estimates may first be taken with unnormalized
+cell measure. Multiplying velocity, tensor, $X_m$, and weighted-dual
+source norms by the same $c^{-1/2}$ gives the normalized convention
+used in $\mathcal H$ and $\mathcal T$; all inequalities below are
+unchanged. Equivalently define the source duality using normalized
+cell pairing and normalized test norm.
+The localized vorticity source
+$f=-\operatorname{curl}(v\cdot\nabla u_0+u_0\cdot\nabla v)$
+has zero mass and satisfies
+\[
+ \|f(s)\|_{Z^{-1}_{m,c}}
+ \le A_m(\|\nabla u_0(s)\|_2+\|u_0(s)\|_2),\qquad
+ A_m\le C\nu^{-p_m}\quad(0<s<H),
+\]
+for one fixed finite $p_m$. Indeed $A_m$ is bounded by a constant
+times $\sup_{s\le H}\|\langle x\rangle^m(v,\nabla v)(s)\|_\infty$.
+The actual train tail \eqref{sct:transverse}, with $S_*=H$, bounds
+this by a fixed polynomial in $c,\nu^{-1},H$: the nonzero modes
+have exponential transverse kernels, and the zero mode has decaying
+primitives at both ends. Here $c=\nu^{-2}$ and $H=O(\nu^{-2})$.
+Thus this is a polynomial coefficient bound, with no exponential
+weighted-energy loss. Testing the outer curl against $H^1_{-m}$
+then gives the displayed negative-order estimate. Hence
+$\|f\|_{L^2(s^{-1/2};Z^{-1}_m)}
+\le C\nu^{-p_m-3/2}\|T\|_{\mathcal T}$.
+
+For $\sigma=\Re\mu$, the substitution $t=su$ and Minkowski give
+the exact Hardy inequality
+\begin{equation}\label{eq:short-causal-hardy}
+ \left\|\int_0^s(t/s)^\sigma(s-t)^{-1/2}f(t)dt\right\|_{L^2(s^{-3/2})}
+ \le B(\sigma+3/4,1/2)\|f\|_{L^2(s^{-1/2})}.
+\end{equation}
+The kernel $1$ on $s<H$ costs an additional $\sqrt H\le C_b\nu^{-1}$.
+Define using only forward propagation
+\[
+ \omega(s)=\int_0^s(t/s)^\mu\frac{g(t)}{g(s)}U(s,t)f(t)dt,
+ \qquad u=u_0+K_c\omega.
+\]
+Equations \eqref{eq:short-causal-weak-forward}--\eqref{eq:short-causal-hardy}
+give $\|\omega\|_{L^2(s^{-3/2};X_m)}
+\le C\nu^{-M_s-p_m-5/2}\|T\|_{\mathcal T}$.
+Zero-circulation Biot--Savart reconstruction gives
+$\|K_c\omega\|_{H^1}\le C_m(1+c)\|\omega\|_{X_m}$:
+nonzero horizontal modes cost $c$, while the mean is the
+zero-endpoint primitive controlled by one-dimensional Hardy:
+$\|\int_\eta^\infty\bar\omega(\zeta)d\zeta\|_2
+\le2\|\eta\bar\omega(\eta)\|_2$. This follows by integrating
+$(\eta|\int_\eta^\infty\bar\omega|^2)'$; zero circulation
+removes both endpoint terms.
+Since $\sqrt H=O(\nu^{-1})$, we obtain on the core
+\[
+ \|u\|_{\mathcal H(0,H)}
+ +\sqrt\nu\|\nabla u\|_{\mathcal T(0,H)}
+ \le C\nu^{-M_s-p_m-5}\|T\|_{\mathcal T(0,H)}.
+\]
+The velocity equation follows from its curl and divergence equations:
+after testing in age the discrepancy is spatial $H^{-1}$, curl-free
+and divergence-free; its Fourier transform is supported only at zero
+and must vanish. This retains the horizontal mean. Local Hilbert
+triple regularity gives a strong $L^2$ trace at every positive age.
+
+For $E=s^{-1/2}\|u\|_2^2$, $L=\|\operatorname{sym}\nabla v\|_\infty$
+and $A(s)=\exp(-2\int_{t_*}^sL)$, the exact energy inequality is
+\begin{equation}\label{eq:short-causal-tail-energy}
+ (AE)'+2k_*AE/s+2hAE+\nu A s^{-1/2}\|\nabla u\|_2^2
+ \le\nu^{-1}A s^{-1/2}\|T\|_2^2.
+\end{equation}
+Selecting a time in $[H-1,H-1/2]$ and applying this inequality to $H$
+gives
+$H^{-1/4}\|u(H)\|_2
+\le C_b[\sqrt H\|u\|_{\mathcal H(H-1,H)}
++\nu^{-1/2}\|T\|_{\mathcal T(H-1,H)}]$.
+With $a_b=1+\nu H=(\nu b)^{-1}$, the actual train estimate
+\eqref{short-bg:train-late} yields
+\[
+ I_H:=\int_H^\infty L(s)ds
+ \le C/(\nu a_b)+Ce_c=Cb+C\nu^3.
+\]
+Thus continuation from the exact strong trace, with the entire
+prescribed tensor after $H$, costs only the fixed factor $e^{Cb+C\nu^3}$.
+It crosses the overlap regime and reaches infinite age without a
+vorticity moment assumption on the late response. Combining the
+core and tail gives \eqref{eq:short-causal-bound}, for example with
+any $M\ge M_s+p_m+6$.
+
+For uniqueness, a homogeneous difference in the energy class has
+a sequence $\delta_j\downarrow0$ with
+$\delta_j^{-1/2}\|u(\delta_j)\|_2^2\to0$, because its integral
+against $ds/s$ is finite. Apply \eqref{eq:short-causal-tail-energy}
+on $[\delta_j,B]$ and let $j\to\infty$. This also proves causality.
+Continuity in $\mu$ on the core follows from the same Hardy estimate
+with one factor $|\log(t/s)|$; its beta integral is finite uniformly
+on $K$. In the free and tail equations the difference contributes
+$-(\mu-\mu')u_{\mu'}/s$, whose weighted pairing is bounded by
+$|\mu-\mu'|\|u_{\mu'}\|_{\mathcal H}\|u_\mu-u_{\mu'}\|_{\mathcal H}$
+and is absorbed by the $k_*$ coercivity. The local energy estimate
+also gives trace continuity. All geometric parameters stay fixed.
+\end{proof}
+
+\begin{corollary}\label{cor:short-polynomial-stress}
+Let $S_{0,\mu}$ and $S_{\rm lin,\mu}$ denote the free and actual
+causal tensor responses, acting on the sum of the two components of
+the split stress space $\mathcal Z=\mathcal Z_1\oplus
+\rho_b^{-1/2}\mathcal T$, with its specified norm and $0<\rho_b\le1$.
+For a three-component cylindrical tensor these flat maps act on its
+$(r,z)$ block; its hoop component is retained in the exact curved
+comparison.
+The first-component weight is at least one, so
+$\|F_1+F_2\|_{\mathcal T}\le\|F_1\|_{\mathcal Z_1}
++\sqrt{\rho_b}\|F_2\|_{\rho_b^{-1/2}\mathcal T}$. Let
+$M_0u=(v\otimes u+u\otimes v,0)$ and suppose its actual train
+multiplier bound is $\|M_0u\|_{\mathcal Z_1}
+\le C\nu^{-p_V}\|u\|_{\mathcal H}$. Then
+\[
+ D_0^{-1}=(I+M_0S_{0,\mu})^{-1}=I-M_0S_{\rm lin,\mu},\qquad
+ \|g^{-1}D_0^{-1}g\|_{\mathcal Z\to\mathcal Z}\le C\nu^{-M},
+ \quad M=\lceil p_m+p_V+M_s+10\rceil.
+\]
+Indeed $b=S_{\rm lin,\mu}F$ satisfies
+$b=S_{0,\mu}(F-M_0b)$ by free uniqueness, giving both inverse
+identities. The second split input component is retained. The degree
+has slack for the fixed norm equivalences and trace estimate, and
+depends only on the fixed weights and coefficient budgets.
+\end{corollary}

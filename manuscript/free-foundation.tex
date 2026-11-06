@@ -1,0 +1,288 @@
+\subsection{The free Cartesian equation}
+
+Put \(\mathcal T=\partial_\tau-y\cdot\nabla/2\),
+\(L=\mathcal T-\nu\Delta-1/2\), and let \(Y_r\) denote
+\(L^r((\mathbb R/P\mathbb Z)\times\mathbb R^3)\), with normalized
+phase measure. Its maximal distributional graph is
+\[
+ D_r=\{w\in Y_r:\nu\Delta w,\mathcal Tw\in Y_r\},\qquad
+ \|w\|_{D_r}=\|w\|_{Y_r}+\|\nu\Delta w\|_{Y_r}
+                                      +\|\mathcal Tw\|_{Y_r}.
+\]
+The derivatives in this definition are Cartesian; there is no axis
+condition. Write \(\gamma_r=(3/r-1)/2\), \(a_r=\operatorname{Re}\mu+\gamma_r\).
+
+\begin{lemma}\label{bg:common-body-graph}
+For \(1<r<3\), \(a_r>0\), \(\nu>0\), and \(0<P\le1\),
+the componentwise operator \(\mu+L:D_r\to Y_r\) is bijective and
+\begin{equation}\label{bg:body-graph}
+ \|w\|_{D_r}+\sqrt\nu\|\nabla w\|_{Y_r}
+ \le C_r[1+(1+|\mu|)/a_r]\|f\|_{Y_r},
+ \qquad (\mu+L)w=f.
+\end{equation}
+Its projected inverse is obtained by applying Cartesian Leray projection
+to \(f\). At \(r=2\) the adjoint has the same maximal graph and the
+same bound. All these estimates are independent of \(P\).
+\end{lemma}
+
+\begin{proof}
+The heat-dilation formula gives a distributional inverse
+\[
+ S(t)h(y)=e^{t/2}[e^{\nu(e^t-1)\Delta}h](e^{t/2}y),\qquad
+ \mathcal R_\mu f(\tau)=\int_0^\infty e^{-\mu t}S(t)f(\tau-t)\,dt.
+\]
+Its integrand has \(Y_r\) norm at most
+\(e^{-a_rt}\|f\|_{Y_r}\); hence \(\|\mathcal R_\mu\|\le a_r^{-1}\).
+The local heat estimate needed here is
+\begin{equation}\label{free:heat-estimate}
+ \|\nu D^2u\|_r+\|u_t\|_r\le C_{d,r}\|F\|_r,\qquad
+ u_t-\nu\Delta u=F,
+\end{equation}
+for compactly time-supported distributional solutions \(u,F\in
+L^r(\mathbb R\times\mathbb R^d)\). To justify its precise forcing
+class, scale to \(\nu=1\). The multiplier
+\(-\xi_i\xi_j/(i\omega+|\xi|^2)\) has \(L^2\) norm at most one.
+Its kernel away from the origin is
+\(K(t,x)=1_{t>0}\partial_{ij}H_t(x)\). For
+\(\rho(t,x)=\max\{|x|,\sqrt{|t|}\}\), Gaussian differentiation gives
+\[
+ |K|\le C\rho^{-d-2},\quad
+ |\nabla_xK|\le C\rho^{-d-3},\quad
+ |\partial_tK|\le C\rho^{-d-4}.
+\]
+The kernel extends smoothly by zero through \(t=0\), away from
+\(x=0\). Integrating these derivatives in parabolic annuli gives
+\[
+ \int_{\rho(z)>4\rho(h)}|K(z-h)-K(z)|\,dz\le C_d.
+\]
+The spatial and temporal differences are bounded, respectively, by
+\[
+ C|h_x|\int_{4\rho(h)}^\infty R^{-2}dR,\qquad
+ C|h_t|\int_{4\rho(h)}^\infty R^{-3}dR,
+\]
+which are uniformly bounded.
+For completeness, decompose an \(L^1\cap L^2\) function at height
+\(\alpha\) using maximal dyadic rectangles with spatial side \(2^k\)
+and time side \(2^{2k}\). The good part has
+\(\|g\|_2^2\le C_d\alpha\|f\|_1\). The bad parts \(b_Q\) have
+zero integral, total \(L^1\) norm at most \(2\|f\|_1\), and their
+rectangles have total measure at most \(\alpha^{-1}\|f\|_1\).
+Outside fixed enlargements of these rectangles, cancellation and
+the displayed kernel integral bound the \(L^1\) norm of each
+\(Tb_Q\) by \(C_d\|b_Q\|_1\). The \(L^2\) estimate for the good
+part and Chebyshev's inequality for the bad part prove weak type
+\((1,1)\). Integrating this distribution bound for the portions
+\(|f|>\alpha\) and \(|f|\le\alpha\), together with the \(L^2\)
+bound, gives \(L^r\) boundedness for \(1<r<2\). Duality gives the
+remaining exponents since the reflected kernel has the same bounds.
+Mollify the compact-time equation. The mollified solution vanishes
+in the distant past, so its causal heat formula identifies its
+second derivatives with these bounded operators applied to the
+mollified \(F\). Their \(L^r\) limit equals the distributional
+derivatives of \(u\); the equation gives \(u_t\). This proves
+\eqref{free:heat-estimate}, with no viscosity loss.
+
+On \(|t|<2\), set
+\(v(t,x)=e^{-t/2}w(\tau_0+t,e^{-t/2}x)\).
+Then \(v_t-\nu e^t\Delta v\) is the same pullback of \(f-\mu w\).
+A fixed cutoff equal to one on \(|t|<1\), followed by
+\(\theta=e^t\), reduces this equation to the preceding heat estimate.
+All Jacobians on the window are bounded. Consequently
+\[
+ \int_{\tau_0-1}^{\tau_0+1}\|\nu\Delta w\|_r^r\,d\tau
+ \le C_r\int_{\tau_0-2}^{\tau_0+2}
+       [\|f\|_r^r+(1+|\mu|)^r\|w\|_r^r]\,d\tau.
+\]
+For periodic \(h\),
+\(\int_0^P\int_Ih(\tau_0+t)\,dt\,d\tau_0
+=|I|\int_0^Ph\).
+Averaging the last inequality over the centers proves the diffusion
+bound with no inverse-period factor. The equation gives the drift
+bound; spatial elliptic interpolation gives the gradient bound.
+The same reasoning applies to any distributional \(Y_r\) solution.
+
+The adjoint semigroup is
+\(S(t)^*h=e^{-t}[e^{\nu(1-e^{-t})\Delta}h](e^{-t/2}y)\).
+For a smooth compact spatial test, its adjoint resolvent has itself and
+its first two spatial derivatives in \(Y_{r'}\), by the gap and the
+extra factor \(e^{-t/2}\) per derivative. Test a homogeneous solution
+against this resolvent times a radial cutoff at radius \(N\).
+The drift cutoff is bounded, and the diffusion cutoffs cost
+\(N^{-1},N^{-2}\); all terms are bounded by the \(Y_r\) tail of the
+solution times fixed \(Y_{r'}\) norms and tend to zero. Thus the
+solution vanishes. The inverse therefore has precisely the displayed
+maximal distributional domain. To exhibit a core directly, approximate
+the right side by smooth periodic Schwartz functions and truncate the
+inverse integral at \(M\). Such a truncated integral is Schwartz and
+its equation has right side
+\[
+ f-e^{-\mu M}S(M)f(\tau-M).
+\]
+The remainder tends to zero in \(Y_r\); the graph estimate gives
+graph convergence of the truncations. Thus the smooth periodic
+Schwartz class is a core. Radial cutoffs approximate it in this graph,
+since their drift commutator is bounded on an escaping annulus and
+their diffusion commutators tend to zero. At \(r=2\), reverse
+the phase window and use \(\theta=1-e^{-t}\) for
+\(L^*=-\mathcal T-\nu\Delta+1\). Testing against the compact core
+identifies the distributional equation of every vector in the actual
+adjoint domain; this reversed-window estimate places it in \(D_2\).
+Conversely, core integration by parts puts every element of \(D_2\)
+in the adjoint domain. Its resolvent norm is at most \(a_2^{-1}\)
+by duality, so the same graph bound follows. Leray commutes with
+heat, dilation and phase translation, so projection preserves all
+identities. Restriction to the real axisymmetric no-swirl subspace is
+also legitimate since its symmetry projections commute with these maps.
+On the Hilbert core, direct integration by parts gives
+\[
+ \operatorname{Re}\langle(\mu+L)w,w\rangle
+       =(\operatorname{Re}\mu+1/4)\|w\|_2^2
+                                      +\nu\|\nabla w\|_2^2.
+\]
+The adjoint has the same real part. For a tensor source
+\(\mathbb P\operatorname{div}T\), its right side is at most
+\(\|T\|_2\|\nabla w\|_2\). Completing the square gives
+\(\|\nabla w\|_2\le\nu^{-1}\|T\|_2\) and
+\(\|w\|_2\le[2\sqrt{\nu(\operatorname{Re}\mu+1/4)}]^{-1}\|T\|_2\).
+Approximation of tensors completes this weak-stress map and the
+inequality without assigning a full graph to its rough outputs.
+\end{proof}
+
+\begin{lemma}\label{bg:graph-embeddings}
+Every \(w\in D_r\) has a representative in
+\(C(\mathbb R/P\mathbb Z;L^r)\), and
+\begin{equation}\label{bg:phase-embedding}
+ \sup_\tau\|w(\tau)\|_r
+ \le(1+3P/(2r))\|w\|_{Y_r}+P\|\mathcal Tw\|_{Y_r}.
+\end{equation}
+For \(r>5/2\),
+\begin{equation}\label{bg:supremum-embedding}
+ \|w\|_{L^\infty_{\tau,y}}
+       \le C_r\nu^{-3/(2r)}\|w\|_{D_r}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+On a fixed phase interval the distributional chain rule gives
+\(V(t,x)=w(\tau_0+t,e^{-t/2}x)\in W^{1,r}_tL^r_x\), with
+\(V_t\) the pullback of \(\mathcal Tw\). Undoing the strongly
+continuous dilation gives the continuous phase representative;
+distributional periodicity matches its endpoints. For
+\(f(\tau)=\|w(\tau)\|_r\), the norm chain rule gives
+\(\lvert f'+3f/(2r)\rvert\le\|\mathcal Tw(\tau)\|_r\).
+Start at a phase with \(f\le\|w\|_{Y_r}\), integrate for at most
+one period, and apply H\"older to obtain \eqref{bg:phase-embedding}.
+
+For the supremum fix \((\tau_0,y_0)\) and put
+\(W(t,z)=w(\tau_0+t,e^{-t/2}(y_0+\sqrt\nu z))\) on
+\(|t|<1/2\). Then \(W_t=(\mathcal Tw)\circ\),
+\(\Delta_zW=\nu e^{-t}(\Delta_yw)\circ\), and
+\(dz=\nu^{-3/2}e^{3t/2}dy\). The integral of a nonnegative
+\(P\)-periodic function over a unit interval is at most
+\((1+P)\) times its phase average. Thus
+\[
+ \|W\|_{L^r}+\|W_t\|_{L^r}+\|\Delta_zW\|_{L^r}
+       \le C_r\nu^{-3/(2r)}\|w\|_{D_r}.
+\]
+Choose a fixed time cutoff \(\chi=1\) near zero. The right side
+\(F=(\partial_t-\Delta_z+1)(\chi W)\), after zero extension,
+has this same bound. Its causal inverse kernel
+\(k(t,z)=1_{t>0}e^{-t}H_t(z)\) satisfies
+\[
+ \|k\|_{L^{r'}}^{r'}
+   =C_r\int_0^\infty e^{-r't}t^{-3(r'-1)/2}\,dt<\infty
+       \quad\Longleftrightarrow\quad r>5/2.
+\]
+The identity \(\chi W=k*F\) follows distributionally; uniqueness
+follows from the nonvanishing symbol \(i\omega+|\xi|^2+1\).
+H\"older bounds its value at \((0,0)\), proving
+\eqref{bg:supremum-embedding}. Translation continuity of \(k\) in
+\(L^{r'}\) supplies a continuous local representative. No external
+Sobolev embedding or inverse-period factor is used.
+\end{proof}
+
+\subsection{Tensor forces}
+
+Write \(R_\mu=(\mu+L)^{-1}\mathbb P\). For tensor inputs its
+divergence is interpreted by completion from smooth tensors, rather
+than as an ordinary \(Y_2\) body force. Let
+\[
+ B=\mathcal T-\tfrac34,\qquad A=-\nu\Delta.
+\]
+The group \(u(\tau,y)\mapsto e^{-3t/4}u(\tau+t,e^{-t/2}y)\) is
+unitary on \(Y_2\) and has generator \(B\); hence \(B\) is skew-adjoint.
+The operator \(A\) is nonnegative self-adjoint.
+
+\begin{lemma}\label{free:weak-stress}
+For \(a=\operatorname{Re}\mu+1/4>0\), the map
+\(S_\mu=R_\mu\operatorname{div}\) extends uniquely to
+\(Y_2(\operatorname{Sym}_3)\), with
+\begin{equation}\label{free:stress-energy}
+ \|S_\mu T\|_{Y_2}\le\frac{\|T\|_{Y_2}}{2\sqrt{a\nu}},\qquad
+ \|\nabla S_\mu T\|_{Y_2}\le\nu^{-1}\|T\|_{Y_2}.
+\end{equation}
+Uniformly on compact subsets of this half-plane,
+\begin{equation}\label{free:half-drift}
+ \|(1+|B|)^{1/2}S_\mu T\|_{Y_2}
+       \le C_\mu\nu^{-1/2}\|T\|_{Y_2}.
+\end{equation}
+The weak solution is unique among distributional \(Y_2\) solutions.
+Bounded measurable tensor partitions are allowed before divergence.
+The body and tensor inverses depend
+holomorphically on \(\mu\) in their respective half-planes.
+\end{lemma}
+
+\begin{proof}
+The energy identity and completion proved above give
+\eqref{free:stress-energy}. Differences of smooth tensors give strong
+convergence of both velocities and first gradients, so the equation
+and energy identity pass to the limit. Distributional uniqueness
+follows by subtracting two solutions and applying the homogeneous
+uniqueness argument in Lemma~\ref{bg:common-body-graph}.
+In particular a bounded measurable multiplier may be applied to a
+tensor before this completion; the distributional divergence includes
+all interface terms.
+
+Put \(C=1+|B|\), \(D=1+A\), and let \(\mathcal R_\mu\) be the
+inverse of \(\mu+L\), acting componentwise. Its direct graph bounds
+\(C\mathcal R_\mu\); the actual adjoint graph bounds
+\(D\mathcal R_\mu^*\), and duality bounds the extension of
+\(\mathcal R_\mu D\). The imaginary powers of \(C,D\) are unitary.
+Insert the respective spectral cutoffs on the two sides of
+\[
+ C^z\mathcal R_\mu D^{1-z},\qquad
+                 0\le\operatorname{Re}z\le1.
+\]
+At the two boundary lines the preceding graph estimates give
+uniform bounds. The scalar three-lines theorem applied to pairings,
+followed by density and closedness, yields
+\(\|C^{1/2}\mathcal R_\mu D^{1/2}\|\le C_\mu\).
+No commutation between \(A\) and \(B\) is asserted. Spatial Fourier
+transformation gives
+\(\operatorname{div}=\nu^{-1/2}A^{1/2}\mathcal Q\), where
+\(\mathcal Q\) is a bounded tensor-to-vector combination of Riesz
+transforms. Since \(D^{-1/2}A^{1/2}\) is bounded and Leray commutes
+with \(A,B\), the last estimate proves \eqref{free:half-drift}.
+
+The inverse of \(\mu+L\) is holomorphic by its convergent semigroup integral.
+For the stress inverse, distributional uniqueness gives
+\[
+ S_\mu-S_\zeta=(\zeta-\mu)R_\mu S_\zeta.
+\]
+The body and stress bounds make this the resolvent identity in
+operator norm, proving the asserted holomorphy.
+\end{proof}
+
+At \(r=11/4\) the body gap at \(\mu=0\) is \(1/22\), and at
+\(r=23/8\) it is \(1/46\). In particular all shifts in the
+background and spectral constructions lie in the stipulated ranges.
+The graph embeddings also give, at \(r=11/4\),
+\[
+ \|\mathbb P[(u\cdot\nabla)v]\|_{Y_r}
+ \le C\nu^{-23/22}\|u\|_{D_r}\|v\|_{D_r}.
+\]
+For any unitary velocity and tensor lifts \(J_v:H\to Y_2\) and
+\(J_T:H_T\to Y_2\), the transported stress map is exactly
+\(J_v^{-1}S_\mu J_T:H_T\to H\), with the same energy bounds.
+This formula transports the completed tensor inverse; it does not
+assign an ordinary body-force norm to \(\operatorname{div}J_TT\).

@@ -1,0 +1,616 @@
+\section{The exact unforced background}
+\label{short-bg:section}
+
+We use the real axisymmetric class without swirl.  Set
+\[
+ p=11/4,\quad c=\nu^{-2},\quad R=\epsilon^{-1},\quad
+ \epsilon=e^{-d/\nu},\quad P=2\epsilon c,
+ \qquad 0<d_-\le d\le d_+.
+\]
+Powers of $\nu^{-1},c$ and fixed polynomial cutoff lengths are denoted
+by $\mathcal P_\nu$. Constants may depend on $d_\pm$ and on a fixed
+derivative budget. The phase measure is normalized by $d\tau/P$.
+Use the spaces $Y_p,D_p$ of Lemma~\ref{bg:common-body-graph}, and write
+$A_0=L$ and $X_p=D_p\cap\{\operatorname{div}w=0\}$ with the same graph
+norm. Let $v_c$ be the train of Proposition~\ref{sct:train} and
+$V_0=U_{\rm raw}$ its divergence-free lift from Proposition~\ref{sct:lift},
+with residual $F_R$. In particular,
+\eqref{sct:residual-bound} gives
+$\|F_R\|_{C_\tau W^{1,p}}\le\mathcal P_\nu\epsilon^{3/11}$.
+
+For $m>8$, write $X_m=L^2(\mathbb R^2,\langle x\rangle^{2m})$.
+The frozen growing pair and complementary bound are given by
+Corollary~\ref{cor:short-seed-dilation}. The train estimates give
+\begin{align}
+ &\sup_{s\ge0}\sum_{j=0}^3\|D^jv_c(s)\|_\infty\le C,
+ \label{short-bg:train-uniform}\\
+ &\int_{\Sigma/\nu}^\infty
+       (\|Dv_c(s)\|_\infty+\|D^2v_c(s)\|_\infty)\,ds
+ \le {C\over\nu(1+\Sigma)}+C\nu^3.
+ \label{short-bg:train-late}
+\end{align}
+The weighted coefficient and polynomial spatial $L^{22/3}$ bounds follow
+from Lemma~\ref{sct:heat}. In normalized cylinder coordinates set
+\begin{equation}
+ H_p=L^p(s^{-9/8}\,ds\,dq/c\,d\eta),\qquad
+ \|\sqrt{s}\,b\|_{Y_p}=(\pi R^2)^{1/p}\|b\|_{H_p},
+ \quad
+ T_0F(s)=\int_0^s e^{\nu(s-t)\Delta}\mathbb P_0 F(t){dt\over t}.
+ \label{short-bg:measure}
+\end{equation}
+The global free graph and compact-output comparison are
+\eqref{bg:profile-graph} and Proposition~\ref{bg:lp-free-comparison};
+their inputs have arbitrary age support.
+
+\subsection{One mixed construction for the finite age interval}
+
+We first verify the common actual-cylinder comparison. On the centered
+cell let $X_{m,c}=L^2(C_c,(1+q^2+\eta^2)^m)$ and let $J_c,R_c$ be
+zero extension and restriction. Extend the free cylinder evolution by
+the identity on the exterior summand of $X_m$ and the interaction by
+zero there. The vorticity equation is
+\begin{equation}
+ \omega_s=(\nu\Delta-v_c(s)\cdot\nabla+A_c(s))\omega,
+ \qquad A_c(s)\omega=-(K_c\omega)\cdot\nabla E_c(s).
+ \label{short-bg:actual-cylinder}
+\end{equation}
+Here $E_c=\operatorname{curl}v_c$ and $K_c$ includes the horizontal
+mean mode. On $s\le\Sigma/\nu$, the train comparison gives, in any
+fixed finite weighted derivative budget,
+\[
+ \|v_c-V_c^p\|+\|E_c-E_c^p\|
+ \le\delta_c:=\mathcal P_\nu
+                  e^{C_\Sigma/\nu-b_\Sigma c^2}.
+\]
+The central radial Gaussian transports the radial weight exactly;
+the velocities induced by the other periodic copies, the region near the
+cell boundary, and the displayed error contribute at most
+$C(\delta_c+e^{-b_\Sigma c^2})$ to its logarithmic derivative.
+The weight is continuous across the cell boundary and its normal derivative has
+a negative jump. Its distributional Laplacian is therefore bounded
+above by $C_m$ times the weight. Weighted integration by parts gives
+\begin{equation}
+ \|S_{\nu,c}(t,s)\|_{X_{m,c}\to X_{m,c}}
+ \le\exp[(C_m\nu+C\delta_c+Ce^{-b_\Sigma c^2})(t-s)].
+ \label{short-bg:free-cylinder}
+\end{equation}
+One may smooth the weight, preserving uniform comparability, to justify
+this calculation. On a fixed block, Duhamel for a smooth compactly
+supported datum against the frozen radial transport gives convergence:
+the transported support remains a fixed disk, the viscosity error is
+$\nu\Delta$ applied only to that smooth datum, and the coefficient
+change is $O(\nu L)+o(1)$ there. Density and
+\eqref{short-bg:free-cylinder} give strong convergence on $X_m$,
+uniformly for block lengths in a compact interval. The frozen radial
+transport is unitary in this radial weighted space. Multiplying by its
+inverse reduces the free convergence to $W_\nu\to I$ strongly with
+$\|W_\nu\|\le1+o(1)$. The identity for
+$\|W_\nu^*f-f\|^2$ then gives strong adjoint convergence too. This
+argument makes no operator-norm assertion about the Laplacian.
+
+The cylinder kernel is uniformly bounded away from its common local
+$1/|x-y|$ singularity. On $|x|,|y|\le c/4$, paired periodic images
+give
+$|K_c(x-y)-K_{\mathbb R^2}(x-y)|
+\le Cc^{-2}(1+|x|+|y|)$.
+Multiplication by the Gaussian observation coefficient $\nabla E$
+and weighted Cauchy--Schwarz control this part by $Cc^{-2}\|f\|_{X_m}$.
+For $|y|>c/4$, the same Cauchy--Schwarz estimate gives a factor
+$c^{1-m}$, with an additional harmless source-moment power if needed;
+for $|x|>c/4$ the coefficient is Gaussian-small. The coefficient error
+contributes $C\delta_c$. Thus
+\begin{equation}
+ \|J_cA_c(\sigma/\nu)R_c-A_{\rm pl,\sigma}\|_{X_m\to X_m}
+ \le C_\Sigma(c^{-2}+\delta_c),\qquad 0\le\sigma\le\Sigma.
+ \label{short-bg:interaction-cylinder}
+\end{equation}
+The near kernel gains one local derivative, by the Fourier multiplier
+bound for $DK$, and the coefficient is localized. Truncate source and
+observation, use local Rellich compactness, and then the same tail
+estimates: every interaction is compact and their family is
+collectively compact. The artificial exterior is invariant and has no
+growing component. Restriction removes it. To implement zero
+circulation in the comparison one may adjoin a radial mass-one
+neutral vector to the plane zero-circulation space; radial Euler
+linearization annihilates it. Cylinder curl sources and periodized
+angular-two entrance vectors have zero circulation, so their actual
+solutions remain in the desired subspace.
+
+Fix $\Sigma$ and put $T=\Sigma/\nu$. Choose
+$0<a<a'<b'<b<\gamma/(1+\Sigma)^2$. On a bounded block of length $L$,
+the common compact-Duhamel lemma gives
+\[
+ U(t+L,t)=W_{\nu,t}e^{L L_{\nu t}}+o_{\nu\to0}(1)
+ \quad\hbox{in operator norm},
+\]
+where $\|W_{\nu,t}\|\le1+o(1)$ and $W_{\nu,t},W_{\nu,t}^*\to I$
+strongly. The error is uniform for block lengths in $[0,L]$.
+Indeed the interaction Duhamel term converges in norm; its limit is
+compact, so multiplying it by $W_{\nu,t}-I$ gives a norm-small error.
+Let $E_t,F_t$ be the frozen growing and complementary spaces. Finite
+rank and strong adjoint convergence make both off-diagonal blocks
+small. For $L$ fixed sufficiently large, each full block has matrix
+\[
+ \begin{pmatrix}a_n&b_n\\c_n&d_n\end{pmatrix},\qquad
+ \|a_n^{-1}\|\le A,\quad \|d_n\|\le D,\quad
+ \|b_n\|+\|c_n\|\le\eta_\nu\longrightarrow0,
+ \qquad AD<1.
+\]
+Here $A,D$ can be chosen below $e^{-b'L},e^{a'L}$ with strict
+margins. Frozen projections use the periodized plane direct vectors,
+which have zero circulation, and the restricted plane dual vectors,
+with their finite pairing matrix normalized. Weighted-dual convergence
+suffices; no far-field expansion of
+the dual vector is used.
+
+For completeness, construct the invariant subspaces using
+\begin{equation}
+ \xi_{n+1}=(c_n+d_n\xi_n)(a_n+b_n\xi_n)^{-1},\qquad
+ \zeta_n=(a_n-\zeta_{n+1}c_n)^{-1}(\zeta_{n+1}d_n-b_n),
+ \quad \xi_0=0,\quad\zeta_N=0.
+ \label{short-bg:graphs}
+\end{equation}
+On a ball of radius $r=C\eta_\nu$, these maps have Lipschitz constant
+at most $A(D+\eta_\nu r)/(1-A\eta_\nu r)<1$. They preserve the ball
+if $r(1-AD)\ge A\eta_\nu(1+r^2)$. Hence the graphs are complementary,
+their projections are uniformly bounded, and the products of their
+coordinate maps have bounds $e^{a'(t-s)}$ forward on the center and
+$e^{-b'(s-t)}$ backward on the growing space. Coordinate equivalence
+is used only at the two endpoints of a product. An appended block of
+length at most $L$ has uniformly bounded growing inverse and forward
+map and changes only the prefactor.
+
+At intermediate times in a block $[t_n,t_{n+1}]$, put
+$J_t=U(t,t_n)|_{E_n^u}$ and
+$F_t=\Pi^u_{n+1}U(t_{n+1},t)$. Their product is the invertible
+two-dimensional block $B_n=U(t_{n+1},t_n)|_{E_n^u}$, so
+$\Pi^u(t)=J_tB_n^{-1}F_t$ and $\Pi^c(t)=I-\Pi^u(t)$.
+This proves invariance and bounds without inverting a parabolic map
+on the infinite-dimensional space. Consequently
+\begin{equation}
+ z(s)=\int_0^s U(s,t)\Pi^c(t)f(t)\,dt
+       -\int_s^T U(s,t)\Pi^u(t)f(t)\,dt
+ \label{short-bg:green}
+\end{equation}
+satisfies the equation, has initial value in the fixed entrance pair,
+has vanishing terminal growing coordinate, and obeys
+\begin{equation}
+ \sup_{[0,T]}\|z(s)\|_{X_m}
+       \le C e^{a'T}\|f\|_{L^1(0,T;X_m)}.
+ \label{short-bg:green-bound}
+\end{equation}
+Only a rank-two evolution was inverted. All constructions preserve
+zero circulation and reality.
+
+\subsection{Completion for arbitrary body forces}
+
+Let $F\in H_p$, set $b_0=T_0F$, and solve for the correction in the $(r,z)$-components
+\begin{equation}
+ z_s-\nu\Delta z+\mathbb P_0(v\cdot\nabla z+z\cdot\nabla v)
+     =g:=-\mathbb P_0(v\cdot\nabla b_0+b_0\cdot\nabla v).
+ \label{short-bg:body-eq}
+\end{equation}
+Use the fixed Green selector \eqref{short-bg:green} for the vorticity
+$\operatorname{curl}z$: its initial value belongs to the fixed entrance
+pair and its terminal growing coordinate vanishes. No condition is
+imposed on $b_0(T)$ or on a velocity observation. The train coefficient
+and source remain present at every age. The global free graph gives
+\[
+ \|b_0\|_{H_p}+\|\sqrt{\nu s}Db_0\|_{H_p}
+                    +\|\nu sD^2b_0\|_{H_p}\le C\|F\|_{H_p}.
+\]
+Put $b=13/8$, so $b-p=-9/8$. Spatial H\"older with $22/3$,
+followed by one derivative, bounds both $g$ in $H^1$ and
+$\operatorname{curl}g$ in $X_m$ on a finite slow-age band by
+$\mathcal P_\nu(\|D^2b_0\|_p+\|Db_0\|_p+\|b_0\|_p)$.
+Thus
+\begin{equation}
+ \|g\|_{L^p((0,T),s^bds;H^1)}
+ +\|\operatorname{curl}g\|_{L^p((0,T),s^bds;X_m)}
+ \le\mathcal P_\nu\|F\|_{H_p}.
+ \label{short-bg:source}
+\end{equation}
+The circulation of the curl source is zero. The elementary estimates
+\begin{align}
+ \|f\|_{L^1(0,T)}&\le14^{7/11}T^{1/22}
+                        \|f\|_{L^p(s^{13/8}ds)},\\
+ \left\|\int_0^s f(t)\,dt\right\|_{L^p(s^{-9/8}ds)}
+          &\le22\|f\|_{L^p(s^{13/8}ds)},\\
+ \left\|\int_0^s(s-t)^{-1/2}f(t)\,dt\right\|_{L^p(s^{13/8}ds)}
+          &\le C\sqrt T\|f\|_{L^p(s^{13/8}ds)}
+ \label{short-bg:hardy}
+\end{align}
+follow respectively by H\"older and by $t=su$, Minkowski, and the
+integrable factors $u^{-21/22}$ and
+$(1-u)^{-1/2}u^{-21/22}$. These apply to norms of Banach-valued
+functions.
+
+The zero-circulation cylinder Biot--Savart map sends $X_m$ to $H^1$
+with polynomial $c$ cost. On nonzero horizontal modes use the gap
+$2\pi/c$; on the mean mode use
+$|\widehat\omega(0,\xi)|\le|\xi|\int|\eta\bar\omega(\eta)|d\eta$
+before dividing by $\xi$. Thus \eqref{short-bg:green-bound} and
+\eqref{short-bg:source} give
+\begin{equation}
+ \sup_{[0,T]}\|z(s)\|_{H^1}+|\alpha|
+ \le\mathcal P_\nu e^{a'T}\|F\|_{H_p},
+ \label{short-bg:early}
+\end{equation}
+where $\alpha\in\mathbb R^2$ is the entrance coefficient of the
+Green-selected correction. It is determined linearly by $F$; no force
+trace is used.
+
+For the global continuation, the train estimates imply, with normalized
+spatial measure and $r=22/3$,
+\[
+ \|D^jv(s)\|_r\le\mathcal P_\nu s^{-(41+22j)/44},\quad
+ \|v(s)\|_\infty\le\mathcal P_\nu s^{-1},\quad
+ \|Dv(s)\|_\infty\le\mathcal P_\nu s^{-3/2},\qquad s\ge1.
+\]
+Write $B_j(s)=(\nu s)^{j/2}\|D^jb_0(s)\|_p$. H\"older gives
+\begin{equation}
+ \|g(s)\|_{H^1}\le\mathcal P_\nu
+ [\nu^{-1}s^{-85/44}B_2(s)
+       +s^{-63/44}(\nu^{-1/2}B_1(s)+B_0(s))].
+ \label{short-bg:tail-source}
+\end{equation}
+Each $B_j$ has $L^p(s^{-9/8}ds)$ norm at most $C\|F\|_{H_p}$.
+For a factor $s^{-k}B_j$, weighted H\"older on $(T,\infty)$ gives
+$T^{23/22-k}$; hence the exponents in its $L^1$ bound are
+$-39/44$ and $-17/44$, respectively. The same expression belongs to
+$L^p(s^{-9/8}ds;H^1)$. Differentiated velocity energy and
+\eqref{short-bg:train-late} therefore give
+\begin{equation}
+ M_z:=\sup_{s\ge0}\|z(s)\|_{H^1}
+ \le\mathcal P_\nu
+ \exp\!\left({a'\Sigma+C/(1+\Sigma)\over\nu}+C\nu^3\right)
+ \|F\|_{H_p}.
+ \label{short-bg:global-energy}
+\end{equation}
+Local smoothing introduces no further exponential. To check this,
+differentiate \eqref{short-bg:body-eq} homogeneously twice. Incompressibility,
+orthogonality of $\mathbb P_0$, and \eqref{short-bg:train-uniform} give
+$E_j'+\nu E_{j+1}\le C\sum_{i\le j}E_i$, $j\le2$.
+Multiplication by successive powers of $\nu(t-s)$ and summation
+gives $H^1\to H^2$ norm $C[\nu(t-s)]^{-1/2}$ for $t-s\le1$.
+On $0<s<2$, Duhamel and \eqref{short-bg:hardy} give the weighted
+$L^p(s^{13/8}ds;H^2)$ estimate. For $s\ge2$ use Duhamel only on
+$[s-1,s]$; weights at $s$ and $s-r$, $0<r<1$, are comparable.
+Consequently
+\[
+ \|z\|_{L^p((T,\infty),s^{-9/8}ds;H^2)}
+ \le C\nu^{-1/2}\bigl[T^{-1/22}M_z
+             +\|g\|_{L^p((T-1,\infty),s^{-9/8}ds;H^1)}\bigr].
+\]
+Since $s\|v(s)\|_\infty+s\|Dv(s)\|_\infty\le\mathcal P_\nu$
+for $s\ge1$, these estimates bound $sB_vz$ in $H_p$ with the right
+side of \eqref{short-bg:global-energy}. Here
+$B_vz=v\cdot\nabla z+z\cdot\nabla v$.
+
+Let $E(s)\alpha$ be the fixed inlet stream with an age cutoff equal
+to one near zero and zero before the terminal time $T$. Its homogeneous
+solution differs from $E\alpha$ by $O(s)|\alpha|$ in the velocity
+state. The first Hardy estimate controls the forced difference, so
+$z-E\alpha\in H_p$ at zero; the global $H^1$ bound and
+$\int_T^\infty s^{-9/8}ds=8T^{-1/8}$ give the tail.
+Thus the exact global identity is
+\begin{equation}
+ b_0+z=E\alpha+T_0 f,\qquad
+ f=F-sB_v(b_0+z)-s(\partial_s-\nu\Delta)E\alpha.
+ \label{short-bg:flat-reconstruction}
+\end{equation}
+It follows from the differential equation and free uniqueness; each
+term defining $f$ belongs to $H_p$. For the remaining free interaction
+term this is explicit: on $s<T$,
+$\|sB_vb_0\|_{H_p}\le\mathcal P_\nu(\nu^{-1/2}\sqrt T+T)\|F\|_{H_p}$;
+on $s>T$, the bounds $v=O(s^{-1})$, $Dv=O(s^{-3/2})$ and the free
+weighted gradient give
+$\|sB_vb_0\|_{H_p}\le\mathcal P_\nu T^{-1/2}(\nu^{-1/2}+1)\|F\|_{H_p}$.
+Approximation in
+$L^p(s^{13/8}ds;X_m)$ and the difference estimates above justify all
+identities for the original arbitrary force. Choosing $\Sigma$ large
+and then $a'$ small proves, for every fixed $m>0$,
+\begin{equation}
+ \|f\|_{H_p}+|\alpha|\le\mathcal P_\nu e^{m/\nu}
+                                \|F\|_{H_p}.
+ \label{short-bg:flat-inverse}
+\end{equation}
+
+\subsection{Exact geometry and the nonlinear correction}
+
+The exact stream lift $E_\epsilon\alpha$ is affine: its nonzero
+inlet is not in $Y_p$. Its complete equation source is in $Y_p$.
+The Gaussian angular-two eigenstream is a harmonic quadrupole plus
+a Gaussian remainder outside a fixed core. Periodizing its harmonic
+part uses only
+\[
+ \sum_{n\in\mathbb Z}(q+nc+i\eta)^{-2}
+       =(\pi/c)^2\csc^2(\pi(q+i\eta)/c).
+\]
+Its apparent poles are replaced by the smooth eigenstream core. Thus
+the actual periodized stream and every fixed derivative have
+exponential transverse decay, with polynomial $c$ costs. This proves
+the inlet bounds needed below without any estimate on a dual tail.
+Indeed write $K=2s\partial_s+\eta\partial_\eta$, and for one inlet
+stream $\psi$ write its normalized lift as
+\[
+ e_\epsilon=e_0+\epsilon e_1,\qquad
+ e_0=\chi(-\psi_\eta,\psi_q),\qquad
+ e_1=(0,(\chi-2s\chi')\psi-\chi\eta\psi_\eta).
+\]
+The exact vector diffusion is
+$L_\epsilon=\Delta-2\epsilon(K+1)\partial_q
++\epsilon^2[(K+1)^2-\operatorname{diag}(1,0)]$.
+Substitution in the complete unprojected source column
+\[
+ \mathcal C_\epsilon\alpha
+ =s[(\partial_s-\nu L_\epsilon)e_\epsilon+B_\epsilon e_\epsilon]\alpha
+\]
+gives $\mathcal C_\epsilon-\mathcal C_0=\epsilon s r_\epsilon$,
+where $r_\epsilon$ is smooth at zero, compact in upper age, and has
+polynomial weighted bounds. Hence
+\begin{equation}
+ \|\mathcal C_\epsilon-\mathcal C_0\|_{H_p}\le\epsilon\mathcal P_\nu,
+ \qquad
+ \|A_0E_\epsilon\alpha+\mathbb PB_{V_0}E_\epsilon\alpha\|_{W^{1,Y_p}}
+ \le\mathcal P_\nu R^{2/p}|\alpha|.
+ \label{short-bg:affine}
+\end{equation}
+The integrability exponent is $-9/8+p=13/8>-1$. The quadratic
+inlet source has the same bound with $|\alpha|^2$, and
+$\|E_\epsilon\alpha\|_{W^{j,\infty}}\le\mathcal P_{\nu,j}|\alpha|$.
+These assertions compare sources, never the nonintegrable inlet states.
+
+The global flat completion now permits one all-age perturbation. Put
+$X=H_p$, $K_\epsilon=sB_\epsilon T_\epsilon$,
+$K_0=sB_vT_0$. The flat train is retained at every age. Give
+$X\times\mathbb R^2$ the norm $\|(f,\alpha)\|=\|f\|_X+|\alpha|$.
+The equation row is
+\[
+ \mathfrak A_0:X\times\mathbb R^2\longrightarrow X,\qquad
+ \mathfrak A_0(f,\alpha)=(I+K_0)f+\mathcal C_0\alpha.
+\]
+The all-age reconstruction \eqref{short-bg:flat-reconstruction}
+and the complete inlet source defining $\mathcal C_0$ give
+$\mathfrak A_0(f,\alpha)=F$. The Green selector, Biot--Savart map
+and reconstruction are linear, so \eqref{short-bg:flat-inverse}
+constructs a bounded linear right inverse
+\[
+ R_0:X\longrightarrow X\times\mathbb R^2,\qquad
+ \mathfrak A_0R_0=I_X,\qquad
+ \|R_0\|\le M=\mathcal P_\nu e^{m/\nu}.
+\]
+We compare operator outputs while inputs remain arbitrary global
+elements of $H_p$.
+
+Here the all-age mean expansion gives a useful stronger coefficient
+bound than a fixed small late constant:
+\begin{equation}
+ \sup_{s>S}(|V_0|+|DV_0|)
+       \le\mathcal P_\nu(S^{-1/2}+\epsilon).
+ \label{short-bg:strong-late-coeff}
+\end{equation}
+To check the Cartesian gradient, write $b=(v_1,v_2+\epsilon H)$.
+Its three derivative types are $s\partial_\eta b$,
+$s[\partial_q-\epsilon(K+1)]b$, and the frame term
+$\epsilon s v_1$. The mean stream is
+$S_0=a_0G_{\nu s}+a_2\partial_\eta^2G_{\nu s}
++O_{\rm weighted}(\mathcal P_\nu s^{-5/2})$.
+Thus $v_1=-\partial_\eta S_0$ and
+$H=2a_0G_{\nu s}+4a_2\partial_\eta^2G_{\nu s}+\cdots$.
+The potentially nondecaying radial derivative cancels because
+$(K+1)G_{\nu s}=0$, giving
+$(K+1)H=-8a_2\partial_\eta^2G_{\nu s}
++O_{\rm weighted}(\mathcal P_\nu s^{-5/2})$.
+Every fluctuation derivative is exponentially small. These identities
+prove \eqref{short-bg:strong-late-coeff}, including the full frame
+term; the axial mean velocity itself has the genuine $O(\epsilon)$
+floor. The physical free graph and the exact norm identity then give
+\[
+ \|1_{s>S}K_\epsilon\|_{X\to X}
+ \le\mathcal P_\nu(S^{-1/2}+\epsilon).
+\]
+For the flat operator, $v=O(\mathcal P_\nu/s)$ and
+$Dv=O(\mathcal P_\nu/s^{3/2})$, paired with the free
+$\sqrt{s}Db_0$ graph bound, give
+$\|1_{s>S}K_0\|\le\mathcal P_\nu S^{-1/2}$.
+At the young end, smooth inlet coefficients give
+$\|1_{s<\sigma}K_\epsilon\|+\|1_{s<\sigma}K_0\|
+\le\mathcal P_\nu\sqrt\sigma$ by the same free graph.
+
+Take $\sigma=\epsilon^{a}$ and $S=\epsilon^{-b}$, where $a,b>0$
+will be small fixed numbers. In \eqref{sct:transverse}, choose
+$l=C_D(c/\nu+\sqrt S+1)$. Both negative exponents dominate any
+prescribed multiple of $\nu^{-1}$, while $P_S\le\mathcal P_\nu
+e^{kb d_+/\nu}$ for fixed $k$. Increasing $C_D$ makes all required
+coefficient tails at most $e^{-D/\nu}$; fixed weights and $K$
+derivatives change only the polynomial cost. The prefactor in the
+localized comparison is polynomial in this width, $S$ and
+$\sigma^{-1}$. With $\theta=2/539$ from
+Proposition~\ref{bg:lp-free-comparison}, for some fixed $N<\infty$,
+\begin{equation}
+ \|K_\epsilon-K_0\|_{X\to X}
+ +\|\mathcal C_\epsilon-\mathcal C_0\|
+ \le\mathcal P_\nu
+ [\epsilon^{a/2}+\epsilon^{b/2}+\epsilon
+       +\epsilon^{\theta-N(a+b)}+e^{-D/\nu}]
+ =:\Delta_\nu.
+ \label{short-bg:global-operator-comparison}
+\end{equation}
+The affine column is supported
+in a fixed polynomial age interval and has the already proved
+$O(\epsilon)$ source difference. No equation or source is cut off.
+Choose $a,b$ so $\theta-N(a+b)>0$, and put
+$\zeta=\min\{a/2,b/2,1,\theta-N(a+b)\}>0$.
+Choose $m<d_-\zeta/2$ and $D>2m$. Then $M\Delta_\nu<1/2$ for
+small $\nu$. The exact equation row
+\[
+ \mathfrak A_\epsilon:X\times\mathbb R^2\longrightarrow X,\qquad
+ \mathfrak A_\epsilon(f,\alpha)
+       =(I+K_\epsilon)f+\mathcal C_\epsilon\alpha
+\]
+has the bounded linear right inverse
+\[
+ R_\epsilon=R_0[I+(\mathfrak A_\epsilon-\mathfrak A_0)R_0]^{-1},
+ \qquad \|R_\epsilon\|\le2M.
+\]
+Indeed $(\mathfrak A_\epsilon-\mathfrak A_0)R_0:X\to X$
+has norm at most $M\Delta_\nu<1/2$, and multiplication verifies
+$\mathfrak A_\epsilon R_\epsilon=I_X$.
+This compares all global inputs, including those supported arbitrarily
+late; it does not assume that the exact inverse is causal in age.
+Returning to physical normalization proves
+\begin{equation}
+ \|w\|_{X_p}+R^{2/p}|\alpha|
+ \le\mathcal P_\nu e^{m/\nu}
+                \|f\|_{Y_p}
+ \label{short-bg:exact-inverse}
+\end{equation}
+for
+$A_0w+\mathbb PB_{V_0}w+(A_0E_\epsilon+\mathbb PB_{V_0}E_\epsilon)\alpha
+=\mathbb Pf$. Here the physical $w$ is the free response to the
+first coordinate selected by $R_\epsilon$, and the free graph supplies
+its $X_p$ norm. The same normalized measure multiplies
+source, state, and finite coordinate, so no additional power of $R$
+is lost.
+
+Set $A=R^{2/p}\alpha$ and $\|(w,A)\|_Z=\|w\|_{X_p}+|A|$.
+By Lemmas~\ref{bg:common-body-graph}--\ref{bg:graph-embeddings} and
+\eqref{short-bg:affine}, the quadratic
+terms in $w+E_\epsilon\alpha$ and their polarized differences are
+bounded by $\mathcal P_\nu\|(w,A)\|_Z^2$ in $Y_p$. Apply the fixed
+linear right-inverse selection to minus these terms and minus $F_R$.
+With $\delta=\mathcal P_\nu\epsilon^{3/11}$ and
+$M=\mathcal P_\nu e^{m/\nu}$, this is a contraction on the radius
+$2M\delta$ ball if $4\mathcal P_\nu M^2\delta<1$. This holds after
+decreasing $m$ so $2m<3d_-/11$. We obtain an exact smooth unforced
+profile
+\begin{equation}
+ U=V_0+E_\epsilon\alpha+w,\qquad
+ \|w\|_{X_p}+R^{8/11}|\alpha|
+       \le\mathcal P_\nu e^{m/\nu}\epsilon^{3/11},\qquad
+ |\alpha|\le\mathcal P_\nu e^{m/\nu}\epsilon.
+ \label{short-bg:result}
+\end{equation}
+The projected equation is
+$A_0U+\mathbb P(U\cdot\nabla U)=0$ with zero residual. Reality,
+no-swirl symmetry, and periodicity are preserved at each iteration.
+
+No second unstable inverse is needed for spatial regularity. Write
+$V=V_0+E_\epsilon\alpha$ and
+$A_0w=f-\mathbb P(V\cdot\nabla w+w\cdot\nabla V+w\cdot\nabla w)$.
+The complete source has $W^{1,Y_p}$ norm bounded by the right side
+of \eqref{short-bg:result}, up to a polynomial. Since
+$\partial_jA_0w=(A_0-1/2)\partial_jw$ and
+$\|Dw\|_{Y_{2p}}^2\le C\|w\|_\infty\|D^2w\|_{Y_p}$,
+every differentiated term is in $Y_p$. Also $Dw\in Y_p$ is already
+known. Rewrite the differentiated equation as
+$A_0D_jw=f_j+\tfrac12D_jw$, with the entire right side in $Y_p$,
+and apply the maximal graph at shift zero. No inverse of
+$A_0-\tfrac12$ is used. Thus $Dw\in\widetilde X_p$, and
+\begin{equation}
+ \sup_\tau\|w(\tau)\|_p+
+ \|w\|_{W^{1,\infty}}+\|E_\epsilon\alpha\|_{W^{1,\infty}}
+ \le\mathcal P_\nu e^{m/\nu}\epsilon^{3/11}.
+ \label{short-bg:strong}
+\end{equation}
+For any fixed derivative order, the train and inlet complete sources
+belong to the corresponding $W^{k,Y_p}$. Explicitly, in the
+large-radius region their unprojected derivatives are bounded by
+$C_{k,N}\varrho^{-3-k}(1+|y_3|/\varrho)^{-N}$, whose $p$th integral
+reduces to $C\int_R^\infty\varrho^{2-p(3+k)}d\varrho<\infty$.
+On $\varrho<R$, take the all-age heat expansion to a sufficiently
+high finite order: its even radial powers extend smoothly through the
+axis and its weighted remainder gives arbitrary axial decay. The
+inlet cutoff vanishes near the axis. These estimates are uniform in
+phase; the bounded Cartesian Leray map preserves them in $W^{k,p}$.
+Inductively, if derivatives
+through order $k$ are in the graph, all factors through order $k$ are
+bounded and derivatives through order $k+2$ are in $Y_p$. In each
+order-$(k+1)$ derivative of $w\cdot\nabla w$, one factor has order at
+most $k$. Put it in $L^\infty$ and the other in $Y_p$, then apply the
+maximal graph to the differentiated equation. This proves all spatial
+orders. On positive physical-time compact intervals the resulting
+$C_\tau W^{k,4}$ regularity and the projected equation give all time
+derivatives, so $U$ is jointly smooth through the axis.
+
+\subsection{The datum, heat remainder, and pressure}
+
+Let $\psi_{\rm in}$ be the raw inlet plus its single entrance
+adjustment. Define, with $\varrho=|x'|$,
+\[
+ q=R\log(\varrho/R),\quad\eta=Rz/\varrho,\qquad
+ a_r={R\over\varrho}(-\psi_{{\rm in},\eta}),\quad
+ a_z={R\over\varrho}
+ [\psi_{{\rm in},q}+\epsilon(\psi_{\rm in}
+                          -\eta\psi_{{\rm in},\eta})].
+\]
+The stream is periodic in $q$ and has arbitrary fixed transverse
+polynomial decay. Differentiation and this decay give
+$|D^ja(x)|\le C_j|x|^{-1-j}$, including smooth extension at each
+nonzero axis point. The omitted divergence flux through a radius-$r$
+sphere is $O(r)$, so $a$ is distributionally divergence-free on all of
+$\mathbb R^3$. Thus $a\in L^{3,\infty}\cap L^2_{\rm loc}$.
+The shift $q\mapsto q+c$ proves its DSS identity. The raw inlet is
+nonzero on a fixed core and \eqref{short-bg:result} makes its finite
+adjustment exponentially small there, so $a\ne0$.
+
+Put $a_\tau(y)=e^{\tau/2}a(e^{\tau/2}y)$ and
+$H_a(\tau)=e^{\nu\Delta}a_\tau$. Taylor expansion against the Gaussian,
+whose first moment vanishes, gives
+\[
+ |D^j(e^{\nu\Delta}a_\tau-a_\tau)(y)|
+       \le C_{j,\nu}|y|^{-3-j},\qquad |y|\ge1.
+\]
+Use the expansion only in a ball of radius $|y|/4$ about $y$;
+differentiate the Gaussian on its complement, which is exponentially
+small despite the singularity of $a$ at zero. The $O(s)$ inlet
+expansion gives the same inverse-cubic bound for $V-a_\tau$ in the
+large-radius region, with arbitrary transverse decay. The all-age
+train expansion gives arbitrary axial decay in the remaining bounded
+radial region. Therefore
+\begin{equation}
+ V-H_a\in C_{\rm per}H^k\cap X_p
+ \quad\hbox{for every fixed required }k.
+ \label{short-bg:raw-heat}
+\end{equation}
+The graph membership includes the mixed phase/dilation derivative;
+it follows from the same source expansion. In particular this
+conclusion is stronger than an $X_p$ estimate alone.
+
+The inverse-distance bounds and the all-age expansion give
+$D^jV\in C_{\rm per}L^4$. For $w$, interpolation between its
+$C_{\rm per}L^p$ derivatives and their uniform supremum bounds gives
+$D^jw\in C_{\rm per}L^4$. Therefore
+$D^jU\in C_{\rm per}L^4$ for $j\le2$, and
+$\mathbb T=U\otimes U\in C_{\rm per}H^2$. The field
+$Q=U-H_a\in X_p$ solves $A_0Q=-\mathbb P\operatorname{div}\mathbb T$.
+The exact free semigroup is
+\[
+ S_0(t)f(y)=e^{t/2}[e^{\nu(e^t-1)\Delta}f](e^{t/2}y).
+\]
+Free uniqueness identifies $Q$ with
+$-\int_0^\infty S_0(t)\mathbb P\operatorname{div}\mathbb T(\tau-t)dt$.
+For $j\le2$, move derivatives to $\mathbb T$ when $t\le1$ and to
+the heat kernel when $t\ge1$. The resulting integrable majorants are
+\[
+ \|D^jS_0(t)\mathbb P\operatorname{div}\mathbb T\|_2
+ \le C_{j,\nu}
+ \begin{cases}t^{-1/2}\|\mathbb T\|_{H^j},&0<t\le1,\\
+ e^{-3t/4}\|\mathbb T\|_2,&t\ge1.
+ \end{cases}
+\]
+Thus $Q\in C_{\rm per}H^2$. Also
+$(\partial_\tau-y\cdot\nabla/2)Q
+=\nu\Delta Q+Q/2-\mathbb P\operatorname{div}\mathbb T
+\in C_{\rm per}L^2$. Scaling back gives
+\[
+ \|u_\nu(t)-e^{\nu t\Delta}a\|_2
+       =t^{1/4}\|Q(\log t)\|_2\le C t^{1/4}.
+\]
+A compact part of $a$ is in $L^2$; its complement is bounded and
+uniformly continuous. The Gaussian approximate identity therefore
+shows $e^{\nu t\Delta}a\to a$ locally in $L^2$, and hence the same
+is true for $u_\nu$. Finally
+$p_U=\sum_{i,j}R_iR_j(U_iU_j)\in C_{\rm per}L^2$ recovers the
+discarded gradient part of the exact projected equation.

@@ -1,0 +1,125 @@
+\subsection{The background free comparison}
+
+Use the chart, operators and cutoffs of
+Proposition~\ref{near:compact-free-comparison}. For \(1<r<3\), set
+\[
+ H_r=L^r(s^{r/2-5/2}\,ds\,dq/c\,d\eta),\qquad
+ dm=s^{-5/2}\,ds\,dq/c\,d\eta,\qquad Mb=\sqrt{s}\,b.
+\]
+The common multiplication \(M:H_r\to L^r(dm)\) is an isometry for
+every \(r\). Both the physical body source and velocity have lift
+\(\sqrt{s}\) and norm factor \((\pi R^2)^{1/r}\); this factor
+cancels from every source-to-state estimate. In particular the
+conjugated Leray bound is uniform in \(R\).
+
+The exact graph gives
+\begin{equation}\label{bg:profile-graph}
+ \|T_\epsilon F\|_{H_r}+\|ST_\epsilon F\|_{H_r}
+ +\sqrt\nu\|\sqrt{s}(Q_\epsilon,\partial_\eta)T_\epsilon F\|_{H_r}
+ \le C_{r,\mu}\|F\|_{H_r}.
+\end{equation}
+Indeed \(\mathcal T(\sqrt{s}b)=\sqrt{s}(S+1/2)b\),
+\(\partial_\rho(\sqrt{s}b)=sQ_\epsilon b\), and
+\(\partial_z(\sqrt{s}b)=s\partial_\eta b\).
+For \(\epsilon=0\), the same estimate follows without a limiting
+argument. The causal formula
+\[
+ T_0F(s)=\int_0^s(t/s)^\mu e^{\nu(s-t)\Delta}P_0F(t)\,dt/t
+\]
+and weighted dilation give \(\|T_0\|_{H_r\to H_r}\le C_r/a_r\).
+On each dyadic window \([a,2a]\), cut its heat equation off inside
+\([a/2,4a]\) and apply the heat estimate used above. The cutoff costs
+\(a^{-1}\); multiplication by \(s\) cancels it. Finite overlap and
+comparability of \(s^{r/2-5/2}\) on each window prove the global bounds
+for \(ST_0\) and \(\nu sD^2T_0\), and interpolation gives its gradient
+bound. The cylinder heat estimate follows by applying the Euclidean
+estimate to a cutoff of \(N\) repeated cells, dividing its \(r\)-th
+power by \(N\), and letting \(N\to\infty\). There is no period loss.
+Consequently \(\partial_s=s^{-1}S\) and
+\(\partial_q=Q_\epsilon+\epsilon(2S+\eta\partial_\eta+1)\)
+give uniform local first-derivative bounds at both endpoints.
+
+\begin{proposition}\label{bg:lp-free-comparison}
+Fix \(p=11/4\) and \(r=23/8\). On any compact set of shifts with
+\(\inf(\operatorname{Re}\mu+1/46)>0\), let \(B\) be a first-order
+operator in \(q,\eta\), with smooth matrix coefficients supported
+in the observation box. There is a fixed integer \(k\) such that
+\begin{equation}\label{bg:lp-comparison-rate}
+ \|B(T_\epsilon-T_0)\|_{H_p\to H_p}
+       \le C\Gamma_r^k\epsilon^{2/539}.
+\end{equation}
+Here \(\Gamma_r\) is \(\Gamma\) of the shared Hilbert proposition,
+augmented by the reciprocal \(r\)-gap and the finite coefficient
+seminorms of \(B\). The inputs may have arbitrary age support.
+\end{proposition}
+
+\begin{proof}
+We first upgrade the shared body \(H_2\) estimate to spatial
+derivatives. For \(\|F\|_{H_2}=1\), put
+\(u=T_\epsilon F\), \(v=T_0F\), \(w=u-v\), and
+\(\omega=\|\chi_1(T_\epsilon-T_0)\|\).
+Subtract their componentwise equations and test against \(\chi^2w\).
+This compact test is allowed by the local first-derivative graph.
+Writing \(L_1=2S+\eta\partial_\eta+1\), the principal diffusion
+difference has exactly the two terms
+\[
+ \nu\epsilon\langle\sqrt{s}L_1v,
+                    \sqrt{s}Q_\epsilon(\chi^2w)\rangle
+ +\nu\epsilon\langle\sqrt{s}\partial_qv,
+                    \sqrt{s}L_1(\chi^2w)\rangle.
+\]
+Absorb one quarter of the gradient energy from the first term;
+the second is \(O(\Gamma_r^k\epsilon)\) by the separate bounds for
+\(Sv,Sw\) on this box. Diffusion cutoff terms cost another quarter
+plus \(C\Gamma_r^k\omega^2\). The drift identity is
+\[
+ \operatorname{Re}\langle Sw,\chi^2w\rangle_{H_2}
+ =\tfrac14\|\chi w\|_{H_2}^2
+          -\int s\chi\chi_s|w|^2\,dH_2.
+\]
+The projection-source difference \((P_\epsilon-P_0)F\) has norm
+at most two, so its pairing costs \(2\omega\). The radial frame
+discrepancy costs \(C\Gamma_r^k\epsilon^2\); retain its nonnegative
+energy on \(w\). It follows that
+\[
+ \|\chi(Q_\epsilon,\partial_\eta)w\|_{H_2}^2
+ \le C\Gamma_r^k(\omega+\omega^2+\epsilon).
+\]
+By \eqref{near:compact-free-rates}, \(\omega\le
+C\Gamma_r^k\epsilon^{1/14}\). Since
+\(\partial_qw=Q_\epsilon w+\epsilon L_1w\), the localized
+first-derivative difference is \(O(\Gamma_r^k\epsilon^{1/28})\).
+This proves the Hilbert version of \eqref{bg:lp-comparison-rate}.
+
+At exponent \(r=23/8\), \eqref{bg:profile-graph} and the local
+coordinate identities give a uniform polynomial bound for the same
+operator. Interpolate the single consistent operator
+\(MB(T_\epsilon-T_0)M^{-1}\) on \(L^r(dm)\), rather than
+interpolating unequal weighted spaces. The weight on its Hilbert
+endpoint is
+\[
+ \lambda=\frac{1/p-1/r}{1/2-1/r}=\frac8{77},\qquad
+ \frac{\lambda}{28}=\frac2{539}.
+\]
+The semigroup formulas agree on the dense intersection of the endpoint
+spaces, so this is an interpolation of one operator.
+
+\end{proof}
+
+For the actual localized interaction write
+\(K_\epsilon=sB_\epsilon T_\epsilon\), \(K_0=sB_0T_0\).
+Then
+\[
+ K_\epsilon-K_0=sB_0(T_\epsilon-T_0)
+                       +s(B_\epsilon-B_0)T_\epsilon.
+\]
+The first term is covered by \eqref{bg:lp-comparison-rate}. Exact
+chart substitution writes the second as \(\epsilon\) times
+polynomially bounded coefficients multiplying
+\(b,\partial_qb,\partial_\eta b,Sb\); these are bounded by
+\eqref{bg:profile-graph} and its local consequence. Thus the same
+\(\epsilon^{2/539}\) bound applies. The interaction remains
+unprojected in force coordinates: Leray is already inside \(T_\epsilon\).
+No pressure-cutoff commutator or derivative of a rough input has been
+introduced. Output tails outside the box require the separate train
+coefficient estimates; none are inferred from this local proposition.

@@ -1,0 +1,273 @@
+\section{Separated stress kernels and one phase average}
+\label{sec:separated-short}
+
+All phase norms use normalized measure on $\mathbb T_P$.
+Write $B=\partial_\tau-y\cdot\nabla/2$,
+$D_\mu=B-\nu\Delta+\mu-1/2$, and
+$S_\mu=D_\mu^{-1}\mathbb P\operatorname{div}$.
+The exponent $\mu$ ranges over a fixed compact subset $K$ of
+$\{\operatorname{Re}\mu>-1/4\}$. Let $T$ be supported in the
+radial disk $|z'|\le r_o$, and restrict receivers to $|y'|\ge r_i>r_o$.
+Put $D=r_i-r_o$. The support condition is imposed on the tensor before
+its divergence. We begin with smooth tensors and then complete in the
+norms appearing below.
+
+Let $G_t$ be the three-dimensional heat kernel. The heat--Leray kernel is
+\[
+ (K_t)_{ij}=\delta_{ij}G_t+
+   \partial_i\partial_j\int_t^\infty G_a\,da.
+\]
+Differentiation and the substitution $a=|x|^2r$ give, off the origin,
+\begin{equation}\label{sep:kernel}
+ |D^j\nabla K_t(x)|\le C_j|x|^{-4-j},\qquad
+ |D^j(K_t-K_0)(x)|\le C_jt|x|^{-5-j}.
+\end{equation}
+The second bound also follows by integrating
+$\partial_tK_t=\Delta K_t$ from zero to $t$. Thus it remains valid
+as $t\downarrow0$ at every separated observation point. At $t=0$,
+$K_0=D^2(4\pi|x|)^{-1}$ off the origin; its local distributional
+part is retained by the operator, but vanishes at a separated receiver.
+
+The free semigroup is
+\[
+ e^{h/2}\bigl[e^{\nu(e^h-1)\Delta}f(\tau-h)\bigr](e^{h/2}y).
+\]
+In its Laplace integral set $\lambda=e^{-h/2}$ and integrate the
+tensor divergence by parts. Heat scaling contributes $\lambda^3$,
+the divergence contributes $\lambda$, and the semigroup amplitude
+and differential contribute $\lambda^{-1}$ and $-2d\lambda/\lambda$.
+Consequently the negative response $W_\mu=-S_\mu T$ is exactly
+\begin{equation}\label{sep:resolvent}
+ W_\mu(y,\tau)=-2\int_0^1\lambda^{2\mu+2}
+  \int\nabla K_{\nu(1-\lambda^2)}(y-\lambda z)
+       :T(z,\tau+2\log\lambda)\,dz\,d\lambda.
+\end{equation}
+The radial gap persists under every dilation:
+$|y-\lambda z|\ge |y'|-\lambda|z'|\ge D$.
+No temporal derivative of $T$ occurs.
+
+\subsection{Thin sources, repair sources, and the stream cutoff}
+
+For $b>3/(4+j)$, integrating \eqref{sep:kernel} outside the gap gives
+\[
+ \|1_{|x|>D}D^j\nabla K_t\|_{L^b}
+       \le C_{j,b}D^{-4-j+3/b}.
+\]
+In Young's inequality we use $b\ge1$. Dilation of an $L^p$ source
+contributes $\lambda^{-3+3/p}$, leaving the integrable power
+$\lambda^{2\operatorname{Re}\mu-1+3/p}$ in
+\eqref{sep:resolvent}. Minkowski and phase-translation invariance
+therefore prove, whenever $1+1/q=1/p+1/b$ and
+$\inf_{\mu\in K}(2\operatorname{Re}\mu+3/p)>0$,
+\begin{equation}\label{sep:young}
+ \|1_{\rm young}D^jW_\mu\|_{L^2_\tau L^q_y}
+ \le C_{K,j,p,q}D^{-4-j+3/b}
+                   \|T\|_{L^2_\tau L^p_y}.
+\end{equation}
+The pointwise version has $q=\infty$, $b=p'$.
+In particular, for $p=22/19$,
+\begin{align}
+ \|\nabla W_\mu(y,\cdot)\|_{L^2_\tau}
+   &\le C_KD^{-101/22}\|T\|_{L^2_\tau L^{22/19}},\label{sep:repair-point}\\
+ \|1_{\rm young}\nabla W_\mu\|_{L^2_\tau L^{22/3}}
+   &\le C_KD^{-46/11}\|T\|_{L^2_\tau L^{22/19}},\label{sep:repair-global}\\
+ \|1_{\rm young}D^jW_\mu\|_{L^2_\tau L^2}
+   &\le C_{K,j}D^{-23/11-j}\|T\|_{L^2_\tau L^{22/19}}.
+ \label{sep:repair-energy}
+\end{align}
+Here the kernel exponents are respectively $22/3$, $11/3$, and
+$11/7$. A repair tensor $T=r_b\otimes w+w\otimes r_b$ obeys
+\[
+ \|T\|_{L^2_\tau L^{22/19}}
+ \le2\|r_b\|_{L^\infty_\tau L^{11/4}}\|w\|_{Y_2}.
+\]
+These estimates include the Cartesian pressure projection.
+
+For a thin source with
+$\int\|T(z,\cdot)\|_{L^2_\tau}\,dz\le R^2N_0$ and
+$D\ge c_0R\sqrt\nu$, the same argument with $p=1$ gives, for
+fixed $q>1$ and fixed $j$,
+\begin{equation}\label{sep:thin-global}
+ \|D^jW_\mu\|_{L^2_\tau L^q(\rm young)}
+       \le P_\nu R^{-2-j+3/q}N_0.
+\end{equation}
+The polynomial $P_\nu$ depends on the fixed derivative and exponent
+budgets and on the fixed fractional radial gap.
+
+For axisymmetric no-swirl divergence-free $W$, choose a smooth radial
+cutoff $\chi$ whose transition lies outside the source disk, on an
+annulus of radius comparable to $D$. Its divergence-free stream cutoff is
+\[
+ (\mathcal C_\chi W)_r=\chi W_r,\qquad
+ (\mathcal C_\chi W)_z=\chi W_z-
+  \frac{\chi'(\rho)}\rho\int_\rho^\infty\rho'W_z(\rho',z)\,d\rho'.
+\]
+The stream primitive converges by the separated kernel bound.
+The cutoff correction has a translation-invariant majorant of the form
+\[
+ C D^{-2}(D^2+|z-z_{\rm src}|^2)^{-1}
+       1_{|y'-z'_{\rm src}|\le CD}.
+\]
+Indeed the radial integral of the order-four kernel is bounded by
+$C(D^2+|z-z_{\rm src}|^2)^{-1}$, while $\chi'/\rho=O(D^{-2})$.
+After $j$ derivatives the same estimate costs $D^{-j}$.
+Its $L^b$ norm is $CD^{-4-j+3/b}$ for $b>1/2$, as follows by
+scaling the two horizontal variables and the vertical integral.
+Thus \eqref{sep:young}--\eqref{sep:thin-global} remain valid after
+this cutoff in all exponents used here. The estimate is an inequality
+for the full tensor convolution; it does not discard a cutoff source.
+
+Put
+\[
+ X_0=W_\mu-W_{\mu+1},\quad X=\mathcal C_\chi X_0,
+ \quad \mathcal Q=[B,\mathcal C_\chi]-\nu[\Delta,\mathcal C_\chi],
+ \quad Y=\mathcal C_\chi W_\mu+\mathcal QX_0.
+\]
+The difference in $X_0$ inserts $1-\lambda^2$ in
+\eqref{sep:resolvent}. It costs no inverse. Derivatives of $\chi$
+cost $D^{-1}$, $B\chi$ is bounded, and each extra Laplacian costs
+$\nu D^{-2}$. For $D\ge c_0R\sqrt\nu$ and $R\ge1$ this last
+factor is bounded. Therefore the displayed estimates also hold for
+$X,Y$, with finitely many increased derivative budgets.
+
+\subsection{One phase primitive gives an extra curvature factor}
+
+Set $\epsilon=R^{-1}$, $P=2\epsilon c$, and $x=y/R$.
+Write the thin physical stress as
+\[
+ T(Rx,\tau)=F(x',Y,q_\epsilon(|x'|,\tau)),\qquad
+ Y=x_3/\epsilon,\quad
+ q_\epsilon(r,\tau)=\epsilon^{-1}\log r+\tau/(2\epsilon),
+\]
+where $F$ has $q$-period $c$. Define
+\[
+ N_j=\int(1+|Y|)^j
+       \|F(x',Y,\cdot)\|_{L^2(dq/c)}\,dx'\,dY,
+       \qquad j=0,1.
+\]
+Then its physical phase-averaged mass is $R^2N_0$.
+Changing variables in \eqref{sep:resolvent} gives
+\begin{equation}\label{sep:outer}
+ W_\mu=-2\epsilon^2\int_0^1\lambda^{2\mu+2}
+  \int\nabla K_{\nu\epsilon^2(1-\lambda^2)}
+       (x-\lambda(x',\epsilon Y))
+ F(x',Y,q_\epsilon(r',\tau+2\log\lambda))\,dx'\,dY\,d\lambda.
+\end{equation}
+Let $\bar F$ be its normalized phase mean, and set
+\[
+ V_{\mu,0}(x)=-2\int_0^1\lambda^{2\mu+2}
+  \int\nabla K_0(x-\lambda(x',0))\bar F(x',Y)
+                                  \,dx'\,dY\,d\lambda.
+\]
+Taylor expansion in $\epsilon Y$ and \eqref{sep:kernel} control
+the mean collapse and heat errors by first transverse moments. The
+strict radial gap remains valid along the entire Taylor segment.
+
+For the oscillatory part let $J=\partial_q^{-1}$ on zero-mean
+periodic functions. Fourier series gives
+$\|J\|_{L^2(dq/c)\to L^2(dq/c)}\le c/(2\pi)$. Exactly in
+distributions in $\lambda$,
+\[
+ F_\perp(q_\epsilon(r',\tau+2\log\lambda))
+ =\epsilon\lambda\partial_\lambda
+   JF_\perp(q_\epsilon(r',\tau+2\log\lambda)).
+\]
+Integrate once by parts in \eqref{sep:outer}. The boundary at
+$\lambda=1$ is retained. The boundary at zero vanishes in normalized
+$L^2_\tau$, since $2\operatorname{Re}\mu+3>0$ and translations of
+$JF_\perp$ preserve its norm. The derivative of the kernel is
+\[
+ -(x',\epsilon Y)\cdot\nabla(\nabla K_t)
+       -2\nu\epsilon^2\lambda\Delta(\nabla K_t),
+       \qquad t=\nu\epsilon^2(1-\lambda^2).
+\]
+The factor $x'$ is bounded by the source radial endpoint and the
+factor $Y$ by $N_1$. Every fixed spatial observation derivative is
+estimated by \eqref{sep:kernel}. This proves
+\begin{equation}\label{sep:mean-comparison}
+ \|\nabla_yW_\mu-\epsilon^3\nabla_xV_{\mu,0}\|_{L^2_\tau}
+       \le P_\nu\epsilon^4N_1
+\end{equation}
+on compact separated observation sets, with the stated polynomial
+dependence on radial endpoints, their gap, and $c$.
+No age or phase derivative of $F$ has been used.
+
+For the full young band $s\le1/\nu$, old support $t\ge1.2/\nu$,
+and $r=s^{-1/2}$ in outer coordinates, the same calculation gives
+the more explicit bounds
+\begin{align}
+ \|D_yW_{\mu,\perp}\|_{L^2_\tau}
+     &\le P_\nu\epsilon^4s^{5/2}N_1,\label{sep:phase-age}\\
+ \|D_yW_\mu-\epsilon^3D_xV_{\mu,0}\|_{L^2_\tau}
+     &\le P_\nu\epsilon^4(s^{5/2}+s^3)N_1.
+ \label{sep:mean-age}
+\end{align}
+The direct differentiated kernel contributes $r^{-5}$; a transverse
+collapse costs one further derivative, $r^{-6}$. In the phase
+calculation the extra factor $x'$ is at most a fixed multiple of $r$;
+the $Y$ term has the harmless factor $\epsilon/r$, and the heat term
+has $\nu\epsilon^2/r^2\le\epsilon^2$.
+These estimates hold with any fixed number of spatial observation
+derivatives, with the corresponding powers of $r^{-1}$.
+The stream cutoff estimates proved above extend them to $X,Y$.
+Moment-norm approximation proves the statements for all $N_1$ inputs,
+without assuming smoothness of the source.
+
+\subsection{Phase suprema use a separate ordinary bound}
+
+The extra $\epsilon$ in \eqref{sep:phase-age} is not asserted after
+arbitrary phase or conormal derivatives. Instead use the exact free
+equations
+\[
+ BX_0=\nu\Delta X_0-(\mu+1/2)X_0+W_\mu,
+ \qquad
+ BW_\mu=\nu\Delta W_\mu-(\mu-1/2)W_\mu
+                                  -\mathbb P\operatorname{div}T.
+\]
+At a separated receiver the last term has an order-four kernel, and
+its gradient has order five. It is bounded by precisely the ordinary
+kernel estimates already proved. It does not require differentiating
+$T$, but need not retain the extra phase-average factor.
+For the cutoff terms use
+\[
+ BT_{\rm rad}W=T_{\rm rad}BW-T_{\rm rad}W,
+ \qquad [B,\Delta]=\Delta,
+\]
+and
+\[
+ [B,\mathcal Q]=[B,[B,\mathcal C_\chi]]
+ -\nu[\Delta,\mathcal C_\chi]
+ -\nu[\Delta,[B,\mathcal C_\chi]].
+\]
+Thus $BX,BY$ have the same ordinary separated bounds as $X,Y$,
+with a fixed increased derivative budget and the factors
+$\nu D^{-2}$ already controlled. Also
+$B\partial_j=\partial_jB+\partial_j/2$.
+
+For a global cutoff field $Z$ among these vectors or tensors and
+$1<q<\infty$, spatial
+integration by parts gives
+\[
+ \left|\frac{d}{d\tau}\|Z(\tau)\|_q\right|
+ \le\|BZ(\tau)\|_q+\frac3{2q}\|Z(\tau)\|_q.
+\]
+Choose a phase where the norm is no greater than its normalized $L^2$ average,
+then integrate over an interval of length at most $P\le1$. This yields
+\begin{equation}\label{sep:phase-sup}
+ \|Z\|_{L^\infty_\tau L^q}
+ \le(1+3P/(2q))\|Z\|_{L^2_\tau L^q}
+                         +P\|BZ\|_{L^2_\tau L^q}.
+\end{equation}
+In particular \eqref{sep:repair-global} for $\nabla X,\nabla Y$
+holds also in phase supremum, with $D\ge c_0R\sqrt\nu$ and a
+fixed viscosity polynomial. The thin bounds have the same upgrade.
+For weighted spatial suprema, apply the transport identity along
+$y(\tau)=e^{-\tau/2}y(0)$ to
+$\rho^{4+j}D^jX$ and $\rho^{4+j}D^jY$; the weight has
+$B\rho^{4+j}=-(4+j)\rho^{4+j}/2$. The same argument bounds the supremum in time by the $L^2$ average. Its input is the $L^2_\tau L^\infty_y$ bound:
+take the weighted spatial supremum of the separated kernel first,
+then apply Minkowski in the source and dilation variables. The thin
+$L^1_yL^2_\tau$ moment supplies this bound. A pointwise-in-space
+$L^2_\tau$ estimate alone would not suffice.
+Approximation of the source in its stated norm
+passes all these estimates to rough tensors.

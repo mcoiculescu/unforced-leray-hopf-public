@@ -1,0 +1,148 @@
+\section{The logarithmic ring lift and its residual}
+\label{sec:ring-lift}
+
+The planar shift becomes a physical scale change under the ring chart.
+For $q=R\log(r/R)$ and $\Lambda=e^{c/R}$, the map
+$(r,z,t)\mapsto(\Lambda r,\Lambda z,\Lambda^2t)$ sends $q$ to $q+c$
+and leaves $\eta=Rz/r$ and $s=R^2t/r^2$ fixed. Thus the raw lift obeys
+\[
+ u_{\rm raw}(\Lambda x,\Lambda^2t)=\Lambda^{-1}u_{\rm raw}(x,t).
+\]
+This is exact DSS symmetry; the Navier--Stokes equation still has a
+small curvature residual. We estimate it and construct an exact unforced
+background $U$ with its DSS datum and common $H^2$ heat remainder.
+The physical free-operator estimates proved here also serve Sections~\ref{sec:stress-spaces-short}--\ref{sec:spectral-assembly}.
+
+Let $v=\nabla^\perp\psi$ and $p$ be the exact periodic planar train
+and its bounded pressure constructed in Section~\ref{sct:section}.
+The following stream construction converts its period into discrete scaling.
+
+\begin{proposition}[Exact lift, residual and trace]
+\label{sct:lift}
+Let $R\geq2$, $\epsilon=R^{-1}$, and set
+\[
+ q=R\log(r/R),\quad\eta=Rz/r,\quad s=R^2t/r^2,
+ \quad K=\eta\partial_\eta+2s\partial_s,\quad H=(1-K)\psi.
+\]
+The physical stream $r\psi(q,\eta,s)$ defines the exactly divergence-free
+axisymmetric field without swirl
+\[
+ u_r=\frac Rrv_1,\qquad
+ u_z=\frac Rr(v_2+\epsilon H),\qquad
+ p_{\rm raw}=(\frac Rr)^2p.
+\]
+It is smooth through the axis for positive time and discretely
+self-similar with ratio $e^{c/R}$. Its similarity field $U_R$ has
+period $2c/R$, globally bounded fixed spatial derivatives, and residual
+\begin{equation}
+ \|\mathcal F_R\|_{C_{\rm per}W^{1,p}(\mathbb R^3)}
+      \leq P_p\epsilon^{1-2/p},\qquad 2\leq p<\infty.
+ \label{sct:residual-bound}
+\end{equation}
+This includes the projected residual. In particular $p=11/4$ gives
+$P\epsilon^{3/11}$.
+Its nonzero initial datum $a_{\rm raw}$ is divergence-free, has the same discrete
+scaling, and satisfies
+\begin{equation}
+ |D^ja_{\rm raw}(x)|\leq C_j|x|^{-1-j}.
+ \label{sct:raw-trace}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Put $D_\epsilon=\partial_q-\epsilon K$.
+The differentiation rules are
+$\partial_r=(R/r)D_\epsilon$, $\partial_z=(R/r)\partial_\eta$,
+$\partial_t=(R/r)^2\partial_s$. Differentiating the stream proves
+the divergence-free condition, including its geometric correction $\epsilon H$.
+After dividing the physical residual by $(R/r)^3$, direct expansion
+of the cylindrical equations gives
+\[
+ r_r=\epsilon A_1+\epsilon^2B_1,\qquad
+ r_z=\epsilon A_2+\epsilon^2B_2+\epsilon^3B_3,
+\]
+where the complete coefficients are
+\begin{align*}
+ A_1&=-v_1Kv_1+H(v_1)_\eta-v_1^2
+             +2\nu(K+1)(v_1)_q-(K+2)p,\\
+ A_2&=(\partial_s+v\cdot\nabla-\nu\Delta)H
+             +H(v_2)_\eta-v_1(K+1)v_2+2\nu(K+1)(v_2)_q,\\
+ B_1&=-\nu K(K+2)v_1,\\
+ B_2&=-v_1(K+1)H+HH_\eta+2\nu(K+1)H_q-\nu(K+1)^2v_2,\\
+ B_3&=-\nu(K+1)^2H.
+\end{align*}
+For verification, the normalized diffusion operators on the radial
+and axial components respectively are
+$D_\epsilon^2-2\epsilon D_\epsilon+\partial_\eta^2$ and
+$D_\epsilon^2-2\epsilon D_\epsilon+\epsilon^2+\partial_\eta^2$;
+the radial pressure operator is $D_\epsilon-2\epsilon$.
+Thus the formulas include all age derivatives and are identities at
+every age, with no truncation.
+
+The heat identity $K\partial_\eta^jG_{\nu s}=-(j+1)
+\partial_\eta^jG_{\nu s}$ and Lemma~\ref{sct:heat} give the following
+complete late residual table. Each entry denotes its
+$L^\infty_\eta L^\infty_q$ bound with normalized weight
+$\langle\eta/\sqrt{s}\rangle^m$; an $\eta$ derivative gains
+$s^{-1/2}$ and an $L^p_\eta$ norm costs $s^{1/(2p)}$:
+\[
+\begin{array}{c|c|c}
+ \text{coefficient}&\text{size}&(K+3)\text{ size}\\ \hline
+ A_1,B_1&Ps^{-2}&Ps^{-2}\\
+ B_2,B_3&Ps^{-3/2}&Ps^{-5/2}\\
+ A_2&Pe^{-\kappa\nu s/c^2}&Pe^{-\kappa'\nu s/c^2}.
+\end{array}
+\]
+Every $q$ derivative is exponentially small. Indeed the leading means
+of $B_2,B_3$ are $4a_0^2G_{\nu s}\partial_\eta G_{\nu s}$ and
+$-16\nu a_2\partial_\eta^2G_{\nu s}$; both have $K$ degree $-3$.
+Also $(\partial_s-\nu\partial_\eta^2)(S-KS)=-(K+1)g$,
+and every remaining term of $A_2$ has a fluctuation factor.
+
+In similarity variables $\varrho=r/\sqrt t$, $z_y=z/\sqrt t$,
+\[
+ \varrho=R/\sqrt s,\quad z_y=\eta/\sqrt s,\quad
+ q=R\tau/2-(R/2)\log s,\quad dy=\pi R^2s^{-5/2}\,ds\,d\eta,
+\]
+and $U_R=\sqrt s(v_1e_r+(v_2+\epsilon H)e_z)$,
+$\mathcal F_R=s^{3/2}r$. Its derivatives in $\varrho$ and $z_y$ are
+\[
+ \partial_{z_y}\mathcal F_R=s^2\partial_\eta r,
+ \qquad\partial_\varrho\mathcal F_R
+       =s^2[\partial_q-\epsilon(K+3)]r;
+\]
+the angular frame derivative costs only $\epsilon s^2|r_r|$.
+For the field norm the late integrands are $s^{-p/2-2}$ and $s^{-2}$;
+for its radial derivative they are $s^{-2}$ and $s^{-p/2-2}$.
+The axial and angular derivatives are integrable by the same table.
+At zero age the integrands are bounded by $Ps^{3p/2-5/2}$ or
+$Ps^{2p-5/2}$, integrable for $p>1$. The Jacobian contributes
+$R^{2/p}$ and every residual term contributes at least $\epsilon$.
+This proves \eqref{sct:residual-bound}, including continuity by dominated
+convergence. The Leray projection is bounded on $W^{1,p}$ by the
+Euclidean Riesz-transform theorem.
+
+Smoothness at the axis follows term by term from the full heat expansion:
+\[
+ r a_{2j}\partial_\eta^{2j}G_{\nu s}
+       =\frac{a_{2j}r^{2j+2}}{R^{2j+1}}
+                    \partial_z^{2j}G_{\nu t}(z).
+\]
+After $a$ radial derivatives the remainder after order $N$ is
+$O(r^{2N+4-a})$ on compact positive-time sets; fluctuations are flat
+because $e^{-\kappa\nu R^2t/(c^2r^2)}$ dominates all radial derivative
+costs. Thus $u_r/r$ and $u_z$ are smooth functions of $(r^2,z,t)$.
+The same argument with the finite needed expansion order proves
+$\|U_R\|_{W^{k,\infty}}\leq P_k$, uniformly for $R\geq2$.
+For example the leading mean is
+$(-\varrho R^{-1}\partial_{z_y}(a_0G_\nu),
+2R^{-1}a_0G_\nu)$; its Cartesian second derivatives are regular at the axis. Shifting $q$ by $c$ proves the stated DSS period.
+
+At $t=0$ use the same stream formula with the Gaussian inlet. Each
+derivative costs $C/r$; all powers of $|x|/r$ are absorbed by the
+Gaussian decay in $\eta=Rz/r$. This proves the datum bound away from
+the origin, including smoothness at nonzero axis points. Flux across
+a sphere of radius $h$ is $O(h)$, proving that the divergence is zero in distributions.
+The datum is nonzero on the central ring core.
+
+\end{proof}

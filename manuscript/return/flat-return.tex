@@ -1,0 +1,175 @@
+\section{The signed old-stress response to young affine forcing}
+
+Fix a real compact interval $K\Subset(0,1/4)$ and $c=\nu^{-2}$.
+Cell $L^2$ norms use the unnormalized measure $dq\,d\eta$ on
+$(-c/2,c/2)\times\mathbb R$; stress averages contain $c^{-1}$.
+Velocity components are ordered $(r,\phi,z)$, with zero azimuthal velocity.
+The vorticity sources are centrally even and have zero circulation.
+Let
+\[
+ V_G(x,s)=a(s)^{-2}e^{-|x|^2/(4a(s))}Jx,\qquad a(s)=1+\nu s,
+ \qquad V_j=V_G(q-jc,\eta,s).
+\]
+Write $E_s=\operatorname{curl}V_G(\cdot,s)$, and let $H_{s,c}$ and
+$R_{s,c}$ be the periodizations of $rE_s'(r)e^{2i\vartheta}$ and
+$rE_s'(r)+2E_s(r)$ respectively. The Gaussian defines the source;
+the evolution operator $L_{\nu,c}(s)$ uses the actual cylinder train.
+Take $\chi_f(s)=\widehat\chi_f(\nu s)$ with $\widehat\chi_f=1$ on
+$[0,1]$ and support in $[0,1.1)$, and take $\chi_o=0$ for
+$s\le1.2/\nu$ and $\chi_o=1$ for $s\ge1.5/\nu$. Set
+\[
+\begin{gathered}
+ I_T(M)=\int_0^\infty\chi_o(s)s^{-3/2}
+       \frac1c\int_{\rm cell}(2M_{zz}-M_{rr})\,dq\,d\eta\,ds,
+ \qquad \ell_\mu(M)=\frac{\epsilon^3I_T(M)}{8(\mu+3/2)},\\
+ N_\nu=e^{\lambda/\nu}\nu^{-\kappa},\quad
+ \gamma=\operatorname{Re}\lambda,\quad \eta_\nu=\nu+\delta_c/\nu,
+ \quad \mathcal A_\nu=|N_\nu|\nu^{3+2\mu}/c,\quad
+ A_*=\epsilon^3\mathcal A_\nu.
+\end{gathered}
+\]
+
+Fix $0<a<\gamma/16$. Let $\mathscr B_a$ consist of measurable real
+trace-free matrices $B(s)$, with no mixed azimuthal entries, supported
+in $0<s<1.1/\nu$, with norm
+\[
+ \|B\|_a=\mathop{\rm ess\,sup}_{s>0}e^{-as}s^{-3/2}|B(s)|.
+\]
+For $x_j=(q-jc,\eta)$ define the full affine force
+\[
+ f_B=-P_0\sum_j[(B_{\rm mer}x_j)\cdot\nabla V_j+B V_j].
+\]
+Decompose
+\[
+ B_{\rm mer}=\beta I+\begin{pmatrix}d&e\\e&-d\end{pmatrix}
+       +\omega\begin{pmatrix}0&-1\\1&0\end{pmatrix},
+ \qquad B_{\phi\phi}=-2\beta.
+\]
+The antisymmetric contribution is a periodic gradient, annihilated
+by $P_0$. The vorticity source is
+\[
+ g_B=-\tfrac12(d-ie)H_{s,c}-\tfrac12(d+ie)\overline{H_{s,c}}
+          -\beta R_{s,c}.
+\]
+Let
+\[
+ \xi_B(s)=s^{-\mu}\int_0^s t^\mu\mathcal U_{\nu,c}(s,t)g_B(t)\,dt,
+ \qquad b_B=K_c\xi_B,\qquad M_B=v\otimes b_B+b_B\otimes v.
+\]
+Since $g_B=O(s^{3/2})$ near zero, $\xi_B=O_{X_{m,c}}(s^{5/2})$;
+this causal column has finite-energy entrance. Define its limiting amplitude
+\[
+ a_0(B)=-\tfrac12\ell_+(H_0)
+              \int_0^\infty t^\mu e^{-\lambda t}(d(t)-ie(t))\,dt.
+\]
+
+\begin{proposition}[Uniform affine-source return]
+There is a canonical modulus $\omega_{\rm can}(\nu)\to0$ such that,
+uniformly on $K$ and $\mathscr B_a$,
+\begin{equation}\label{flat-return:class-amplitude}
+ |a_{\nu,+}(B)-a_0(B)|\le C_{K,a,\Sigma}\eta_\nu\|B\|_a,
+\end{equation}
+where $a_{\nu,+}$ is the frozen-source amplitude of the young-source theorem.
+For every fixed $0<\gamma'<\gamma$,
+\begin{align*}
+ \biggl|\ell_\mu(M_B)
+  +\frac{3\pi}{16}\frac{\epsilon^3\nu^{3+2\mu}}c
+       \operatorname{Re}[i a_0(B)N_\nu J(\mu)]\biggr|
+ \le C_{K,a,\Sigma}A_*\bigl[&\omega_{\rm can}+\eta_\nu
+       +P_\nu e^{-\gamma'/\sqrt\nu}\bigr]\|B\|_a.
+\end{align*}
+For $k=0,1$ one also has
+\begin{equation}\label{flat-return:all-moments}
+ \int_0^\infty\chi_o(s)s^{-3/2-k/2}\frac1c
+       \int_{\rm cell}|M_B(s,q,\eta)|\,dq\,d\eta\,ds
+ \le C_{K,a,\Sigma,k}\mathcal A_\nu\nu^k\|B\|_a.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The explicit amplitude is
+\[
+ a_{\nu,+}(B)=\int_0^{1.1/\nu}t^\mu F_+(t,0)^{-1}
+                            \ell_{+,\nu t,c}g_B(t)\,dt,
+ \qquad F_+(t,0)^{-1}=e^{-\lambda t/(1+\nu t)}(1+\nu t)^{-\kappa}.
+\]
+The direct/dual Gaussian comparisons and heat scaling give
+\[
+ \ell_{+,\nu t,c}H_{t,c}=\ell_+(H_0)+O(\nu t+c^{-2}),\qquad
+ \ell_{+,\nu t,c}\overline{H_{t,c}},\ \ell_{+,\nu t,c}R_{t,c}=O(c^{-2}),
+\]
+\[
+ |F_+(t,0)^{-1}-e^{-\lambda t}|
+       \le C\nu(t+t^2)e^{-\gamma t/3},\qquad 0\le t\le1.1/\nu.
+\]
+The resulting error has integrable majorant
+$C(\eta_\nu+\nu(t+t^2))t^{\mu+3/2}e^{-(\gamma/3-a)t}\|B\|_a$,
+proving \eqref{flat-return:class-amplitude}. The radial and opposite
+harmonic sources have zero limiting projection; their source norms
+need not be small.
+
+Apply the young-source theorem with $\alpha=1.1$. Its tested
+source norm is at most $C\|B\|_a$, since
+$t/(1+\nu t)\ge t/2.1$ on its support. Thus
+\eqref{eq:young-later-output} transports the finite-band error to the
+whole old output without a polynomial loss. The real form of
+\eqref{eq:young-old-anisotropy} gives
+\[
+ I_T(M_B; s\ge u_o)=\frac{3\pi}{2c}(\mu+3/2)\nu^{3+2\mu}
+      \operatorname{Im}[a_{\nu,+}(B)N_\nu J(\mu)]
+      +O_K(\mathcal A_\nu(\eta_\nu+\omega_{\rm can}))\|B\|_a,
+ \quad u_o=\nu^{-3/2}.
+\]
+The earlier-old part has bound
+$\mathcal A_\nu P_\nu e^{-\gamma'/\sqrt\nu}\|B\|_a$ by the full
+forward gain estimate. The old cutoff acts on the full tensor.
+The source ends before that cutoff begins, so the old moment law is
+homogeneous; both weighted endpoints were retained in the canonical
+calculation. Substitute \eqref{flat-return:class-amplitude} and divide
+by $8(\mu+3/2)/\epsilon^3$ to obtain the scalar estimate.
+
+For the absolute moments use
+$s^{-k/2}=\nu^k\theta^{k/2}(1-\nu\theta)^{-k/2}$.
+On $\theta\le b$, apply \eqref{eq:ct-absolute-impulse} with
+$p=\mu+3/2+k/2$. On $b\le\theta\le\theta(u_o)$ the denominator
+is bounded and the exponential long-clock factor absorbs
+$\theta^{k/2}$. The earlier-old exponential bound absorbs its fixed
+polynomial age factors. Apply these estimates to both bare columns
+and to the uniform frozen-pair error, using the state-at-$H$ bound
+\eqref{eq:young-later-output}. This proves the absolute estimates on
+the whole source unit ball.
+\end{proof}
+
+\begin{corollary}[Unit signed coefficient]\label{flat-return:coefficient}
+Put
+\[
+\begin{gathered}
+ D_0=\operatorname{diag}(12,-3,-9),\qquad
+ A_\mu(s)=\frac{\chi_f(s)s^{5/2}}{\mu+5/2}D_0,\qquad
+ B_\mu=A_\mu'+\frac\mu s A_\mu=r_\mu(s)D_0,\\
+ r_\mu(s)=\chi_f(s)s^{3/2}
+      +\frac{\chi_f'(s)s^{5/2}}{\mu+5/2},\qquad
+ L(\mu)=\ell_+(H_0)\frac{\Gamma(\mu+5/2)}{\lambda^{\mu+5/2}},
+ \qquad \mathcal C(\mu)=\frac{63\pi i}{128}L(\mu)J(\mu).
+\end{gathered}
+\]
+Let $(f_\mu,\xi_\mu,b_\mu,M_\mu)=(f_{B_\mu},\xi_{B_\mu},b_{B_\mu},M_{B_\mu})$.
+For some $b>0$,
+\[
+ \left|\ell_\mu(M_\mu)-2\epsilon^3\nu^{5+2\mu}
+                 \operatorname{Re}[\mathcal C(\mu)N_\nu]\right|
+ \le C_KA_*[\omega_{\rm can}+\eta_\nu+
+               P_\nu e^{-b/\nu}+P_\nu e^{-\gamma'/\sqrt\nu}].
+\]
+\end{corollary}
+\begin{proof}
+Here $\beta=3r_\mu/2$, $d=21r_\mu/2$ and $e=\omega=0$, so
+\begin{equation}\label{flat-return:source}
+ g_\mu=-\frac{21}{4}r_\mu(H_{s,c}+\overline{H_{s,c}})
+              -\frac32r_\mu R_{s,c}.
+\end{equation}
+This retains the trace of the $(r,z)$ block $3r_\mu$ and hoop entry $-3r_\mu$.
+The unit $\mathscr B_a$ norm is bounded. Its cutoff derivative is
+supported above $1/\nu$, so the explicit Laplace integral gives
+$a_0(B_\mu)=-(21/4)L(\mu)+O_K(P_\nu e^{-b/\nu})$.
+Substitute this into the general scalar formula and use $c^{-1}=\nu^2$.
+\end{proof}

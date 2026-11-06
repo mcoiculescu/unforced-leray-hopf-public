@@ -1,0 +1,215 @@
+\section{A direct map from young forcing to the old stress}
+\label{sec:young-old-direct}
+
+This section turns the actual train's forward estimate and the
+all-age outputs of Section~\ref{sec:canonical-transfer} into a
+uniform map on young forcing. The physical pressure and curved-space
+comparison are treated separately.
+
+Put $a(s)=1+\nu s$, $z(s)=s/a(s)$,
+$\theta(s)=1/[\nu a(s)]$, $e=(\nu c^2)^{-1}$, and $c=\nu^{-2}$.
+Fix $K\Subset\{0<\operatorname{Re}\mu<1/4\}$, $1<\alpha<1.2$,
+and a fixed $\Sigma>\alpha$.
+Write $H=\Sigma/\nu$, $T_f=\alpha/\nu$, and
+$u_o=\nu^{-3/2}$. The auxiliary time $s$ is distinct from physical
+logarithmic time. All cell norms use the unnormalized spatial measure.
+The weighted vorticity space is the centrally even, zero-circulation
+subspace $X_{m,c}$, with a fixed $m>8$; its first moments vanish.
+
+Let $\mathcal U(s,t)$ be the actual train evolution, and let
+$q_{\pm,s}$ and $\ell_{\pm,s}$ be the heat-scaled, periodized frozen
+Gaussian pair and its finite Gram-normalized dual. This Gram normalization
+only makes $\ell_{i,s}q_{j,s}=\delta_{ij}$; it is not a terminal
+measurement. Set
+\[
+ F_\pm(s,t)=
+ \exp\!\left[\lambda_\pm(z(s)-z(t))\right]
+ \left(\frac{a(s)}{a(t)}\right)^{\kappa_\pm},
+ \quad(\lambda_+,\kappa_+)=(\lambda,\kappa),
+ \quad(\lambda_-,\kappa_-)=(\bar\lambda,\bar\kappa).
+\]
+The two diagonal factors have equal modulus. On $0\le s\le H$,
+the direct/dual residual is $\delta_c$ and the following are the
+retained block estimates: relative complementary propagation is
+$Ce^{-g(s-t)}$, the direct amplitude error is $C\delta_c$, and both
+amplitude/complement couplings are $C(\nu+\delta_c)$. One has
+\[
+ \delta_c=C_\Sigma(c^{-2}+\delta_{\rm base}),\qquad
+ \delta_{\rm base}=P_\nu e^{C_\Sigma/\nu-b_\Sigma c^2},\qquad
+ \eta_\nu=\nu+\delta_c/\nu=O(\nu).
+\]
+These bounds follow from the block construction in
+Proposition~\ref{prop:short-full-clock}: on $a\le1+\Sigma$,
+$\theta^{-1}=\nu a$, $d^{-2}=e/\theta=O_\Sigma(c^{-2})$,
+and conversion to physical auxiliary time divides the generator by
+$a^2$. Its two diagonal entries are
+$\lambda_\pm/a^2+\kappa_\pm\nu/a$. Moreover
+$z(s)-z(t)\ge(s-t)/(1+\Sigma)^2$, and the endpoint heat-scaling
+maps have uniform norms on this finite band. Thus the moving
+complementary decay is $Ce^{-g_\Sigma(s-t)}$ and the stated
+direct and coupling errors follow.
+
+Divide the two amplitudes by $F_\pm(s,t)$ and the complement by
+their common modulus. If $A$ and $R$ are the resulting amplitude
+and complementary norms, variation of constants gives
+\[
+ R(s)\le Ce^{-g(s-t)}R(t)
+       +C(\nu+\delta_c)\int_t^s e^{-g(s-r)}A(r)\,dr.
+\]
+Insert this estimate in the amplitude equation. Its deviation from
+the initial amplitude is bounded by
+\[
+ C\left[\delta_c(s-t)+(\nu+\delta_c)
+                 +(\nu+\delta_c)^2(s-t)\right]
+       (|A(t)|+R(t))
+\]
+times a Gronwall factor bounded uniformly on $s-t\le\Sigma/\nu$.
+Indeed the coefficient of that factor is
+$C[\delta_c+(\nu+\delta_c)^2]$, whose integral is bounded and
+tends to zero. Consequently, since $H-t\ge(\Sigma-\alpha)/\nu$ for
+$0\le t\le T_f$,
+\begin{equation}\label{eq:young-frozen-pair}
+ \mathcal U(H,t)=
+ \sum_{j=\pm}F_j(H,t)q_{j,H}\ell_{j,t}
+       +|F_+(H,t)|\,O_{X_{m,c}\to X_{m,c}}(\eta_\nu).
+\end{equation}
+The exponentially decaying initial complement is absorbed in
+$\eta_\nu$; the full error is not claimed exponentially small.
+Keeping that complement in the same inequalities gives the full
+gain bound on every subinterval.
+
+Define the actual bare columns by
+\[
+ \phi_{\nu,+}(s)=\mathcal U(s,0)P_cq,\qquad
+ \phi_{\nu,-}(s)=\overline{\phi_{\nu,+}(s)}.
+\]
+Using \eqref{eq:young-frozen-pair} at $t=0$ shows
+\[
+ \phi_{\nu,j}(H)=F_j(H,0)q_{j,H}
+                          +|F_+(H,0)|O(\eta_\nu).
+\]
+Thus the same estimate may be written with these actual bare columns,
+with coefficient $F_j(t,0)^{-1}\ell_{j,t}$ and the same relative
+$O(\eta_\nu)$ error. This is an approximate covector derived directly
+from the frozen pair; no exact transported observer is used.
+
+\subsection{A uniform tested estimate for all later ages}
+
+Fix the large clock $b$ used in the long-clock comparison.
+The kinetic, tested-moment and absolute-stress impulse estimates
+\eqref{eq:ct-kinetic-impulse}, \eqref{eq:ct-tested-impulse} and
+\eqref{eq:ct-absolute-impulse} apply uniformly through overlap.
+Only their value at $r=b$ is needed here.
+
+For a state at $H$, \eqref{eq:short-causal-long-forward}
+propagates it to $b$ with bound
+\[
+ \|a_b^2w(s_b,\sqrt{a_b}\,\cdot)/N_\nu\|_{X_{m,d(b)}}
+   \le C_b |F_+(H,0)|^{-1}\|w(H)\|_{X_{m,c}},
+ \qquad N_\nu=e^{\lambda/\nu}\nu^{-\kappa}.
+\]
+Above $b$ the same estimate has an exponentially decaying factor
+$e^{-\gamma\theta}\theta^{-\operatorname{Re}\kappa}$.
+At $b$, the uniform Biot--Savart and moment embedding applies since
+$d(b)\ge1$. Equations \eqref{eq:ct-tested-impulse} and
+\eqref{eq:ct-absolute-impulse} therefore show that every old
+weighted moment and absolute stress functional used in the leading
+strain calculation has norm at most
+\begin{equation}\label{eq:young-later-output}
+ C_K |F_+(H,0)|^{-1}\|w(H)\|_{X_{m,c}}
+\end{equation}
+after division by its canonical scale
+$|N_\nu|\nu^{3+2\operatorname{Re}\mu}/c$.
+No ordinary inverse factor or logarithmic loss occurs here.
+
+\subsection{Young source theorem and angular signs}
+
+Let $f$ be supported in $0<s\le T_f$ and valued in $X_{m,c}$.
+Consider the zero-entrance causal equation
+\[
+ (\partial_s+\mu/s)w=L_{\nu,c}(s)w+f(s),
+ \qquad s^\mu w(s)\longrightarrow0\quad(s\downarrow0).
+\]
+The tested source norm below defines a causal old-output theorem;
+it alone does not imply a physical energy entrance. For the Gaussian
+affine sources actually used here, $f(s)=O(s^{3/2})$ in the fixed
+smooth weighted norms near zero. The local bounded forward evolution
+then gives $w(s)=O(s^{5/2})$ by Duhamel, uniformly for $\mu\in K$.
+Thus its planar velocity has finite entrance energy
+$\int_0^1s^{-3/2}\|K_cw(s)\|_2^2ds<\infty$; the same fixed
+derivative bounds give the required local derivative integrability.
+The curved physical reconstruction still uses the separate free graph
+and comparison theorem. A general source in the tested completion
+must not be assigned these stronger properties without checking them.
+Define the finite tested norm and explicit frozen covectors
+\begin{align*}
+ \|f\|_{\mathcal I_{\nu,\mu}}
+  &=\int_0^{T_f}t^{\operatorname{Re}\mu}|F_+(t,0)|^{-1}
+                         \|f(t)\|_{X_{m,c}}\,dt,\\
+ a_{\nu,\pm}(f)
+  &=\int_0^{T_f}t^\mu F_\pm(t,0)^{-1}\ell_{\pm,t}f(t)\,dt.
+\end{align*}
+Their bounds are viscosity-independent:
+$|a_{\nu,+}|+|a_{\nu,-}|\le C_K\|f\|_{\mathcal I_{\nu,\mu}}$.
+Since $a(t)\le1+\alpha$ on the source band, the norm is bounded by
+$C_K\int_0^{T_f}t^{\operatorname{Re}\mu}e^{-\gamma t/(1+\alpha)}
+\|f(t)\|\,dt$.
+For a spectral scan, keep the source space fixed: choose a slightly
+larger compact strip with endpoints $\sigma_-<\operatorname{Re}\mu
+<\sigma_+$ and use $t^{\sigma_-}$ on $t\le1$ and
+$t^{\sigma_+}$ on $t\ge1$ in the defining norm. The strict margins
+absorb powers of $|\log t|$, so the displayed covectors and tested
+outputs are holomorphic in $\mu$ for holomorphic source families.
+All geometry, coefficients and cutoffs remain fixed during this scan.
+
+Duhamel and \eqref{eq:young-frozen-pair} give exactly, at $H$,
+\[
+ H^\mu w(H)=
+ a_{\nu,+}(f)\phi_{\nu,+}(H)
+ +a_{\nu,-}(f)\phi_{\nu,-}(H)+r_H,
+ \quad
+ \|r_H\|\le C_K\eta_\nu|F_+(H,0)|
+                                  \|f\|_{\mathcal I_{\nu,\mu}}.
+\]
+For $s\ge H$ both sides evolve by the same unforced equation.
+Apply \eqref{eq:young-later-output}: the normalized old moment and
+absolute stress errors are at most
+$C_K\eta_\nu\|f\|_{\mathcal I_{\nu,\mu}}$.
+This is an operator statement on the specified source class, not
+only a calculation for one chosen forcing.
+
+Put $J(\mu)=\mathcal J(\mu)$, $J_+(\mu)=J(\mu)$ and
+$J_-(\mu)=\overline{J(\bar\mu)}$, and set
+$\mathcal A_\nu=|N_\nu|\nu^{3+2\operatorname{Re}\mu}/c$.
+The canonical Mellin limit and stress defect, with the opposite
+angular identities of the two harmonics, give uniformly on the source class
+\begin{align}
+ I_T^\mu(w)
+  &=-\frac{3\pi i}{4c}(\mu+3/2)\nu^{3+2\mu}
+      \bigl[a_{\nu,+}(f)N_\nu J_+(\mu)
+          -a_{\nu,-}(f)\overline{N_\nu}J_-(\mu)\bigr]
+       +o_K(\mathcal A_\nu)\|f\|_{\mathcal I_{\nu,\mu}}.
+       \label{eq:young-old-anisotropy}
+\end{align}
+Here $I_T^\mu$ is the integral of
+$(2E_q-E_\eta)s^{-3/2}$, where, for the already Floquet-weighted
+solution $w$ in this theorem,
+\[
+ E_\eta=\frac2c\int v_1(K_cw)_1,\qquad
+ E_q=\frac2c\int v_2(K_cw)_2,\qquad
+ C=\frac1c\int[v_1(K_cw)_2+v_2(K_cw)_1].
+\]
+These are bilinear pairings, without complex conjugation or another
+factor $s^{-\mu}$.
+For real $\mu$ and real forcing, $a_-=\bar a_+$, so the leading
+term of \eqref{eq:young-old-anisotropy} is
+$[3\pi/(2c)](\mu+3/2)\nu^{3+2\mu}
+\operatorname{Im}(a_{\nu,+}N_\nu J(\mu))$.
+The Floquet parameter is not conjugated in the negative channel
+when it is complexified.
+
+The source is zero before the old analytical tail begins, since
+$T_f<u_o$. Thus the old moment law is homogeneous. Its lower endpoint
+is exponentially small after division by $N_\nu$ and its upper
+weighted endpoint vanishes; the old cutoff transition below $u_o$
+is retained in its separate earlier-old contribution.

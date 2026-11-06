@@ -1,0 +1,390 @@
+\subsection{The Gaussian seed, its two couplings, and the complementary evolution}
+\label{sec:short-gaussian-seed}
+
+Use $u=\nabla^\perp\psi$, $\operatorname{curl}u=\Delta\psi$ and put
+\[
+ x=r^2/4,\quad \Omega=e^{-x},\quad
+ V_0(y)=\Omega y^\perp,\quad E_0=(2-2x)e^{-x},\quad
+ k=E_0'/r=(x-2)e^{-x},\quad G=(4\pi)^{-1}e^{-x}.
+\]
+The Euler linearization is
+\[
+ \mathscr Lf=-\Omega\partial_\vartheta f
+       -(\nabla^\perp\Delta^{-1}f)\cdot\nabla E_0.
+\]
+For $j\ge0$, $M>1$, let $H^j_M$ be the space with norm
+$\sum_{|\alpha|\le j}\|\langle y\rangle^M\partial^\alpha f\|_2$ and let
+$\mathcal X_{j,M}=\{f\in H^j_M:\int f=0\}$.
+In angular sector two use
+\[
+ X_G=L^2((0,\infty),G^{-1}r\,dr)e^{2i\vartheta},\qquad
+ L_0=-2i\Omega+2ikR,\quad R=\Delta_2^{-1},
+\]
+where the pairing is linear in its first argument and omits $2\pi$.
+For a general planar function, $f_2(r)=(2\pi)^{-1}\int_0^{2\pi}
+f(r,\vartheta)e^{-2i\vartheta}d\vartheta$.
+The regular decaying Green inverse in angular sector $n\ge1$ is
+\begin{equation}\label{eq:short-seed-green}
+ R_nw=-\frac1{2n}\left[
+ r^{-n}\int_0^r s^{n+1}w(s)\,ds+
+ r^n\int_r^\infty s^{1-n}w(s)\,ds\right].
+\end{equation}
+
+\begin{proposition}\label{prop:short-gaussian-seed}
+On every $\mathcal X_{j,M}$ the entire spectrum of $\mathscr L$ in
+$\{\Re z>0\}$ is one algebraically simple conjugate pair
+$\lambda=\gamma+i\omega$, $\bar\lambda$, where $\gamma>0$ and
+$-2<\omega<0$. Its eigenvectors are $q=h(r)e^{2i\vartheta}$ and
+$\bar q$. Every derivative of $q$ is bounded by a polynomial times
+$e^{-r^2/4}$, $\int q=0$, its velocity belongs to $L^2$, and
+\[
+ M_q:=\int_0^\infty r^3h(r)\,dr\ne0.
+\]
+The same $\lambda$ is the sole growing spectral value of $L_0$ on $X_G$.
+Its projection is $P=q\ell$, with
+\begin{equation}\label{eq:short-seed-functional}
+ \ell(f)=\frac1{J_q}\int_0^\infty
+       \frac{h(r)f_2(r)}{k(r)}r\,dr,\qquad
+ J_q=\int_0^\infty\frac{h(r)^2}{k(r)}r\,dr\ne0.
+\end{equation}
+The quotients at $k=0$ are removable. In particular, the harmonic-strain
+input $H=r^2k(r)e^{2i\vartheta}$ satisfies $\ell(H)=M_q/J_q\ne0$.
+
+With $\mathscr P$ the projection onto the pair and $Q=I-P$,
+\begin{equation}\label{eq:short-seed-complement}
+ \|e^{t\mathscr L}(I-\mathscr P)\|_{H^j_M\to H^j_M}
+       \le C_{j,M,\eta}e^{\eta t},\qquad
+ \|e^{t(L_0-\lambda)}Q\|_{X_G\to X_G}
+       \le C_\eta e^{-(\gamma-\eta)t}
+\end{equation}
+for every $\eta>0$ and $t\ge0$. Finally
+$D=\Delta+\frac12y\cdot\nabla+2$ is selfadjoint and nonpositive on
+$X_G$, with spectrum $\{0,-1,-2,\ldots\}$. Both $q$ and the normalized
+Gaussian adjoint vector $q^\dagger$ belong to every $\mathcal D(D^m)$;
+thus $DP$ and $PD$ extend boundedly to $X_G$.
+\end{proposition}
+
+\begin{proof}
+\emph{One negative direction.}
+Set $a_*=e^{-2}$, $t=\log r$, and
+\[
+ v=-\frac{k}{\Omega-a_*}
+       =\frac{x-2}{e^{x-2}-1}>0,\qquad
+ W=r^2v=\frac{4x(x-2)}{e^{x-2}-1},\qquad
+ \mathcal H_n=-\partial_t^2+n^2-W.
+\]
+At $x=2$, define $v=1$ and $W=8$ by continuity. The bounded function $W$ tends to
+zero at both ends, so $\mathcal H_n$ is selfadjoint on $H^2(\mathbb R)$
+and has essential spectrum $[n^2,\infty)$: multiplication by $W$ is
+relatively compact by truncation and Rellich's theorem. Also $\sup W<9$: for $y=x-2$, the function
+$F(y)=9(e^y-1)-8y-4y^2$ satisfies $F(0)=0$ and
+$F'(y)\ge-8\log(8/9)>0$, so $9-W=F(y)/(e^y-1)>0$;
+at $y=0$ the inequality follows from $W=8$.
+
+There is a negative trial in sector two. For
+$\phi=r^2e^{-r^2/8}$ direct integration gives
+\[
+ \int_0^\infty(|\phi'|^2+4r^{-2}|\phi|^2-v|\phi|^2)r\,dr
+ =48-32\int_0^\infty\frac{x-2}{e^{x-2}-1}x^2e^{-x}\,dx.
+\]
+For all real $y$,
+\begin{equation}\label{eq:short-seed-rational}
+ \frac y{e^y-1}\ge1-\frac y2+\frac{5y^2}{60+y^2}.
+\end{equation}
+Indeed, with $z=y/2$, this is equivalent to
+\[
+ \frac{(z^3+15z)\cosh z-(6z^2+15)\sinh z}{\sinh z}\ge0.
+\]
+At $z=0$ take the continuous extension. The numerator has coefficients
+$(2m)(2m-2)(2m-4)/(2m+1)!\ge0$ at $z^{2m+1}$.
+For $d\rho=x^2e^{-x}dx$, $y=x-2$, and $p=y(16-y)/930$,
+completion of the square and $\int_0^\infty x^ke^{-x}dx=k!$ give
+\[
+ \int\frac{y^2}{60+y^2}\,d\rho
+ \ge\int\bigl(2yp-(60+y^2)p^2\bigr)\,d\rho=\frac{16}{155}.
+\]
+Thus the trial form is at most $-16/31$.
+
+There cannot be a second nonpositive direction. The function
+$h_*(t)=e^t(\Omega-a_*)$ has one simple zero
+$t_*=\log\sqrt8$ and $h_*''/h_*=1-W$. Ground-state factorization
+on the two half-lines gives
+\[
+ \int(|F'|^2+(1-W)|F|^2)\,dt
+    =\int|F'-(h_*'/h_*)F|^2\,dt\ge0
+ \quad\text{when }F(t_*)=0.
+\]
+Prove it first for compact support away from $t_*$ and then use
+$H^1_0$ density. Hence
+$\langle F,\mathcal H_nF\rangle\ge(n^2-1)\|F\|_2^2$ on a
+codimension-one subspace. Min--max implies that $\mathcal H_2$ has
+exactly one negative eigenvalue, counting multiplicity, and no kernel.
+For $n\ge3$ the bound $W<9$ directly gives
+\begin{equation}\label{eq:short-seed-higher}
+ \langle F,\mathcal H_nF\rangle\ge
+ (1-\|W\|_\infty/n^2)(\|F'\|_2^2+n^2\|F\|_2^2).
+\end{equation}
+
+\emph{A bounded Hamiltonian realization and its neutral modes.}
+On $Y=L^2((0,\infty),r\,dr)$ set
+\[
+ K_n=\sqrt v(-\Delta_n)^{-1}\sqrt v,\quad B_n=I-K_n,
+ \quad J=\Omega-a_*,\quad \widetilde T_n=a_*+JB_n.
+\]
+The kernel of $K_n$, relative to $s\,ds$, is
+$\frac1{2n}\sqrt{v(r)v(s)}(\min(r,s)/\max(r,s))^n$.
+Since $\int rv(r)dr<\infty$, it is Hilbert--Schmidt; Green's identity
+makes it nonnegative and selfadjoint. More explicitly, on the energy
+space $\mathcal E_n$ with norm
+$\int(|\phi'|^2+n^2r^{-2}|\phi|^2)r\,dr$, the compact map
+$S\phi=\sqrt v\phi$ satisfies $SS^*=K_n$.
+The nonzero eigenvalues of $SS^*$ and $S^*S$ agree with multiplicity.
+The preceding form computation therefore says that $B_2$ is invertible
+with one complex negative direction, whereas $B_n$ is strictly positive
+for $n\ge3$. The change $w=\sqrt v f$ intertwines
+$T_n=\Omega-k\Delta_n^{-1}$ with $\widetilde T_n$.
+
+If $\widetilde T_nf=cf$ and $\psi=S^*f$, then
+$F(t)=\psi(e^t)\in H^2(\mathbb R)$ and
+\begin{equation}\label{eq:short-seed-rayleigh}
+ (\Omega-c)(F''-n^2F)-AF=0,\qquad
+ A=r^2k=\partial_t^2\Omega+2\partial_t\Omega.
+\end{equation}
+Indeed the Green source $\rho=r^2\sqrt v f$ has squared logarithmic
+$L^2$ norm $\int W|f|^2r\,dr$, and
+$-F''+n^2F=\rho$. Also $F=0$ forces $f=0$.
+
+The operator $\widetilde T_2$ has no real eigenvalues. At $c=a_*$ the equation
+$JB_2f=0$ gives $f=0$, since $J$ vanishes at one point and $B_2$ is
+invertible. At $c=0$, \eqref{eq:short-seed-rayleigh} becomes
+$-F''+4(x-1)^2F=0$, whose cutoff energy identity gives $F=0$.
+For the other real $c$, put $h_c=e^t(\Omega-c)$; then
+$h_c''/h_c=1+A/(\Omega-c)$ and the equation is
+$-F''+(3+h_c''/h_c)F=0$.
+When $0<c<1$, $c\ne a_*$, its only critical point $t_c$ has
+$A(t_c)\ne0$. The equation and $F''-4F\in L^2$ force
+$F(t_c)=0$, since otherwise $AF/(\Omega-c)$ has a nonintegrable
+simple pole. As $F\in H^2$, $F=O(|t-t_c|)$.
+For $c<0$ or $c\ge1$ there is no finite zero. In every case,
+factorization on the intervals avoiding $t_c$ gives
+\[
+ 0=\int\left(|F'-(h_c'/h_c)F|^2+3|F|^2\right)dt.
+\]
+The critical boundary term is $O(|t-t_c|)$; the terms at infinity
+vanish because $F,F'\to0$ and $h_c'/h_c$ is bounded there
+(its limit at $-\infty$ is three if $c=1$). Thus $F=0$.
+
+Regard $Y$ as a real Hilbert space. The operator
+$\mathcal A=-2iJB_2$ has bounded skew-adjoint factor $-2iJ$
+and bounded selfadjoint energy $B_2$. Its negative index is two
+over the reals, its kernel is zero, and its positive space is
+uniformly positive since $B_2$ is an invertible compact perturbation
+of identity. These verify the hypotheses of the index theorem of Lin and
+Zeng~\cite{lin-zeng2021}, which gives
+\[
+ k_r+2k_c+2k_i^{\le0}+k_0^{\le0}=2.
+\]
+The last two counts vanish by the preceding absence of imaginary
+eigenvectors; continuous spectrum creates no additional term in this
+theorem. The complexification of the real operator is unitarily
+equivalent to $\mathcal A\oplus\overline{\mathcal A}$ on $Y\oplus Y$,
+so its total unstable algebraic multiplicity is twice that of
+$\mathcal A$ on complex $Y$. Hence it is one on $Y$.
+Equivalently, $\widetilde T_2$ has exactly one upper-half-plane
+eigenvalue $c$, algebraically simple.
+
+\emph{Frequency, Gaussian regularity, and the quadrupole.}
+For this nonreal $c$, substitute $F=(\Omega-c)\Phi$ into
+\eqref{eq:short-seed-rayleigh} and integrate against $\bar\Phi$:
+\[
+ \int(\Omega-c)^2\Theta\,dt=0,\qquad
+ \Theta=|\Phi'|^2+4|\Phi|^2-2\Re(\Phi'\bar\Phi)
+          \ge3|\Phi|^2.
+\]
+Here $\Phi\in H^2$, so integration by parts is valid.
+The imaginary and real parts imply respectively
+$\int\Omega\Theta=(\Re c)\int\Theta$ and
+$\int\Omega^2\Theta=|c|^2\int\Theta$.
+Since $0<\Omega<1$, $|c-1/2|<1/2$. Thus
+$\lambda=-2ic$ has the asserted growth and frequency.
+
+Write $\phi(r)=F(\log r)$. The coefficient
+$B=A/(\Omega-c)$ in $F''-4F=BF$ is $O(e^{2t})$ at $-\infty$
+and decreases faster than every exponential at $+\infty$, with
+the same differentiated bounds. At $+\infty$ the Volterra equation
+\[
+ F_+(t)=e^{-2t}+\frac12\int_t^\infty
+                   \sinh(2(s-t))B(s)F_+(s)\,ds
+\]
+is a contraction on $\sup_{t\ge T}e^{2t}|F(t)|$ for large $T$.
+It gives $F_+=e^{-2t}(1+o(1))$ with differentiated asymptotics;
+reduction of order supplies an independent solution growing as
+$e^{2t}$. The analogous forward Volterra construction at $-\infty$
+selects $e^{2t}(1+O(e^{2t}))$. Thus every nonzero $H^1$ solution has
+\[
+ \phi(r)=B_0r^2(1+O(r^2))\ (r\downarrow0),\qquad
+ \phi(r)=C_\infty r^{-2}(1+o(1))\ (r\to\infty),
+ \qquad B_0C_\infty\ne0.
+\]
+The Cartesian streamfunction $\Psi=\phi e^{2i\vartheta}$ is in $L^2$.
+These endpoint estimates remove the inner-circle boundary terms in
+Green's identity, so
+$\Delta\Psi=[k/(\Omega-c)]\Psi$ on the whole plane.
+The coefficient is smooth with bounded derivatives. The estimate
+$\|\Psi\|_{H^2}\le C(\|\Delta\Psi\|_2+\|\Psi\|_2)$,
+differentiated and iterated, gives all Sobolev norms and bounded
+Cartesian derivatives. Hence
+$q=\Delta\Psi=h e^{2i\vartheta}$, with
+$h=k\phi/(\Omega-c)$, has the claimed Gaussian bounds.
+Its velocity is $O(r)$ at zero and $O(r^{-3})$ at infinity.
+Finally
+\begin{equation}\label{eq:short-seed-quadrupole}
+ M_q=\int_0^\infty r^3\Delta_2\phi\,dr
+       =[r^3\phi'-2r^2\phi]_0^\infty=-4C_\infty\ne0.
+\end{equation}
+Its circulation vanishes by angular integration.
+
+\emph{Excluding other angular sectors and transferring rootspaces.}
+For $n\ge3$, $B_n>0$ and
+$\widetilde T_n^*B_n=B_n\widetilde T_n$ imply every phase-speed
+eigenvalue is real. For $n=1$, $\phi_1=r(\Omega-c)$ is an exact
+solution for every nonreal $c$. Its independent solution is
+$\phi_1(r)\int^r ds/(s\phi_1(s)^2)
+=-[2(1-c)r]^{-1}+O(r|\log r|)$ at zero, and is not locally
+square integrable. The regular solution $\phi_1$ grows as $-cr$
+at infinity, excluding a regular decaying mode. Radial vorticities
+are stationary. Negative sectors are the conjugates of positive ones.
+
+This classification applies to the actual weighted spaces without
+claiming a bounded similarity $w\mapsto w/\sqrt v$ there.
+Cauchy--Schwarz in \eqref{eq:short-seed-green} gives, for $r\ge2$,
+\[
+ |R_nw(r)|\le C_{n,M}\|w\|_{L^2_M}
+       \left(r^{1-M}+r^{-n}(1+\log r)^{1/2}\right);
+\]
+at zero it is $O(r)$, with an extra $|\log r|^{1/2}$ only for $n=1$.
+For a nonreal rootvector the equation
+$w=kR_nw/(\Omega-c)$, and for each subsequent Jordan vector the
+same equation with its preceding vector divided by $\Omega-c$,
+show inductively that $w/\sqrt v\in Y$.
+Indeed $k/\sqrt v$ is Gaussian at infinity and bounded at zero.
+The Green inverse agrees with $-S^*(w/\sqrt v)$: their difference
+is $ar^n+br^{-n}$, and both vanish at the two endpoints.
+Thus whole Jordan chains transfer injectively to $Y$.
+Local elliptic regularity selects precisely the regular solutions
+used above. In $X_G$ membership in $Y$ is immediate from $v\ge cG$.
+Conversely the constructed Gaussian eigenmode belongs to all these
+spaces, so the growing eigenvalue and its algebraic multiplicity agree.
+
+\emph{Generators, projections, and complementary bounds.}
+The free transport is
+$T(t)f(r,\vartheta)=f(r,\vartheta-\Omega(r)t)$.
+The chain rule gives $\|T(t)\|_{H^j_M\to H^j_M}\le C_j(1+|t|)^j$.
+Density and differentiation of the flow give its generator domain
+$\{f:\Omega\partial_\vartheta f\in H^j_M\}$.
+For the converse domain inclusion use the distributional identity
+$T(t)f-f=-\int_0^tT(s)\Omega\partial_\vartheta f\,ds$ and strong continuity.
+The interaction $(\nabla^\perp\Delta^{-1}f)\cdot\nabla E_0$ is
+compact on $H^j_M$: splitting the Biot--Savart kernel at distance
+one controls its undifferentiated near part in $L^2$ and far part
+in $L^\infty$ by $\|f\|_{L^2}+\|f\|_1$; derivatives have Fourier
+order at most $j$. Multiplication by the Schwartz coefficient
+$\nabla E_0$ therefore maps $H^j_M$ into $H^{j+1}_M$.
+Truncation to a disk, Rellich compactness, and the vanishing weighted
+coefficient tails prove compactness on $H^j_M$.
+The bounded perturbation theorem now realizes $\mathscr L$ on the
+stated domain. Both terms have zero integral, so $\mathcal X_{j,M}$
+is invariant.
+
+The Duhamel difference $e^{t\mathscr L}-T(t)$ is compact for each
+$t>0$: its integrand consists of the compact interaction between
+strongly continuous evolutions, and is norm continuous because the
+adjoint evolutions are strongly continuous on this Hilbert space.
+Thus the essential growth bound is at most zero. The standard
+semigroup spectral decomposition outside the essential growth bound
+\cite[Corollary~IV.2.11 and Theorem~V.3.1]{engel-nagel2000} makes all growing spectrum discrete of finite
+algebraic multiplicity. Each such finite-dimensional rootspace is
+rotation invariant, so the circle representation splits into integer
+angular characters. The preceding transfer and exclusions leave
+precisely $\lambda,\bar\lambda$, each simple. The same theorem gives
+the first estimate in \eqref{eq:short-seed-complement}.
+This statement includes the full $H^j_M$: splitting off a fixed radial
+function of integral one merely adds a stationary direction.
+Resolvents, hence Riesz projections, agree on intersections of
+weighted spaces by uniqueness in a common weaker realization.
+
+On $X_G$, the Green estimate
+$|Rf(r)|\le C\|f\|_{X_G}\min(r,r^{-2})$ shows that $L_0$ is bounded.
+After the unitary map $f\mapsto f/\sqrt G$, its interaction kernel is
+\[
+ -\frac i2\frac{k(r)}{\sqrt{G(r)}}
+       \left(\frac{\min(r,s)}{\max(r,s)}\right)^2\sqrt{G(s)},
+\]
+which is Hilbert--Schmidt. Hence the same compact-perturbation and
+spectral-decomposition argument gives the second estimate in
+\eqref{eq:short-seed-complement}.
+
+\emph{Actual adjoint, strain coupling, and diffusion domains.}
+Unweighted selfadjointness of $R$ and $k=\Omega(x-2)$ give
+\[
+ L_0^*g=2i\Omega[g-R((x-2)g)].
+\]
+The explicit adjoint eigenvector is
+\[
+ h_X(r,\vartheta)=G(r)\frac{\overline{\phi(r)}}{
+                    \Omega(r)-\bar c}e^{2i\vartheta},
+ \qquad L_0^*h_X=\bar\lambda h_X.
+\]
+Indeed the conjugate Rayleigh equation gives
+$R(k\bar\phi/(\Omega-\bar c))=\bar\phi$, with no homogeneous
+ambiguity by its endpoints. Every derivative of $h_X$ is a polynomial
+times $G$. The Fredholm operator $L_0-\lambda$ has index zero,
+one-dimensional kernel, and adjoint kernel spanned by $h_X$.
+Its pairing with $q$ cannot vanish, since otherwise $q$ would lie
+in the range and produce a Jordan vector. This pairing is exactly
+$J_q$ in \eqref{eq:short-seed-functional}. Setting
+$q^\dagger=h_X/\overline{J_q}$
+therefore gives that formula and
+$\ell(H)=M_q/J_q\ne0$. The kernel $h/k=\phi/(\Omega-c)$ is smooth
+at zero and $O(r^{-2})$ at infinity, so the same functional is bounded
+on each polynomially weighted space. Its adjoint identity extends from
+smooth data by density and gives the corresponding Riesz projection.
+
+Finally, conjugation by $U_Gf=f/\sqrt G$ gives
+\[
+ U_GDU_G^{-1}=\Delta-|y|^2/16+3/2.
+\]
+The selfadjoint harmonic oscillator has Hermite levels
+$1-N/2$; angular weight two consists exactly of $N=2+2m$,
+$m\ge0$. This proves the domain and spectral assertion about $D$.
+The Gaussian derivative bounds make $U_Gq$ and $U_Gh_X$ Schwartz,
+so both belong to every oscillator power domain. With
+$\ell(f)=\langle f,q^\dagger\rangle$, selfadjointness gives
+$\ell(Df)=\langle f,Dq^\dagger\rangle$. Consequently
+$PD=q\langle\,\cdot\,,Dq^\dagger\rangle$ and
+$DP=(Dq)\ell$ are bounded.
+\end{proof}
+
+\begin{corollary}[Frozen heat profiles]\label{cor:short-seed-dilation}
+Set
+\[
+ J_af(y)=a^{-2}f(y/\sqrt a),\qquad
+ E_a=J_aE_0,\qquad V_a(y)=a^{-3/2}V_0(y/\sqrt a).
+\]
+Their Euler generators and unstable projections satisfy
+\[
+ \mathscr L_a=a^{-2}J_a\mathscr LJ_a^{-1},\qquad
+ \mathscr P_a=J_a\mathscr PJ_a^{-1}.
+\]
+Thus the unstable eigenvalues are $a^{-2}\lambda,a^{-2}\bar\lambda$;
+the complementary estimates are uniform for $1\le a\le A<\infty$,
+and the projections depend continuously on $a$ in operator norm.
+\end{corollary}
+\begin{proof}
+The generator identity is the Biot--Savart scaling identity.
+$J_a,J_a^{-1}$ are uniformly bounded on $H^j_M$ on each compact
+$a$ interval, so conjugating \eqref{eq:short-seed-complement} proves
+the bounds. The finite-rank projection consists of the Gaussian
+eigenvectors and the dual functional \eqref{eq:short-seed-functional};
+their dilates are norm continuous by dominated convergence.
+\end{proof}

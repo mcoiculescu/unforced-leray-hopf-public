@@ -1,0 +1,265 @@
+\section{The direct zero-entrance near equation}
+
+Use the normalized cylinder spaces
+\[
+ H=L^2(s^{-3/2}\,ds\,dq/c\,d\eta),\qquad
+ H_T=L^2(s^{-1/2}\,ds\,dq/c\,d\eta),\qquad
+ Z=Z_1\oplus\rho_b^{-1/2}H_T,
+\]
+where \(Z_1=L^2(s^{-1/2}W^2\,ds\,dq/c\,d\eta)\) and
+\(W=\langle\eta/\sqrt{1+s}\rangle^{m_Z}\), \(m_Z>3/2\).
+The stress inverse always acts on the sum of the components. Let
+\(\mathcal M_0\) be multiplication by the actual flat train, with
+zero second output component, and let \(\mathcal M_U\) be the
+exact thin/repair multiplier. Set
+\[
+ \mathsf D_0=I+\mathcal M_0\mathcal S_0,\qquad
+ g(s)=e^{\gamma s/(1+\nu s)},\qquad \mathsf G T=gT.
+\]
+The direct causal construction on the full moving clock gives
+\begin{equation}\label{near:flat-bound}
+ \|\mathsf G^{-1}\mathsf D_0^{-1}\mathsf G\|_{Z\to Z}
+ \le Q:=P_\nu.
+\end{equation}
+There are no auxiliary entrance coordinates in this statement.
+The ordinary norm of this inverse is not asserted to have the same
+bound; it can contain the full planar amplification. The polynomial
+degree is fixed by the velocity and tensor spaces.
+
+The finite-curvature free inverse is the conjugate of the Cartesian
+weak-stress inverse. In particular its divergence and pressure are
+not replaced by planar ones. In the profile chart
+\[
+ s=R^2/\rho^2,\quad q=R\log(\rho/R)+R\tau/2,
+ \quad\eta=Rz/\rho,\quad R=\epsilon^{-1},
+\]
+its exact divergence is
+\[
+ \operatorname{div}(\sqrt{s}\,b)
+ =s\{[\partial_q-\epsilon(2s\partial_s+\eta\partial_\eta)]b_r
+                   +\partial_\eta b_z\}.
+\]
+The geometric comparison below concerns these exact operators.
+
+Fix a small positive logarithmic gap \(\delta\). For an output age
+\(s\) and input age \(t\), define
+\[
+ \mathcal S_{\rm far}
+   =1_{\{s<S,\ t>e^\delta s\}}\mathcal S_\epsilon,
+ \quad \mathcal S_N=\mathcal S_\epsilon-\mathcal S_{\rm far},
+ \quad \mathsf D_N=I+\mathcal M_U\mathcal S_N.
+\]
+The notation for the mask means its exact kernel realization with
+tensor partitions before distributional divergence. Interface terms
+are retained. A masked intermediate velocity need not satisfy the
+whole-space divergence-free constraint by itself; the stress equation is
+well defined independently of that issue. Only the recombined full
+Cartesian inverse is used to recover the final physical mode.
+
+This \(\mathsf D_N\) is distinct from subtracting the divergence-free
+old-to-young velocity in the nilpotent translation transformation.
+Their difference is retained in the transformed equation.
+
+\begin{proposition}\label{near:equation-comparison}
+Let \(\mu\) range over a fixed compact subset of \(0<\Re\mu<1/4\).
+Put \(s_-=\epsilon^a\), \(S=\epsilon^{-b}\), \(0<b<1\).
+There is a fixed integer \(K\), chosen before \(a,b\), such that
+\begin{equation}\label{near:deltaN}
+ \begin{split}
+ \delta_N:=\|\mathsf G^{-1}(\mathsf D_N-\mathsf D_0)\mathsf G\|
+ \le P_\nu\big[&\epsilon^{a/2}+\epsilon^{b/2}
+       +\epsilon e^{(m_0+\eta_\delta)/\nu}
+       +\epsilon^{1/50-K(a+b)}e^{\eta_\delta/\nu}\\
+       &+\epsilon^{3/22}e^{(\eta_\delta+m_0/2)/\nu}
+       +e^{-(D_\perp-\eta_\delta)/\nu}\big],
+ \end{split}
+\end{equation}
+where \(\eta_\delta\downarrow0\) as \(\delta\downarrow0\).
+The constant \(D_\perp>0\) specifies the transverse-tail accuracy.
+If \(Q\delta_N<1/2\), then
+\begin{equation}\label{near:inverse-comparison}
+ \begin{split}
+ \|\mathsf G^{-1}\mathsf D_N^{-1}\mathsf G\|&\le2Q,\\
+ \|\mathsf G^{-1}(\mathsf D_N^{-1}-\mathsf D_0^{-1})\mathsf G\|
+       &\le2Q^2\delta_N.
+ \end{split}
+\end{equation}
+Both statements are equation-only estimates; no terminal functional
+or affine source is added.
+\end{proposition}
+
+\begin{proof}
+The required free comparison is global in its input and compact in
+its output:
+\[
+ \|\chi(\mathcal S_\epsilon-\mathcal S_0)\|_{H_T\to H}
+       \le C\Gamma^K\epsilon^{1/50}.
+\]
+Here \(\Gamma\) is a polynomial in inverse lower age, upper age,
+transverse box size, viscosity inverse, cell width, and finitely many
+cutoff derivatives. The exponent \(K\) is fixed. The transverse
+cutoff may be chosen at \(L_\perp=C_\perp(c/\nu+\sqrt S+1)\),
+so \(L_\perp\le C'_\perp S\) for small \(\nu\), and
+\(\Gamma^K\le P_\nu\epsilon^{-K(a+b)}\).
+The actual flat train coefficient outside this box is at most
+\(P_\nu e^{-D_\perp/\nu}\). Its curved stream and entrance
+adjustments are estimated separately by their global small multiplier
+norm, so their tails need not be Gaussian. No transverse weight is
+imposed on the broad repair coefficient.
+
+Partition \([s_-,S]\) into output bins \([l,r]\) with
+\(r/l<e^{\delta/2}\). Their number is a viscosity polynomial
+in the distinguished regime. The retained input region on a bin
+is the complete block \(t<e^\delta l\) and the partial strip
+\(e^\delta l<t<e^\delta r\). On the complete block, multiplication
+by \(g\) on inputs and \(g^{-1}\) on outputs costs at most
+\(g(e^\delta l)/g(l)\). More generally
+\[
+ \sup_{s>0,\ s\le t\le Ms}
+ \nu\left(\frac{t}{1+\nu t}-\frac{s}{1+\nu s}\right)
+     =\frac{\sqrt M-1}{\sqrt M+1}.
+\]
+Indeed, writing \(t=ks\), \(x=\nu s\), the expression is
+\((k-1)x/[(1+x)(1+kx)]\), maximized at \(x=k^{-1/2}\).
+Thus all complete blocks and partial strips cost at most
+\(e^{\eta_\delta/\nu}\), with
+\(\eta_\delta=\gamma\tanh(3\delta/8)\) after enlarging the
+overlapping bins if necessary. The polynomial bin count is included
+in \(P_\nu\). Applying the compact-output comparison and the train
+multiplier proves the fourth term of \eqref{near:deltaN}; the
+transverse tail gives its last term.
+
+On a partial strip the flat causal inverse is zero. Its source radius
+is separated from the output radius by a fixed multiple of
+\(R/\sqrt r\), also after the source contraction in the resolvent.
+By \eqref{sep:kernel}, the heat--Leray stress kernel has the
+uniform positive majorant $C|x|^{-4}$, whose spatial $L^1$ norm
+outside distance $d$ is $C/d$.
+The exact dilation integral on an \(L^2\) source has power
+\(\lambda^{2\Re\mu+1/2}\), hence a uniform integrability margin.
+Young's inequality, followed by normalized-phase Minkowski, gives
+\(P_\nu\epsilon\sqrt r\) for this output-dependent strip.
+After gain multiplication this is at most
+\(P_\nu e^{\eta_\delta/\nu}\epsilon^{1-b/2}\), absorbed by
+the fourth term. This direct positive-kernel estimate is needed;
+boundedness of an arbitrary triangular operator truncation is not used.
+
+For \(s<s_-\), the train multiplier has norm \(P_\nu\sqrt{s_-}\).
+Retained inputs have \(t<e^\delta s_-\), where the gain ratio
+is \(1+o(1)\). Subtracting the forbidden separated subblock costs
+at most \(P_\nu\epsilon\sqrt{s_-}\), by the same positive-kernel
+estimate. For \(s>S\), use the full free inverse and the train tail
+\(P_\nu(S^{-1/2}+\epsilon)\); its gain ratio is bounded by
+\[
+ \exp\{\gamma/[\nu(1+\nu S)]\}=1+o(1).
+\]
+These give the first two terms.
+
+The same complete blocks, using free energy in place of the difference
+estimate, give a global bound without a coefficient multiplier. The
+positive partial-strip bounds remain valid, the lower end has gain
+ratio \(1+o(1)\), and the upper end has the ratio just displayed.
+Consequently
+\begin{equation}\label{near:masked-free-bound}
+ \|g^{-1}\mathcal S_N g\|_{H_T\to H}
+       \le P_\nu e^{\eta_\delta/\nu}.
+\end{equation}
+
+The exact thin coefficient differs from the flat train by its
+\(\epsilon\) stream completion and fixed entrance adjustment,
+whose multiplier norm is \(P_\nu\epsilon e^{m_0/\nu}\).
+For its contribution use the exact decomposition
+\[
+ \mathcal M_{\rm thin}\mathcal S_N-\mathcal M_0\mathcal S_0
+ = (\mathcal M_{\rm thin}-\mathcal M_0)\mathcal S_N
+       +\mathcal M_0(\mathcal S_N-\mathcal S_0).
+\]
+The first uses the global near free bound and costs
+\(P_\nu\epsilon e^{(m_0+\eta_\delta)/\nu}\), including
+all tails of the entrance adjustment. The second is the geometric
+difference with the Gaussian train multiplier estimated above.
+Each broad input/output coupling is bounded by a polynomial times
+\(\sqrt{\rho_b}\), using the unweighted free stress bound.
+The same bin and end-region estimates apply without a transverse
+weight; since \(\rho_b=P_\nu\epsilon^{3/11}e^{m_0/\nu}\),
+this gives the fifth term. This proves the complete equation
+difference, including every split component.
+
+Conjugate by \(\mathsf G\) and apply the geometric inverse series
+to \(\mathsf D_N=\mathsf D_0+(\mathsf D_N-\mathsf D_0)\).
+Its norm is at most \(Q\delta_N<1/2\).
+The resolvent identity then gives \eqref{near:inverse-comparison}.
+\end{proof}
+
+The parameters can be chosen without a terminal observation. Fix the
+derivative budgets and \(K\), then choose \(a,b>0\) with
+\(K(a+b)<1/100\). Let
+\[
+ \theta=\min\{a/2,b/2,1/100,3/22\},\qquad d_0=\gamma/3.
+\]
+Choose \(\delta,m_0\) so that
+\(\eta_\delta<\theta d_0/8\),
+\(m_0<\theta d_0/8\), and take
+\(D_\perp>\eta_\delta+\theta d_0\).
+The background construction realizes the prescribed \(m_0\).
+All these choices precede \(\nu\downarrow0\).
+For \(\epsilon=C_*\nu^r e^{-d_0/\nu}\), uniformly on bounded
+\(r\) and positive compact \(C_*\)-ranges,
+\[
+ \delta_N\le P_\nu e^{-\theta d_0/(2\nu)},\qquad
+ Q^2\delta_N\le P_\nu e^{-\theta d_0/(2\nu)}.
+\]
+Thus the inverse and its comparison close with a positive exponential
+margin. The choice is uniform over the spectral interval while all
+geometric parameters and the exact background are held fixed.
+
+\subsection{The actual forced column}
+
+Let \(f\) be a normalized body source, so that its physical
+representative is \(\mathcal N_v f\), and set
+\[
+ u_\epsilon=\mathcal M_U\mathcal R_\epsilon f,\qquad
+ T_\epsilon=\mathsf D_N^{-1}u_\epsilon,
+ \qquad b_\epsilon=\mathcal R_\epsilon f-\mathcal S_NT_\epsilon.
+\]
+The first row of the equation gives exactly
+\(T_\epsilon=\mathcal M_U b_\epsilon\). Hence both its thin and
+repair components are actual polarized stresses, even before full
+spectral closure. Free body coercivity and \(g^{-1}\le1\) give
+\[
+ \|g^{-1}T_\epsilon\|_Z
+ \le P_\nu\|f\|_H.
+\]
+By \eqref{near:masked-free-bound},
+\[
+ \|g^{-1}b_\epsilon\|_H
+ \le P_\nu e^{\eta_\delta/\nu}\|f\|_H.
+\]
+The remaining exponent can be made as small as required before viscosity
+is chosen. These estimates do not assert that the intermediate masked
+velocity is the final whole-space mode.
+They apply to the prescribed body input. For an arbitrary equation
+input of the form \(\mathcal M_Uv_{\rm in}\), the corresponding
+identity is \(b=v_{\rm in}-\mathcal S_NT\), and its velocity bound
+retains \(\|g^{-1}v_{\rm in}\|_H\). A small stress norm alone does
+not control that velocity witness.
+
+If a fixed smooth Gaussian affine force is used in both geometries,
+write \(u_0=\mathcal M_0\mathcal R_0f\),
+\(T_0=\mathsf D_0^{-1}u_0\). Suppose its \(H\) norm is a fixed
+viscosity polynomial. The body version of the same output comparison,
+with rate \(\epsilon^{1/14}\), and the coefficient/end-region
+bounds above give
+\(\|g^{-1}(u_\epsilon-u_0)\|_Z\le P_\nu e^{-c/\nu}\)
+for some fixed \(c>0\). No gain factor is needed on the input here:
+\(f\) is the prescribed unit force, not an amplified stress history.
+The resolvent identity therefore yields
+\[
+ \|g^{-1}(T_\epsilon-T_0)\|_Z
+ \le2Q\|g^{-1}(u_\epsilon-u_0)\|_Z
+       +2Q^2\delta_N\|g^{-1}u_0\|_Z
+ \le P_\nu e^{-c'/\nu}.
+\]
+In particular any old tensor
+moment whose norm after gain multiplication is a viscosity polynomial
+has the same limit on these two columns.

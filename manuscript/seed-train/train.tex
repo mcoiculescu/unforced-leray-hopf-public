@@ -1,0 +1,312 @@
+\section{The exact periodic planar train}
+\label{sct:section}
+
+We start with an exact nonlinear solution on the periodic cylinder
+$(\mathbb R/c\mathbb Z)\times\mathbb R$. Its initial stream is a train
+of translated Gaussians; the independently evolving Gaussian sum is an
+approximation whose interactions must be estimated. The train bounds proved here and the Gaussian instability proved in
+Section~\ref{sec:gaussian-evolution} are used to construct the background
+and its growing mode.
+
+Fix a finite collection of derivative orders, transverse weights and
+Lebesgue exponents, and fix $\rho>1/2$. Throughout this section
+\[
+ c=\nu^{-\rho},\qquad e_c=(\nu c^2)^{-1},\qquad
+ C_c=(\mathbb R/c\mathbb Z)\times\mathbb R,
+ \qquad a(s)=1+\nu s,\qquad s_c=(c^2-1)/\nu.
+\]
+Cell norms are unnormalized. A bar denotes the normalized horizontal
+average and a tilde its complement. The letter $P$ denotes a polynomial
+in $c,\nu^{-1}$, with degree depending only on the fixed collection;
+$P_S$ may also depend polynomially on $1+S$. All the smallness
+conditions below are satisfied by first fixing that collection and then
+decreasing $e_c$. In particular they hold for $c=\nu^{-2}$ and small $\nu$.
+
+Let $v=\nabla^\perp\psi$ be the exact cylinder Navier--Stokes solution
+with viscosity $\nu$ and initial stream
+\[
+ \psi(q,\eta,0)=\sum_{n\in\mathbb Z}-2
+                  e^{-((q-nc)^2+\eta^2)/4}.
+\]
+This specifies the nonlinear train, rather than the sum of independently
+evolving vortices. The datum is divergence-free and belongs to
+$\operatorname{BUC}\cap H^k$ for every $k$, where $\operatorname{BUC}$
+denotes the bounded uniformly continuous functions on $C_c$; its vorticity is in
+$L^1\cap L^\infty$ and has zero integral. The cylinder existence theorem
+of Gallay and Slijep\v cevi\'c~\cite{gallay-slijepcevic2015} therefore
+applies after interchanging the two coordinates and taking density one.
+It gives a unique global mild solution in $\operatorname{BUC}$, smooth for positive
+time, with the bounded periodic pressure choice.
+It is also the finite-energy solution: on each finite interval the mild
+equation in $\operatorname{BUC}\cap L^2$ gives
+\[
+ \|v(t)\|_2\leq\|v(0)\|_2+
+ C\nu^{-1/2}\sup_{[0,t]}\|v\|_\infty
+       \int_0^t(t-r)^{-1/2}\|v(r)\|_2\,dr,
+\]
+which continues $L^2$ membership. Approximation and transverse cutoffs
+then give the velocity and vorticity energy identities. The scalar
+vorticity equation preserves zero circulation and its $L^1,L^\infty$
+bounds. Uniqueness gives $v(-q,-\eta,s)=-v(q,\eta,s)$.
+
+\begin{lemma}
+\label{sct:train}
+Put
+\[
+ \psi^p(x,s)=-2a^{-1}e^{-|x|^2/(4a)},\qquad
+ V_c^p=\sum_n\nabla^\perp\psi^p(q-nc,\eta,s).
+\]
+For every fixed $j$, with constants independent of $c,\nu$,
+\begin{align}
+ \|D^j(v-V_c^p)(s)\|_2
+ &\leq C_j\nu^{-1}a^{-2-j/2}e^{-b_jc^2/a},\\
+ \|D^j(v-V_c^p)(s)\|_\infty
+ &\leq C_j\nu^{-1}a^{-(5+j)/2}e^{-b_jc^2/a},
+ &&1\leq a\leq c^2. \label{sct:comparison}
+\end{align}
+After overlap, set $X=q/c$, $Y=\eta/c$,
+$T=\nu(s-s_c)/c^2$, and write
+$c^3v=b(Y,T)e_1+W(X,Y,T)$, $\overline W=0$. Then
+\begin{align}
+ \|\partial_Y^j b(T)\|_p
+ &\leq C_{j,p}(1+T)^{-1-j/2+1/(2p)}, &&p=2,\infty,\\
+ \|D^jW(T)\|_{2\cap\infty}&\leq C_j e^{-\lambda_jT}.
+ \label{sct:overlap}
+\end{align}
+In particular, whenever $a(s_0)\leq c^2$,
+\begin{align}
+ \|v(s)\|_2&\leq Ca(s)^{-1} &&(s\leq s_c),\\
+ \|v(s)\|_2&\leq Cc^{-2}(s/s_c)^{-3/4} &&(s\geq s_c),\\
+ \int_{s_0}^\infty\sum_{j=1}^{k+1}\|D^jv(s)\|_\infty\,ds
+ &\leq \frac{C_k}{\nu a(s_0)}+C_ke_c,\\
+ \int_{s_0}^\infty\|\widetilde v(s)\|_2\,ds
+ &\leq \frac C\nu\left(1+\log\frac{c^2}{a(s_0)}\right).
+ \label{sct:integrated}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+The isolated vortex is an exact radial heat solution. Its periodization
+has residual $\operatorname{div}Q$, where
+$Q=\sum_{i\ne j}V_i\otimes V_j$. Completing squares in the Gaussian
+products and summing their separation index gives
+\[
+ \|D^jV_c^p\|_\infty\leq C_ja^{-(3+j)/2},\quad
+ \|V_c^p\|_2\leq Ca^{-1},\quad
+ \|D^jQ\|_2\leq C_ja^{-(5+j)/2}e^{-b_jc^2/a}.
+\]
+Indeed the product is bounded by $Ca^{-3}e^{-b(i-j)^2c^2/a}$
+times a Gaussian of width $\sqrt a$ centered at the midpoint; its
+cell $L^2$ norm contributes $C\sqrt a$. Fixed weights in units of
+$\sqrt a$ obey the same estimate.
+
+Write $e=v-V_c^p$, use slow time $\sigma=\nu s$, and choose an integer
+$N\geq3$ at least two above the required supremum order. For
+$0<\delta\leq(4N)^{-1}$ set
+$E_N^2=\sum_{j=0}^N(\delta a)^j\|D^je\|_2^2$.
+On the bootstrap interval $\|\nabla e\|_\infty\leq a^{-2}$,
+differentiated energy and one integration by parts on the stress give
+\[
+ (E_N^2)' +\sum_{j=0}^N(\delta a)^j\|\nabla D^je\|_2^2
+ \leq \frac{C_N}{\nu a^2}E_N^2+
+                 C_N\nu^{-2}a^{-5}e^{-b_Nc^2/a}.
+\]
+Here differentiated transport is controlled by
+$\|[D^j,e\cdot\nabla]e\|_2
+ \leq C_j\|\nabla e\|_\infty\|D^je\|_2$.
+Its constants are independent of the period: integration by parts gives
+$\|D^lf\|_{2m/l}\leq C_m\|f\|_\infty^{1-l/m}
+\|D^mf\|_2^{l/m}$, and applying this to $f=\nabla e$ bounds
+each commutator product. The differentiated weights are absorbed by
+the preceding derivative's dissipation. Time-ordered Gronwall yields
+\[
+ E_N^2(a)\leq C_N\nu^{-2}\int_1^a
+ r^{-5}e^{-b_Nc^2/r+C_N/(\nu r)}\,dr
+ \leq C_N\nu^{-2}a^{-4}e^{-b'_Nc^2/a},
+\]
+because $e_c$ is small. In the last integral use $u=c^2/r$.
+The cylinder interpolation inequality
+\[
+ \|f\|_\infty\leq
+ C\|f\|_2^{1/2}\|D^2f\|_2^{1/2}
+ +Cc^{-1/2}\|f\|_2^{1/2}\|\nabla f\|_2^{1/2}
+\]
+includes the one-dimensional mean term; its other term follows by
+Fourier inversion on nonzero horizontal modes. It proves the second
+estimate in \eqref{sct:comparison}, since $a^{1/4}c^{-1/2}\leq1$.
+Consequently $\|\nabla e\|_\infty\leq
+ Ce_c(c^2/a)e^{-bc^2/a}a^{-2}\leq a^{-2}/2$.
+Continuity from the smooth datum closes the bootstrap to $s_c$.
+
+At overlap, $U=c^3v$ solves
+$U_T+e_cU\cdot\nabla U+\nabla\Pi=\Delta U$ on the unit cylinder,
+and \eqref{sct:comparison} gives $\|U(0)\|_{H^N}\leq C_N$.
+Fix $N\geq3$ sufficiently above the entire required derivative budget
+for the Sobolev interpolations below. Differentiated
+transport gives
+\[
+ \frac12\frac d{dT}\|U\|_{H^N}^2+
+ (1-C_Ne_c\|U\|_{H^N})\|\nabla U\|_{H^N}^2\leq0.
+\]
+Small $e_c$ thus gives the uniform high-order norm directly. The exact
+fluctuation energy identity is
+\[
+ \frac12\frac d{dT}\|W\|_2^2+\|\nabla W\|_2^2
+       =-e_c\int W_1W_2 b_Y.
+\]
+The horizontal Poincare gap gives exponential $L^2$ decay; interpolation
+with the uniform high-order bound gives all required smooth decay.
+
+The mean stream $S=\overline\psi$ is fixed by
+\begin{equation}
+ S_s-\nu S_{\eta\eta}=g:=\overline{v_1v_2},\qquad
+ \overline v_1=-S_\eta,\qquad\overline v_2=0.
+ \label{sct:mean}
+\end{equation}
+The last equality follows from divergence and finite energy; uniqueness
+of the averaged velocity equation proves the preceding equality.
+Separate reflection symmetries of $V_c^p$ imply
+$\overline{(V_c^p)_1(V_c^p)_2}=0$. Consequently
+\[
+ \|S(s_c)-\overline{\psi_c^p}(s_c)\|_1
+ \leq C\nu^{-2}c^{-5}+C\nu^{-3}c^{-7}.
+\]
+For example, the mixed term is bounded by
+$C\nu^{-2}c^{-1}\int_1^{c^2}a^{-3}e^{-bc^2/a}\,da$;
+the quadratic error has $\nu^{-3}a^{-4}$ in its place.
+Thus the rescaled mean stream function $\mathsf S=c^2S$ satisfies
+$\|\mathsf S(0)\|_{L^1_Y}\leq C$. It solves
+\[
+ \mathsf S_T-\mathsf S_{YY}=e_c\overline{W_1W_2},
+ \qquad b=-\mathsf S_Y.
+\]
+Split Duhamel at $T/2$. On its early half use the source $L^1$ bound
+and $\|\partial_Y^{j+1}G_T\|_p
+\leq C T^{-1-j/2+1/(2p)}$; on its late half move derivatives
+onto the exponentially small source. This proves \eqref{sct:overlap}.
+Integrating the two regimes proves \eqref{sct:integrated}; in particular
+the pre-overlap error contributes at most
+$C_j\nu^{-2}c^{-j-3}$ to $\int\|D^je\|_\infty$,
+and the post-overlap contribution is $C_j\nu^{-1}c^{-j-1}$.
+For smoothness statements at fixed parameters there is no restriction
+to this quantitative derivative budget. The resulting integrable
+strain and the tame higher-order inequality
+$d\|U\|_{H^k}/dT\leq C_ke_c\|\nabla U\|_\infty\|U\|_{H^k}$
+propagate every higher norm from its finite smooth overlap datum.
+All higher-order versions of the argument therefore hold at fixed
+parameters, without requiring a new smallness condition for each order.
+\end{proof}
+
+\begin{lemma}[One weighted heat description at all ages]
+\label{sct:heat}
+Every fixed mixed age/spatial derivative of
+$(\widetilde\psi,\widetilde v,p)$ obeys
+\begin{equation}
+ \|\langle\eta\rangle^m\partial_s^\ell D^j
+       (\widetilde\psi,\widetilde v,p)(s)\|_{2\cap\infty}
+       \leq P e^{-\kappa\nu s/c^2}. \label{sct:fluctuation}
+\end{equation}
+The decaying pressure gauge is used here. The mean stream is even and,
+for every fixed $N$, has the following expansion and remainder for
+nonnegative integers $m,b,\ell$ and $1\leq p\leq\infty$:
+\begin{align}
+ S(\eta,s)&=\sum_{j=0}^Na_{2j}\partial_\eta^{2j}G_{\nu s}(\eta)
+                         +\mathcal R_N(\eta,s),\\
+ a_{2j}&=\frac{\int\eta^{2j}S(\eta,0)\,d\eta}{(2j)!}
+ +\int_0^\infty\sum_{k+\ell=j}
+ \frac{(-\nu t)^\ell}{\ell!(2k)!}
+          \int\eta^{2k}g(\eta,t)\,d\eta\,dt,\\
+ \|\eta^m\partial_\eta^b\partial_s^\ell\mathcal R_N(s)\|_p
+ &\leq P s^{(m-b-2N-3)/2-\ell+1/(2p)},\qquad s\geq1.
+ \label{sct:expansion}
+\end{align}
+In particular, replacing the remainder power by
+$(m-b-1)/2-\ell+1/(2p)$ bounds $S$ itself with $s$ replaced by $1+s$.
+On each $0\leq s\leq S_*$, all these fields and fixed derivatives have
+transverse tails
+\begin{equation}
+ P_{S_*}\{e^{-b l/c}+e^{-b l^2/(C_0+\nu S_*)}\},\qquad
+ |\eta|\geq C/\nu+2+l. \label{sct:transverse}
+\end{equation}
+On every fixed slow-age interval $0\leq s\leq\Sigma/\nu$, put
+$\sigma=\nu s$ and let $p_c^p$ be the sum of the isolated radial
+pressures in the decaying gauge. For
+$d=(v-V_c^p,\omega-\operatorname{curl}V_c^p,\nabla(p-p_c^p))$,
+\begin{equation}
+ \sum_{\ell\leq L,j\leq k}
+ \left(\|\langle\eta\rangle^m\partial_\sigma^\ell D^jd\|_2
+              +\|\partial_\sigma^\ell D^jd\|_\infty\right)
+ \leq P e^{C_\Sigma/\nu-b_\Sigma c^2}.
+ \label{sct:fixed-band}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Lemma~\ref{sct:train} gives
+$\int_0^\infty\|v_2(s)\|_\infty\,ds\leq C/\nu$:
+integrate $a^{-3/2}$ and the comparison error before overlap, and
+$c^{-3}W_2$ afterwards. For the vorticity drift--diffusion equation,
+the Gaussian datum and the supersolutions
+\[
+ C\exp\{-\lambda(\eta-A(s))+(C_0+\nu s)\lambda^2\},\qquad
+ A(s)=\int_0^s\|v_2(t)\|_\infty\,dt,
+\]
+with both transverse signs, imply
+$|\omega|\leq C\exp[-b(|\eta|-C/\nu)_+^2/(C_0+\nu s)]$.
+The comparison is justified by exhaustion with a positive quadratic
+barrier. Unit-patch interpolation with the fixed higher smooth bounds
+from Lemma~\ref{sct:train} gives the same tail, with reduced exponent,
+for every required spatial derivative of $\omega$.
+
+For $k_n=2\pi n/c\ne0$, the stream inverse has kernel
+$-e^{-|k_n||\eta|}/(2|k_n|)$. Move higher derivatives to the source
+and sum modes using a fixed extra horizontal derivative. Splitting the
+convolution at distance $l/2$ proves \eqref{sct:transverse} for the
+nonzero stream and velocity modes, with only polynomial costs in $c$.
+The zero mode has two decaying primitives:
+\[
+ \overline v_1(\eta)=\int_\eta^\infty\overline\omega(\xi)\,d\xi,
+ \qquad S(\eta)=\int_\eta^\infty\overline v_1(\xi)\,d\xi.
+\]
+Zero circulation makes the first primitive agree at both ends.
+Central oddness makes $\overline v_1$ odd and integrable, so its
+integral is zero and the second primitive also decays at both ends.
+It agrees with \eqref{sct:mean} and is even. These formulas prove the
+mean tails and polynomial weighted bounds for all fields at every age.
+
+Interpolate a doubled polynomial weight with the unweighted exponential
+fluctuation bounds in \eqref{sct:overlap}; the resulting polynomial in
+$1+T$ is absorbed in a smaller exponential. For pressure,
+$\overline p=-\overline{v_2^2}$, and the pure mean tensor
+$\overline v_1^2e_1\otimes e_1$ has zero double divergence.
+Every other term in $-\Delta p=\partial_i\partial_j(v_iv_j)$
+contains a fluctuation. The same inverse kernels prove
+\eqref{sct:fluctuation} and \eqref{sct:transverse} for pressure.
+The equations now give the age derivatives by finite induction:
+each fluctuation equation retains a fluctuation factor, and each
+differentiated vorticity equation retains a Gaussian vorticity factor.
+
+It follows that $S(0)$ has every fixed spatial moment and $g$ has
+every fixed mixed space/time moment, all bounded by $P$. Taylor-expand
+$G_{\nu s}(\eta-\xi)$ through order $2N+1$; evenness removes odd
+terms. In the source Duhamel integral, for $t\leq s/2$, Taylor-expand
+jointly in $(\xi,t)$ and retain $k+\ell\leq N$. The identity
+$\partial_sG_{\nu s}=\nu\partial_\eta^2G_{\nu s}$ gives exactly
+the coefficients in \eqref{sct:expansion}. Integral Taylor remainders
+are controlled by the next even derivative and a fixed higher moment.
+For $t\geq s/2$, transfer derivatives to the exponentially decreasing
+source. Its tail, and the coefficient-integral tails, are exponential
+times a polynomial and obey the stated remainder. The same heat proof
+without subtraction gives the asserted bound for $S$.
+
+Finally \eqref{sct:comparison}, interpolated with the just-proved
+doubled weights, proves fixed-band comparison for velocity and
+vorticity. The pressure difference has source tensor
+$Q+V_c^p\otimes e+e\otimes V_c^p+e\otimes e$.
+On each nonzero mode the pressure kernels are $k_n^2G_{k_n}$,
+$k_nG_{k_n}'$, and $G_{k_n}''=k_n^2G_{k_n}-\delta_0$ up to signs;
+their weighted $L^1$ norms cost only powers of $c$. The zero Fourier mode of the pressure difference is
+$-\overline{(Q+V_c^p\otimes e+e\otimes V_c^p+e\otimes e)_{22}}$. Weighted convolution proves its
+estimate, and the difference equations inductively give slow-time
+derivatives at polynomial cost in $\nu^{-1}$.
+\end{proof}

@@ -1,0 +1,213 @@
+\section{The return on a fixed space of young displacements}
+
+Fix $K\Subset(0,1/4)$, an integer $k=6$, and $a_s>0$.
+Choose $a_s<\gamma/16$ and smaller than the fixed exponential reserves
+in the curved near comparison. All constants below may depend on $a_s,k,K$.
+Let $\mathscr A$ be the real Banach space of $C^k$ matrix functions on
+$(0,\infty)$, trace free and with no entry having exactly one azimuthal
+index, with norm
+\[
+ \|A\|_{\mathscr A}
+ =\sup_{s>0}e^{-a_ss}s^{-5/2}
+       \sum_{j=0}^k|(s\partial_s)^jA(s)|.
+\]
+This space is independent of $\nu,\epsilon,\mu$. Its elements need not
+be symmetric. Choose two fixed smooth cutoffs. The stream cutoff
+$\chi_y(s)=\widehat\chi_y(\nu s)$ equals one below $4/(5\nu)$ and
+zero above $1/\nu$. The source cutoff $\chi_f$ equals one through
+$1/\nu$ and zero above $1.1/\nu$. Put
+\[
+ A^y=\chi_f A,\qquad
+ B_{\mu,\nu}[A]=(A^y)'+\frac\mu s A^y.
+\]
+Then $\|B_{\mu,\nu}[A]\|_{\mathscr B_{a_s}}
+\le C_K\|A\|_{\mathscr A}$, with the source norm of the preceding
+section. The matrix cutoff derivative is included in this definition.
+Let $\mathfrak T_{\mu,\nu}A$ denote the complete flat stress of the
+zero-entrance forced column with Gaussian age force $f_{B_{\mu,\nu}[A]}$.
+The actual cylinder train remains in this evolution.
+
+We next define a return map which retains the entire mean-thin kernel.
+For an old thin tensor $M$, use its normalized phase mean and set
+\[
+ E_{ij}(u)=\frac{\chi_o(u)}c
+          \int_{\rm cell}M_{ij}(u,q,\eta)\,dq\,d\eta .
+\]
+For $x'=(\rho\cos\varphi,\rho\sin\varphi)$, $u=\rho^{-2}$,
+let $\Sigma_M(x')$ be the Cartesian rotation of the cylindrical tensor
+$\rho^{-1}E(u)$, embedded on $x_3=0$. The zero azimuthal row and column
+are retained as zero entries; the $rz$ and $zr$ entries are retained.
+Define the exact zero-width Newton field by
+\[
+ V_{\mu,M}(x)=-2\int_0^1t^{2\mu+2}
+       \int_{\mathbb R^2}D^3N(x-t(x',0)):\Sigma_M(x')\,dx'\,dt,
+ \qquad N(x)=\frac1{4\pi|x|}.
+\]
+The contraction is the velocity contraction of $\nabla K_0$, with
+$K_0=D^2N$ away from the source. Put
+\[
+ W^{\rm mt}_{\mu,M}(y)=\epsilon^2V_{\mu,M}(\epsilon y),\qquad
+ X^{\rm mt}_{\mu,M}
+ =\mathcal C_{\chi_y}\bigl(W^{\rm mt}_{\mu,M}
+                              -W^{\rm mt}_{\mu+1,M}\bigr),
+\]
+where the same tensor $M$ is used in the shifted field. The stream
+cutoff uses the outward primitive, so the field is fixed without an
+additional entrance constant. Define
+\begin{equation}\label{source-class:L}
+ (\mathcal L_{\mu,\nu}M)(s)
+   =D_yX^{\rm mt}_{\mu,M}(R/\sqrt s,0,0)
+       \quad\hbox{in the }(r,\phi,z)\hbox{ frame}.
+\end{equation}
+This is the full physical gradient, including its hoop entry and all
+stream-cutoff terms. It is trace free, has the required azimuthal
+symmetry, and vanishes for $s\ge1/\nu$. The uncut field is a harmonic
+gradient, but the cutoff gradient need not be symmetric.
+In particular $\chi_f\mathcal L M=\mathcal L M$ exactly. Thus the
+source map applied to $\mathcal L M$ introduces no second cutoff.
+
+The fixed-space flat return is
+$\mathcal K^{\rm flat}_{\mu,\nu}
+  =\mathcal L_{\mu,\nu}\mathfrak T_{\mu,\nu}$.
+Define the unit displacement and real row by
+\[
+ a_\mu(s)=\frac{s^{5/2}}{\mu+5/2}D_0,
+ \quad D_0=\operatorname{diag}(12,-3,-9),
+\]
+\[
+ \Lambda_{\mu,\nu}(A)
+ =-\frac{3\pi}{16}\epsilon^3\nu^{5+2\mu}
+      \operatorname{Re}\bigl[iN_\nu J(\mu)
+                       a_0(B_{\mu,\nu}[A])\bigr].
+\]
+Both real harmonic coordinates enter the complex amplitude $a_0$;
+the matrix force still contains its radial and hoop components.
+
+\begin{proposition}\label{source-class:flat-limit}
+Use the direct young-source theorem and the Gaussian force calculation
+of the preceding section.
+Uniformly for $\mu\in K$,
+\[
+ \|\mathcal K^{\rm flat}_{\mu,\nu}
+                 -a_\mu\Lambda_{\mu,\nu}\|_{\mathscr A\to\mathscr A}
+ \le C A_*\left[\nu+\eta_\nu+\omega_{\rm can}(\nu)
+      +P_\nu e^{-\gamma'/\sqrt\nu}
+      +P_\nu e^{-4a_s/(5\nu)}\right].
+\]
+The constants multiplying $\nu,\eta_\nu,\omega_{\rm can}$ are fixed,
+not viscosity polynomials. Also
+$\|a_\mu\|_{\mathscr A}\le C$ and
+$\|\Lambda_{\mu,\nu}\|\le C A_*$.
+The operators are real and continuous in $\mu$ for each fixed geometry.
+On every band where $A_*$ stays bounded, the displayed error tends to zero.
+For the unit displacement,
+\[
+ \Lambda_{\mu,\nu}(a_\mu)
+ =2\epsilon^3\nu^{5+2\mu}
+       \operatorname{Re}\left[\frac{63\pi i}{128}
+                               L(\mu)J(\mu)N_\nu\right]
+       +O(A_*P_\nu e^{-b/\nu}).
+\]
+\end{proposition}
+\begin{proof}
+Write $M=\mathfrak T_{\mu,\nu}A$, with $\|A\|_{\mathscr A}\le1$.
+The uniform source theorem gives, for $j=0,1$,
+\[
+ \int_0^\infty u^{-3/2-j/2}\frac{\chi_o(u)}c
+        \int_{\rm cell}|M(u,q,\eta)|\,dq\,d\eta\,du
+       \le C_j\mathcal A_\nu\nu^j.
+\]
+Its earlier-old part $1.2/\nu<u<u_o=\nu^{-3/2}$ instead has
+$\mathcal A_\nu P_\nu e^{-\gamma'/\sqrt\nu}$ as a bound, including
+any fixed extra age powers. All tensor components are estimated together.
+
+For the analytical tail $u\ge u_o$, the source radius satisfies
+$\rho/r\le\nu^{1/4}<1/2$ on $s\le1/\nu$.
+The integrated Cartesian tensor has the form
+$\operatorname{diag}(T_h,T_h,T_z)$, with
+$T_z-T_h=(\pi/2)I_T(M;u\ge u_o)$. The cross tensor has zero
+integrated Cartesian moment. The isotropic part contracts to zero,
+since $\partial_i\Delta N=0$ off source. Direct differentiation gives
+\[
+ D^2\partial_{33}N(r,0,0)
+     =(4\pi r^5)^{-1}\operatorname{diag}(-12,3,9).
+\]
+The negative sign in $V_{\mu,M}$ and the dilation integral therefore give
+\[
+ D_yW_{\mu,M}^{(0)}
+    =\frac{\epsilon^3 I_T(M;u\ge u_o)}{8(\mu+3/2)}s^{5/2}D_0.
+\]
+This calculation includes the hoop derivative $W_r/|y'|$.
+Subtracting the shifted field, with the same tensor, supplies the
+additional factor $(\mu+5/2)^{-1}$.
+
+Every point in the mean-value remainder lies at distance at least
+$r/2$ from zero. The fifth Newton derivative is bounded by $Cr^{-6}$.
+Its radial first moment is the $j=1$ moment above. Thus, for all
+$0\le j\le k$,
+\[
+ |(s\partial_s)^jD_y(W^{\rm mt}_{\mu,M}-W^{\rm mt}_{\mu+1,M}
+                     -W^{(0)}_{\mu,M}+W^{(0)}_{\mu+1,M})|
+       \le C_k\epsilon^3\mathcal A_\nu\nu s^3.
+\]
+Receiver conormal derivatives act only on the smooth separated kernel;
+no derivative of $M$ is taken. This bound includes all higher source
+multipoles, without expanding them one at a time. Since
+$\sup_{s>0}s^{1/2}e^{-a_ss}<\infty$, its $\mathscr A$ norm is
+at most $C_{a_s,k}A_*\nu$.
+
+The same separated-kernel bounds, on the outward primitive ray,
+control the stream cutoff and its fixed conormal derivatives. The
+analytical-tail transition contribution is bounded by
+$P_\nu A_*e^{-4a_s/(5\nu)}$ in $\mathscr A$.
+The uncut leading displacement beyond the cutoff has the same bound.
+The earlier-old source has a fixed fractional gap even at
+$u=1.2/\nu,s=1/\nu$; its entire exact kernel, including the stream
+cutoff, is bounded by $P_\nu A_*e^{-\gamma'/\sqrt\nu}$.
+Consequently
+\[
+ \|\mathcal L_{\mu,\nu}M-a_\mu\ell_\mu(M)\|_{\mathscr A}
+ \le C A_*[\nu+P_\nu e^{-\gamma'/\sqrt\nu}
+                      +P_\nu e^{-4a_s/(5\nu)}].
+\]
+The uniform scalar estimate in the preceding section replaces
+$\ell_\mu(M)$ by $\Lambda_{\mu,\nu}(A)$ and proves the result.
+
+The row is bounded because its Laplace integrand is bounded by
+$C t^{\mu+3/2}e^{-(\gamma-a_s)t}$.
+For $A=a_\mu$ its positive amplitude is
+$-(21/4)L(\mu)+O(P_\nu e^{-b/\nu})$, with the cutoff derivative
+included. This gives the stated coefficient. Continuity in $\mu$
+follows by dominated convergence in the Laplace and dilation integrals
+and in the exact causal formula. One may use a slightly larger compact
+interval within $(0,1/4)$ for the dominating old-age powers.
+The finite conormal norms are dominated by the same separated kernels,
+so this gives operator-norm continuity, not merely pointwise continuity.
+\end{proof}
+
+For later use, the smooth extraction map has a bound on arbitrary
+old thin tensors. If
+\[
+ N_0(M)=\int_{1.2/\nu}^\infty u^{-3/2}
+                \frac1c\int_{\rm cell}|M|\,dq\,d\eta\,du,
+\]
+then the separated fourth-derivative kernel and its outward primitive give
+\begin{equation}\label{source-class:ambient-L}
+ \|\mathcal L_{\mu,\nu}M\|_{\mathscr A}
+       \le C_{K,k,a_s}\epsilon^3N_0(M).
+\end{equation}
+Indeed each fixed $r\partial_r$ derivative costs the same power $r^{-5}$;
+the fractional radial gap is fixed on the whole young--old rectangle.
+Conormal derivatives of $\widehat\chi_y(\nu s)$ are uniformly bounded.
+In the gain stress space, $N_0(M)\le P_\nu e^{\gamma/\nu}
+\|g^{-1}M\|_Z$, hence the norm of $\mathcal L$ is polynomial on a
+bounded loop-gain band. This estimate uses only the thin component.
+It assigns no thin moment to the broad repair tensor.
+
+The curved loop is $\mathcal L D_N^{-1}M_UR_\mu F_A$, with the
+original cutoff to the near region and the exact physical source below. The proposition
+does not identify that loop with $\mathcal K^{\rm flat}$. The equation
+comparison supplies their difference as an exponentially small operator
+on $\mathscr A$, after the factor $e^{1.1a_s/\nu}$ is paid. The remaining
+velocity witnesses belong to the mixed ambient block. Thus no polynomial
+inverse is applied to the $O(\nu)$ or canonical-modulus terms above.

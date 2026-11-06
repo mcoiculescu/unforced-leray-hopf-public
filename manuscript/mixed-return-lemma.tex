@@ -1,0 +1,63 @@
+\section{A return equation with a smooth source and a remainder}
+
+The following real block lemma permits the leading return to be estimated
+in its natural smooth-source norm. It does not send an algebraically
+small error through an exponentially large general inverse.
+
+\begin{lemma}\label{closure:mixed-return}
+For each fixed $n$ and $z\in[-1,1]$, let $E_n,X_n$ be real Banach
+spaces and consider the bounded, norm-continuous system
+\begin{equation}\label{closure:block-system}
+ x=K_n(z)x+A_n(z)y,\qquad
+ y=B_n(z)x+C_n(z)y.
+\end{equation}
+The spaces and all auxiliary geometric parameters are fixed as $z$
+varies. Suppose
+\[
+ K_n=a_n\ell_n+R_n,\qquad
+ \sup_z\|a_n(z)\|\|\ell_n(z)\|\le M,
+\]
+where $a_n\in E_n$, $\ell_n\in E_n^*$ are real and continuous.
+Write
+\[
+ c_n=\sup_z\|C_n(z)\|<1,\quad
+ r_n=\sup_z\|R_n(z)\|,
+ \quad
+ h_n=\sup_z\frac{\|A_n(z)\|\|B_n(z)\|}{1-c_n}.
+\]
+If $r_n+h_n\to0$ and
+\[
+ \ell_n(z)a_n(z)\longrightarrow e^{-z}
+ \quad\hbox{uniformly for }-1\le z\le1,
+\]
+then, for every sufficiently large $n$, there is $z_n\in(-1,1)$
+for which \eqref{closure:block-system} has a nonzero solution.
+Moreover $z_n\to0$. No convergence or compactness of the ambient
+inverse on $X_n$ is required.
+\end{lemma}
+
+\begin{proof}
+The second equation has the unique solution
+$y=(I-C_n)^{-1}B_nx$. Substitution into the first gives
+\[
+ x=a_n\ell_nx+\widetilde R_nx,
+ \qquad
+ \widetilde R_n=R_n+A_n(I-C_n)^{-1}B_n,
+ \qquad \|\widetilde R_n\|\le r_n+h_n.
+\]
+For large $n$ set $w_n=(I-\widetilde R_n)^{-1}a_n$ and
+\[
+ d_n(z)=1-\ell_n(z)w_n(z).
+\]
+The real function $d_n$ is continuous and
+\[
+ |d_n-(1-\ell_na_n)|
+ \le \frac{M(r_n+h_n)}{1-r_n-h_n}.
+\]
+It therefore converges uniformly to $1-e^{-z}$, which has opposite
+signs at $-1$ and $1$. At a zero $z_n$, take
+$x=w_n$ and $y=(I-C_n)^{-1}B_nw_n$. Since $\ell_nw_n=1$,
+$w_n\ne0$, and both equations hold. Uniform convergence implies
+that every such zero tends to zero. This also proves the asserted
+nonvanishing without a choice of norm for the large physical mode.
+\end{proof}

@@ -1,0 +1,156 @@
+\subsection{The physical affine lifting identity}
+
+Use component order $(r,\phi,z)$ and the full matrix space $\mathscr A$.
+Let $\chi_f(s)=\widehat\chi_f(\nu s)$ equal one on $s\le1/\nu$
+and zero on $s\ge1.1/\nu$. For $A\in\mathscr A$ set
+\[
+ A^y=\chi_f A,\qquad B=(A^y)'+\mu A^y/s,\qquad
+ M(A)=\sup_{0<s\le1.1/\nu}s^{-5/2}
+                \sum_{j=0}^6|(s\partial_s)^jA^y(s)|.
+\]
+The cutoff derivative is included in $B$; the matrices are not
+continued beyond their support. All assertions are uniform for
+$\mu\in K\Subset(0,1/4)$ and the fixed cutoff.
+
+Write $a=1+\nu s$, $x_j=(q-jc,\eta)$, $c=\nu^{-2}$, and
+\[
+ V_j=a^{-2}e^{-|x_j|^2/(4a)}Jx_j,\quad
+ p_j=-a^{-3}e^{-|x_j|^2/(2a)},\quad
+ \psi_j=-2a^{-1}e^{-|x_j|^2/(4a)},\qquad J(q,\eta)=(-\eta,q).
+\]
+Embed $V_j=J\nabla\psi_j$ with zero azimuthal component and define
+\[
+ \begin{split}
+ f_A&=-\sum_j[(B_{\rm mer}x_j)\cdot\nabla V_j+BV_j],\\
+ e_A&=\sum_j[2BV_j+2\nu A^y:D^2V_j
+                         -(A^y+(A^y)^T)\nabla p_j],\\
+ h_A^p&=\sum_j[V_j,A^y_{\rm mer}x_j],\\
+ \psi_A^p&=\sum_j[({\rm tr}A^y_{\rm mer})\psi_j
+                     -(A^y_{\rm mer}x_j)\cdot\nabla\psi_j].
+ \end{split}
+\]
+The full matrix, including its hoop entry, is used before restriction
+to the $(r,z)$-plane; symmetry of $A$ is not assumed. The identity
+$A^y_{\rm mer}J=J[({\rm tr}A^y_{\rm mer})I-(A^y_{\rm mer})^T]$
+gives $h_A^p=J\nabla\psi_A^p$.
+The sums and their required derivatives converge by Gaussian decay.
+With $\mathcal K=\eta\partial_\eta+2s\partial_s$, put
+\[
+ \widehat h_A=\sqrt s\,[(h_A^p)_r e_r+
+       ((h_A^p)_z+\epsilon(1-\mathcal K)\psi_A^p)e_z],
+ \qquad F_A=s^{3/2}f_A,\qquad E_A=s^{3/2}e_A.
+\]
+The physical cylindrical streamfunction is $r\psi_A^p$, with
+$r=R/\sqrt s$, so $\widehat h_A$ is exactly divergence-free, vanishes
+near the axis, and has young support and finite energy. The forces
+are unprojected; the physical body inverse supplies the Cartesian
+Leray projection. All these maps depend linearly on $A$.
+
+\begin{lemma}\label{ret:physical-affine}
+There is a real physical body force $\mathfrak r_A$, linear in $A$,
+such that on the exact background $U$,
+\[
+ (L_{{\rm f},\mu}+\mathbb P\operatorname{div}M_U)\widehat h_A
+       =\mathbb P(F_A+E_A+\mathfrak r_A).
+\]
+For $0<\epsilon,\nu\le1$, with $\delta_U=\|U-U_{\rm raw}\|_{W^{1,\infty}}$,
+\begin{equation}\label{ret:general-affine-bounds}
+ \begin{split}
+ R^{-1}(\|F_A\|_{Y_2}+\|E_A\|_{Y_2}
+       +\|\widehat h_A\|_{Y_2}+\|\nabla\widehat h_A\|_{Y_2})
+       &\le P_\nu M(A),\\
+ R^{-1}\|\mathfrak r_A\|_{Y_2}
+       &\le P_\nu(\epsilon+\delta_{\rm base}+\delta_U)M(A).
+ \end{split}
+\end{equation}
+Here $\delta_{\rm base}$ is the fixed envelope for the train-to-Gaussian
+and cross-center norms on $0\le s\le1.1/\nu$, with the required
+finite spatial and conormal derivative budget.
+\end{lemma}
+\begin{proof}
+Write $v$ for the planar train in this calculation. The Cartesian
+bracket calculation, with the full matrix retained, gives
+\[
+ (\partial_s+\mu/s-\nu\Delta)h_A^p
+ +(v\cdot\nabla)h_A^p+(h_A^p\cdot\nabla)v
+       =f_A+e_A+\nabla\Psi_A+r_{\rm per},\qquad
+ \Psi_A=\sum_j(A^y_{\rm mer}x_j)\cdot\nabla p_j.
+\]
+Here $r_{\rm per}$ consists of distinct-center convection products
+and $(v-\sum_jV_j)$ terms. Gaussian summation and the fixed-band
+train comparison bound its unnormalized cell norms, with the finite
+derivative budget, by $C\delta_{\rm base}M(A)s^{5/2}$.
+
+The exact ring-chart rules are
+\[
+ \partial_r=\sqrt s(\partial_q-\epsilon\mathcal K),\qquad
+ \partial_z=\sqrt s\partial_\eta,\qquad
+ (\partial_\tau-y\cdot\nabla/2-1/2)(\sqrt s b)
+       =s^{3/2}\partial_s b.
+\]
+The physical Laplacian of $\sqrt s b$ is $s^{3/2}$ times
+\[
+ [\Delta_{q,\eta}-2\epsilon(\mathcal K+1)\partial_q
+       +\epsilon^2(\mathcal K+1)^2]b-\epsilon^2b_r e_r.
+\]
+Together with the stream completion, these identities put every
+geometric difference into $\epsilon M(A)$ times a fixed Gaussian
+polynomial of age size at most $C(s^{3/2}+s^{5/2})$ in age-force units.
+The pressure is completed before projection:
+\[
+ s^{3/2}\nabla_{q,\eta}\Psi_A
+ =\nabla_y(s\Psi_A)+\epsilon s^{3/2}(\mathcal K+2)\Psi_Ae_r.
+\]
+The first term is a global gradient with adequate decay; the second
+belongs to the geometric error. Thus the physical pressure tail
+remains accounted for without identifying the two Leray projections.
+The remaining convection difference is exactly
+\[
+ (U-U_{\rm raw})\cdot\nabla\widehat h_A
+            +\widehat h_A\cdot\nabla(U-U_{\rm raw}),
+\]
+which is bounded by $\delta_U$ times the asserted energy norm.
+
+The Gaussian cell norms and fixed spatial derivatives are bounded by
+$CM(A)s^{3/2}$ for $f_A$ and by $CM(A)s^{5/2}$ for both
+$h_A^p$ and $\psi_A^p$.
+The residual $e_A$ has size $CM(A)(s^{3/2}+s^{5/2})$.
+For body fields the physical conversion is
+\[
+ R^{-2}\|s^{3/2}g\|_{Y_2}^2
+   =\pi\int_0^{1.1/\nu}s^{1/2}
+                   \|g(s)\|_{L^2(dq/c\,d\eta)}^2ds.
+\]
+Thus the relevant age powers, including $s^{7/2}$ and $s^{11/2}$,
+are integrable at zero; their upper-end integrals and the normalization
+$c^{-1/2}=\nu$ cost only $P_\nu$. The same calculation with the
+physical spatial Jacobian $s^{-5/2}$ bounds the lift and its gradient.
+The smooth cutoff introduces no boundary source.
+
+For the derivative budget, the bracket uses $A^y$, the stream
+completion uses one conormal derivative, and one physical spatial
+derivative uses two. Its Laplacian uses three; one further spatial
+derivative of the residual uses four. The declared six suffice.
+These are body and spatial estimates; no bound for arbitrary pure
+phase derivatives is asserted. The maps are continuous in $\mu\in K$.
+\end{proof}
+
+There are two uses of this single estimate. For generic $A\in\mathscr A$,
+$M(A)\le C e^{1.1a_s/\nu}\|A\|_{\mathscr A}$. For the actual jet
+$A=\mathcal LT$, the separated-kernel conormal bound gives instead
+$M(A)\le P_\nu\epsilon^3N_1(\chi_oT_1)$, since $\chi_f A=A$.
+Together with $\delta_U\le P_\nu\rho$ from the background bounds,
+this gives the actual-range remainder without the generic exponential
+envelope. For $a_\mu(s)=s^{5/2}\operatorname{diag}(12,-3,-9)/(\mu+5/2)$,
+the formulas give the unit affine force used in the signed return.
+
+The unprojected force also satisfies the stronger weighted estimate:
+\[
+ R^{-1}\|g^{-1}F_A\|_{Y_2}\le P_\nu\|A\|_{\mathscr A},\qquad
+ g(s)=\exp[\gamma s/(1+\nu s)].
+\]
+Indeed $a_s<\gamma/16$ and $s\le1.1/\nu$ give
+$g(s)^{-1}e^{a_ss}\le e^{-(\gamma/3-a_s)s}$; inserting this
+pointwise bound in the same Gaussian integrals proves the estimate.
+Multiplication by $g^{-1}$ is not commuted through the Cartesian
+Leray projection; the near comparison keeps that projection explicit.

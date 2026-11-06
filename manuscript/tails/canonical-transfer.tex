@@ -1,0 +1,293 @@
+\subsection{From the plane branch to the actual train output}
+\label{sec:canonical-transfer}
+
+All cell measures in this subsection are unnormalized. Put
+\[
+\begin{gathered}
+ \Theta=\nu^{-1},\quad c=\nu^{-2},\quad e=(\nu c^2)^{-1}=\nu^3,\quad
+ a=1+\nu s,\\
+ \theta=(\nu a)^{-1},\quad d=c/\sqrt a=\sqrt{\theta/e},\quad
+ N=e^{\lambda/\nu}\nu^{-\kappa}.
+\end{gathered}
+\]
+Write $P_d$ for periodization, $K_d$ for cylindrical Biot--Savart,
+and $X_{m,d}$ for the centrally even zero-circulation class with
+weight $\langle y\rangle^{2m}$ on the centered cell, $m>8$.
+Its first moments vanish. The canonical plane branch is that of
+Proposition~\ref{prop:short-canonical}; set
+$M(\theta)=\mathfrak M(V_{\rm can}(\theta))$. Angular integration
+and cell summation give $Q_dP_dV_{\rm can}(\theta)=M(\theta)$.
+
+\paragraph{The actual residual, including moving images.}
+For $z=\Theta-\theta$, the identity $d_z/d=-1/(2\theta)$ gives
+\begin{equation}\label{eq:ct-moving-period}
+ \theta^{-1}D(P_df)-\partial_z(P_df)
+       =\theta^{-1}P_dDf
+\end{equation}
+when $f$ is independent of $z$. Thus periodization commutes with
+the combined diffusion/dilation/moving-cell derivative, not with
+each term separately. Reynolds' boundary term cancels the dilation
+seam term. All calculations below may first be made on the fixed
+physical cylinder and then rescaled.
+
+For completeness the improved even image error is elementary.
+The symmetrically summed planar kernels satisfy
+\[
+ K_d(\xi)-K_\infty(\xi)
+      =d^{-2}B_1\xi+O(d^{-4}|\xi|^3),\qquad |\xi|\le3d/8.
+\]
+Indeed the opposite translates cancel the constant and quadratic
+Taylor coefficients, while their $j$th derivatives are
+$O((|n|d)^{-1-j})$. The affine convolution vanishes because both
+mass and first moments are zero. On $|y|\le d/4$, $|x|\le d/8$,
+the remaining convolution is bounded by
+$Cd^{-4}(1+|x|^3)\|f\|_{X_m}$. The excluded source tail is at most
+$Cd^{1-m}\|f\|_{X_m}$ in $L^1$ and its far kernel costs $Cd^{-1}$.
+Multiplication by the Gaussian observation coefficient controls
+the polynomial in $x$; its complement $|x|>d/8$ is exponentially
+small. The same reasoning after $d\partial_d$ gives the same bound.
+Consequently the localized linearized interaction error is
+$O(d^{-4})$ on this even class. For a periodized Gaussian input,
+cross transport between different cells is exponentially small,
+using its fixed Gaussian derivative norms.
+
+Let $E_c$ be the actual train vorticity and
+$h=a^2E_c(s,\sqrt a\,y)-P_dE_0$.
+The train comparison \eqref{sct:comparison}, after rescaling, gives
+\[
+ \|\partial^j h\|_2+
+ \|\partial^jK_dh\|_{2\cap\infty}
+       \le C_j\theta e^{-b_jd^2}.
+\]
+Here the curl estimate uses one additional derivative. Since
+$\theta=ed^2$, the right side is at most $C_je e^{-b'_jd^2}$.
+There is no reliance on smallness of an unbounded differential
+operator. To add fixed polynomial weights, the heat-coordinate
+vorticity energy with weight $\langle y\rangle^{4m}$ and finitely
+many derivatives gives the crude bound $P_\nu e^{C_{m,j}/\nu}$:
+transport coefficients and their selected derivatives are uniformly
+bounded by the preceding unweighted comparison, their clock interval
+has length at most $\nu^{-1}$, and the diffusion/dilation contribution
+integrates $C_{m,j}\theta^{-1}$, costing only a power of $\nu$.
+The periodic seam diffusion term is nonpositive and the moving seam
+cancels as in \eqref{eq:ct-moving-period}. Interpolating that bound
+with the unweighted error, and using $d^2\ge r/e$ on any fixed
+$[r,\Theta]$, absorbs $e^{C/\nu}$ and every fixed polynomial into
+a smaller Gaussian for sufficiently small $\nu$:
+\begin{equation}\label{eq:ct-base-error}
+ \|h\|_{H_m^j}+\|K_dh\|_{W^{j,\infty}}
+       \le C_{m,j}e\,e^{-b_{m,j}\theta/e},
+ \qquad r\le\theta\le\Theta.
+\end{equation}
+
+Let $w=\mathcal U_{\nu,c}(s,0)P_cq$ be the actual bare column and
+write $w(s,x)=Na^{-2}Z(\theta,x/\sqrt a)$.
+The canonical asymptotic gives
+\[
+ \|e^{\lambda\Theta}\Theta^\kappa
+       [Z(\Theta)-P_cV_{\rm can}(\Theta)]\|_{X_{m,c}}\le C\nu.
+\]
+Applying
+\eqref{eq:ct-moving-period}, the image estimate, and
+\eqref{eq:ct-base-error} to $V_d=P_dV_{\rm can}$ gives the following
+residual in the equation $-\partial_\theta Z=\mathcal L_\theta Z$:
+\begin{align}
+ \|e^{\lambda\theta}\theta^\kappa
+       (-\partial_\theta-\mathcal L_\theta)V_d\|_{X_{m,d}}
+ &\le C_b(e^2\theta^{-2}+e\,e^{-a_0\theta/e}),
+ &&b\le\theta\le\Theta, \label{eq:ct-long-residual}\\
+ \|(-\partial_\theta-\mathcal L_\theta)V_d\|_{X_{m,d}}
+ &\le C_b(e^2\theta^{-2}+e\,e^{-a_0\theta/e}),
+ &&r\le\theta\le b. \label{eq:ct-late-residual}
+\end{align}
+The image term needs only the Gaussian zeroth norm of the branch;
+cross transport and the base-error terms use its fixed derivative
+budgets. Their polynomial factors in $1+\theta$ are absorbed into
+the displayed Gaussian. This explicitly accounts for the actual
+nonlinear train, rather than substituting its independent-vortex sum.
+
+The full-input forward bound \eqref{eq:short-causal-long-forward}
+and Duhamel, including this normalized inlet error, imply
+\begin{equation}\label{eq:ct-long-comparison}
+ \|e^{\lambda\theta}\theta^\kappa(Z-V_d)(\theta)\|_{X_{m,d}}
+ \le C_b\{\nu+e^2/\theta+e^{-a_1\theta/e}\},\qquad b\le\theta\le\Theta.
+\end{equation}
+In particular the error at $b$ is $O_b(\nu)$, and both columns
+have an exponentially decaying, polynomially weighted majorant
+for $\theta\ge b$. No terminal projection or backward parabolic
+propagator has been used.
+
+\paragraph{Kinetic and tested moment continuation through overlap.}
+The embeddings
+\begin{equation}\label{eq:ct-embeddings}
+ |Q_d f|+\|K_df\|_2\le C_m\|f\|_{X_{m,d}},\qquad
+ Q_df=-\frac2\pi\int\eta^2f,\qquad d\ge1
+\end{equation}
+are uniform in $d$. The moment bound is weighted Cauchy--Schwarz.
+For velocity, zero mass gives
+$|\widehat f(\xi)|\le|\xi|\int|y||f(y)|dy$ at low cylindrical
+frequencies. In Plancherel, the $O(d)$ horizontal frequencies
+of modulus at most one cancel the measure factor $d^{-1}$;
+the high frequencies are bounded by $\|f\|_2$. This proves
+\eqref{eq:ct-embeddings} without a factor $1+d$.
+
+Let $\mathcal U_Z(\theta,r)$ be the exact heat-coordinate evolution.
+The velocity energy inequality and \eqref{sct:integrated} give,
+for $0<\theta\le r\le b$,
+\begin{equation}\label{eq:ct-kinetic-impulse}
+ \|K_{d(\theta)}\mathcal U_Z(\theta,r)h\|_2
+       \le C_b(r/\theta)\|K_{d(r)}h\|_2.
+\end{equation}
+Indeed the input physical kinetic norm is
+$\nu r\|K_{d(r)}h\|_2$ and the integrated strain costs at most
+$C(r+e)$. The exact physical quadrupole law is
+\[
+ \frac{d}{ds}Q_c(w)
+    =-\frac4\pi\int(v_1u_2+v_2u_1)
+    =-\frac4\pi\int(\widetilde v_1\widetilde u_2+
+                              \widetilde v_2\widetilde u_1).
+\]
+The mean terms vanish because the mean vertical velocities vanish.
+Since $Q$ is invariant under heat scaling, the same identity gives
+a tested bound uniform in $\nu$. Before overlap
+$\|\widetilde v(s(\theta))\|_2\le C\nu\theta$;
+after overlap it is at most
+$C\nu e\exp[-a(e/\theta-1)]$. Thus at every age
+$\nu^{-1}\theta^{-2}\|\widetilde v(s(\theta))\|_2\le C/\theta$,
+and
+\begin{align}
+ |Q\mathcal U_Z(\theta,r)h|
+ &\le |Qh|+C_b r\log(r/\theta)\|K_{d(r)}h\|_2,
+                      \label{eq:ct-partial-moment}\\
+ \int_0^r\theta^{p-1}|Q\mathcal U_Z(\theta,r)h|\,d\theta
+ &\le C_{b,p}r^p(|Qh|+r\|K_{d(r)}h\|_2),\quad p>0.
+                      \label{eq:ct-tested-impulse}
+\end{align}
+The second follows from $\int_0^r\theta^{p-1}\log(r/\theta)d\theta=r^p/p^2$.
+Similarly the absolute stress, divided by its scale
+$\nu^{3+2\Re\mu}/c$, for an impulse at $r$ is bounded by
+\begin{equation}\label{eq:ct-absolute-impulse}
+ C_{K,b}r^{p+1}\max\{1,(e/r)^{1/4}\}\|K_{d(r)}h\|_2,
+ \qquad p=\Re\mu+3/2.
+\end{equation}
+For $\theta\ge e$ insert $\|v\|_2\le C\nu\theta$ and
+$\|u\|_2\le C_b\nu r\|Kh\|_2$. For $\theta\le e$ insert
+$\|v\|_2\le C\nu e^{1/4}\theta^{3/4}$ instead. Its integral is
+$Cr e^{1/4}\min(e,r)^{p-1/4}\|Kh\|_2$, proving the assertion.
+All these identities first hold for smooth data and sources.
+Duhamel and the integrable displayed bounds give the stated
+completion on the fixed physical cylinder; the actual decaying
+mean stream is retained when identifying its quadrupole.
+
+For each fixed $r>0$, apply \eqref{eq:ct-kinetic-impulse} and
+\eqref{eq:ct-partial-moment} to the residual and the error at $b$.
+The kinetic residual integral is bounded by
+$C_be^2\theta^{-1}\log(b/\theta)$; the partial-moment factors are
+bounded on $r\le\theta\le b$. Thus
+\begin{equation}\label{eq:ct-compact-comparison}
+ \sup_{r\le\theta\le b}
+ \bigl(\|K_d(Z-V_d)(\theta)\|_2+
+                |Q_d(Z-V_d)(\theta)|\bigr)\longrightarrow0.
+\end{equation}
+The plane bounds and periodization imply
+$\limsup_{\nu\to0}(|Q_dZ(r)|+\|K_dZ(r)\|_2)\le C_b$ uniformly
+in $0<r\le b$. Apply the impulse estimates to the homogeneous actual
+column with data $Z(r)$, not to its discrepancy from $V_d$.
+For $p$ in a compact subset of $(1/4,\infty)$,
+\[
+ \limsup_{\nu\to0}\int_0^r\theta^{p-1}|Q_dZ(\theta)|d\theta
+       \le C_br^p,
+\]
+and \eqref{eq:ct-absolute-impulse}, with $e<r$, bounds its normalized
+absolute stress tail by $C_br^{p+1}$. Letting first $\nu\to0$ and
+then $r\downarrow0$ therefore gives the required tested convergence
+through the entire overlap tail.
+
+\paragraph{Mellin output and stress defects.}
+Fix $K\Subset\{0<\Re\mu<1/4\}$, put $\sigma=\Re\mu$,
+$u_o=\nu^{-3/2}$, and $\theta_o=(\sqrt\nu+\nu)^{-1}$.
+For the actual column define
+$A_+(s)=-\pi s^{-\mu}Q_c(w(s))/(4c)$.
+The exact substitution
+$s=(1-\nu\theta)/(\nu^2\theta)$ yields
+\begin{align}
+ I_A:=\int_{u_o}^{\infty}A_+(s)s^{-5/2}ds
+ &=-\frac{\pi N}{4c}\nu^{3+2\mu}
+   \int_0^{\theta_o}\theta^{\mu+1/2}
+       (1-\nu\theta)^{-\mu-5/2}QZ(\theta)d\theta \notag\\
+ &=-\frac{\pi N}{4c}\nu^{3+2\mu}
+       [\mathcal J(\mu)+o_K(1)].
+                                      \label{eq:ct-mellin}
+\end{align}
+Use \eqref{eq:ct-long-comparison} for the exponentially integrable
+large-clock part and the compact-clock convergence and tested tail
+bound above for the rest. The error is locally uniform and holomorphic.
+An extra $s^{-k/2}$ costs
+$\nu^k\theta^{k/2}(1-\nu\theta)^{-k/2}$, $k=0,1$.
+At $u_o$, every selected state or stress observation divided by $N$
+is $P_\nu e^{-\gamma'/\sqrt\nu}$ for any $\gamma'<\gamma$.
+The partial-moment bound gives $QZ(\theta)=O_\nu(1+|\log\theta|)$
+as $\theta\downarrow0$, so the upper weighted moment endpoint is zero.
+If the old cutoff
+starts at $\sigma_{\rm in}/\nu<u_o$, its entire preceding part
+has the same exponentially small coefficient after polynomial
+weights; that source and cutoff transition have not been removed.
+
+For $u=K_cw$, $u_\mu=s^{-\mu}u$, set
+\[
+\begin{gathered}
+ E_\eta=\frac2c\int v_1u_{\mu,1},\quad
+ E_q=\frac2c\int v_2u_{\mu,2},\quad
+ C=\frac1c\int(v_1u_{\mu,2}+v_2u_{\mu,1}),\\
+ D_c=E_\eta+E_q,\quad R_c=E_q-iC,\quad
+ \mathcal A_\nu=|N|\nu^{3+2\sigma}/c.
+\end{gathered}
+\]
+These are bilinear pairings. Define the stronger absolute component
+quantity
+\[
+ S_{\rm abs}(s)=c^{-1}\int
+       |v\otimes u_\mu+u_\mu\otimes v|\,dq\,d\eta.
+\]
+For $k=0,1$,
+\begin{equation}\label{eq:ct-absolute-stress}
+ \int_{u_o}^\infty s^{-3/2-k/2}
+       S_{\rm abs}(s)ds\le C_{K,k}\mathcal A_\nu\nu^k.
+\end{equation}
+This controls each absolute tensor component before cell integration,
+and hence also $|E_\eta|+|E_q|+|C|$, up to an absolute constant.
+Indeed the integrand before its time weight is at most
+$C|N|c^{-1}s^{-\sigma}\|v\|_2\|u/N\|_2$.
+For $\theta\ge b$, $\|u/N\|_2\le Ca^{-1}H(\theta)$ with
+$H$ exponentially decreasing times a polynomial. Changing variables
+gives the integrable majorant
+$C\mathcal A_\nu\nu^k\theta^{\sigma+3/2+k/2}H(\theta)$.
+For $\theta\le b$, energy gives $\|u/N\|_2\le C_b\nu$.
+Before overlap $\|v\|_2\le C/(\nu s)$; after overlap
+$\|v\|_2\le Cc^{-2}(s/s_c)^{-3/4}$.
+The two integrals are bounded by
+$C\mathcal A_\nu\nu^k$ and
+$C\mathcal A_\nu\nu^ke^{\sigma+3/2+k/2}$ respectively.
+
+For a plane radial background in positive angular sector two,
+$E_\eta=-E_q$ and $E_q=iC$ by direct angular integration.
+On each fixed positive clock interval,
+\eqref{eq:ct-compact-comparison} and the actual background comparison
+therefore make the scaled $D_c,R_c$ tend to zero. Their absolute
+small-clock tails are bounded by \eqref{eq:ct-absolute-impulse} with
+data $Z(r)$, hence by $C_K\mathcal A_\nu r^{\sigma+5/2}$ in the
+$\nu\to0$ limit. Large-clock domination, followed by $r\downarrow0$,
+proves
+\begin{equation}\label{eq:ct-stress-defect}
+ \int_{u_o}^{\infty}(D_c-3R_c)s^{-3/2}ds=o_K(\mathcal A_\nu).
+\end{equation}
+The unforced moment law is exactly $C=A_+'+\mu A_+/s$; hence
+\begin{equation}\label{eq:ct-anisotropy}
+ \int_{u_o}^{\infty}(2E_q-E_\eta)s^{-3/2}ds
+   =3i(\mu+3/2)I_A+o_K(\mathcal A_\nu),
+\end{equation}
+including the boundary term
+$3i[A_+s^{-3/2}]_{u_o}^{\infty}$, just shown negligible.
+For the negative channel the sign of $i$ reverses and
+$N\mathcal J(\mu)$ becomes
+$\bar N\,\overline{\mathcal J(\bar\mu)}$.

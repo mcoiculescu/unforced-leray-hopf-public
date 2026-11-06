@@ -1,0 +1,282 @@
+\subsection{The full moving evolution and weak sources}
+\label{sec:short-full-clock}
+
+Let $C_c=(\mathbb R/c\mathbb Z)\times\mathbb R$, $c=\nu^{-2}$,
+and let $v=v_c$ be the actual planar train. Fix $m>8$. Write
+\[
+ X_{m,c}=L^2(C_c,\langle x\rangle^{2m}dx),\qquad
+ Z^{-1}_{m,c}=\{f\in(H^1_{-m,c})^*:\langle f,1\rangle=0\},
+ \qquad g(s)=\exp\frac{\gamma s}{1+\nu s}.
+\]
+The test $1$ belongs to $H^1_{-m,c}$. The centered radial weight is
+used for evolution norms. Smooth periodic weights are used only for
+local smoothing, with equivalence applied at its two endpoints.
+
+\begin{proposition}[Full forward train estimate]
+\label{prop:short-full-clock}
+For a fixed sufficiently large $b$ and all sufficiently small $\nu$,
+the moving full complement has the exponential relative bound
+\eqref{eq:short-causal-stable-moving}, the full moving evolution
+satisfies \eqref{eq:short-causal-long-forward}, and on
+$0<t<s\le H=\nu^{-1}((\nu b)^{-1}-1)$ its physical weak-source
+extension satisfies
+\[
+ \left\|\frac{g(t)}{g(s)}U(s,t)\right\|_{Z^{-1}_{m,c}\to X_{m,c}}
+ \le C_b\nu^{-M_s}\{1+(s-t)^{-1/2}\},\qquad
+ M_s=\lceil m/2+|\Re\kappa|+2\rceil.
+\]
+These bounds hold on the entire zero-circulation space, with no
+input parity restriction.
+\end{proposition}
+\begin{proof}
+\emph{The full moving complement.}
+Set
+\[
+ a=1+\nu s,\quad \theta=(\nu a)^{-1},\quad
+ z=s/a=\nu^{-1}-\theta,\quad e_c=(\nu c^2)^{-1}=\nu^3,
+ \quad d=c/\sqrt a=\sqrt{\theta/e_c}.
+\]
+The exact substitution $w(s,x)=a^{-2}W(z,x/\sqrt a)$ gives
+\begin{equation}\label{eq:short-causal-moving}
+ W_z=G(z)W,\qquad G=\theta^{-1}D+L_{\nu,c}(z),\qquad
+ D=\Delta+\tfrac12 y\cdot\nabla+2,\qquad
+ d_z/d=-1/(2\theta).
+\end{equation}
+The rescaled train differs from the periodized Gaussian by
+$C_{j,m}e_c e^{-b_{j,m}\theta/e_c}$ in every fixed weighted derivative
+norm on $\theta\ge b>0$. This follows by rescaling the train error,
+interpolating its Gaussian-small unweighted norm with a larger fixed
+weighted norm, and absorbing the resulting fixed powers into the
+Gaussian. The required region is contained in $1\le a\le c^2$.
+
+The common actual-cylinder comparison
+\eqref{short-bg:free-cylinder}--\eqref{short-bg:interaction-cylinder}
+applies in moving coordinates after including Reynolds' formula.
+Here is the quantitative part needed for all parities. The paired-image
+kernel satisfies, for $|x|\le d/8$, $|y|\le d/4$,
+\[
+ K_d(x-y)-K_\infty(x-y)
+ =d^{-2}B_1(x-y)+O(d^{-4}|x-y|^3).
+\]
+For zero-mass input the $x$ times mass term disappears; the first
+moment is retained and bounded by $C_m\|f\|_{X_m}$. The source tail
+has $L^1$ norm at most $C_md^{1-m}\|f\|_{X_m}$; the separated
+far kernel costs $O(d^{-1})$. The observation outside $d/8$ is
+Gaussian-small. Hence the localized interaction error, also after
+$d\partial_d$, is $O(d^{-2})=O(e_c/\theta)$ on the entire space.
+No first-moment cancellation or parity restriction is used. The same
+$O(d^{-2})$ bound holds for auxiliary nonzero-mass inputs: retain
+$x\int f$ and bound it against the localized observation coefficient.
+Thus restricting an ambient input to a cell creates no mass-related
+gap in the compact comparison.
+
+Let $E(z)$ be the two periodized growing vectors from
+Proposition~\ref{prop:short-gaussian-seed}, and normalize their dual
+rows $\Lambda(z)$ by $\Lambda E=I_2$. The planar dual kernels and
+their fixed derivatives have the $O(|y|^{-2-j})$ decay obtained from
+\eqref{eq:short-seed-green} and \eqref{eq:short-seed-functional}.
+Paired translates therefore give dual error $O(d^{-2})$ in the
+weighted dual norm, with the same bound after $d\partial_d$; direct
+columns have Gaussian tails. The finite Gram inverse exists uniformly
+and its differentiated error is $O(\theta^{-1}d^{-2})$.
+The identities
+\[
+ \theta^{-1}D(P_dq)-\partial_z(P_dq)=\theta^{-1}P_dDq,
+ \quad
+ \theta^{-1}D^\#(P_d\ell)+\partial_z(P_d\ell)
+       =\theta^{-1}P_dD^\#\ell,
+ \quad D^\#=\Delta-\tfrac12y\cdot\nabla+1
+\]
+follow term by term using $d_z/d=-1/(2\theta)$. They are identities
+for the unweighted dual kernels, with Gram normalization then applied.
+In particular the combined direct and dual rows are bounded; neither
+$\Lambda D$ alone nor a derivative of sharp zero extension is used.
+
+Put $K_0=GE-E_z$. Define $H_0$ by differentiating the actual moving
+pairing: $(\Lambda W)'=H_0W$ whenever $W'=GW$. Then
+$M_0=H_0E=\Lambda K_0$. For $\beta_0=\gamma+\Re\kappa/\theta$ set
+\begin{equation}\label{eq:short-causal-damped-complement}
+ \mathcal B=G-\beta_0-EH_0+
+       [-K_0+(\beta_0-1)E+EM_0]\Lambda.
+\end{equation}
+All added terms are bounded finite rank. Direct substitution gives
+$(\Lambda W)'=-\Lambda W$ for $W'=\mathcal BW$, and
+$\mathcal BE=E_z-E$. Thus $\ker\Lambda(z)$ is invariant and the
+artificial pair decays at rate one. The planar limit is
+$\mathscr Q(\mathscr L-\gamma)\mathscr Q-\mathscr P$, where
+$\mathscr Q=I-\mathscr P$ removes both growing modes. Its full-space
+semigroup is
+exponentially stable by \eqref{eq:short-seed-complement}.
+This statement includes the horizontal mean and every angular sector.
+For ambient identifications a radial mass-one neutral vector can be
+adjoined; $\mathscr L$ annihilates it and the relative damping makes
+it stable. Restriction to zero circulation is preserved by the actual
+equation.
+
+To compare on a fixed Hilbert space let $I_z,R_z,\Pi_z=I_zR_z$ be
+zero extension, restriction and cell projection. Extend the free
+moving evolution $F$ by the actual cocycle
+\[
+ \overline F(z,t)=I_zF(z,t)R_t+S(z,t)(I-\Pi_t),\qquad
+ Sf(y)=\rho^4f(\rho y),\quad \rho=d(t)/d(z).
+\]
+The two terms have disjoint entrance and exit supports. The exterior
+term has norm at most $\rho^3$. For the interior, Reynolds' boundary
+term cancels the dilation seam term. With $p=(1+|y|^2)^m$,
+\[
+ \frac d{dz}\|W\|_p^2\le
+ \left[\theta^{-1}\sup\left(\frac{\Delta p}p+3
+                   -\tfrac12y\cdot\nabla\log p\right)+\delta_\nu\right]
+                   \|W\|_p^2.
+\]
+The two seam weights agree and the remaining diffusion seam term is
+nonpositive. Radial Euler transport preserves the weight; the image
+and actual-base velocity errors give $\sup\delta_\nu\to0$ on
+$\theta\ge b$ for fixed $b$. One can take
+$C_m=(m^2+3m+3)/2$ for the norm-growth contribution of $D$.
+Consequently the relative free evolution satisfies
+\begin{equation}\label{eq:short-causal-free-moving}
+ \|\overline F_{\rm rel}(z,t)\|
+ \le\exp\{[-\gamma+(C_m+|\Re\kappa|)/b+\sup\delta_\nu](z-t)\}.
+\end{equation}
+
+On each fixed block of length $B$, compact smooth tests and Duhamel
+give direct strong convergence to radial Euler transport in the
+successive limit $\nu\to0$, then $b\to\infty$, uniformly in the
+entrance time. Density extends the convergence. The undamped norms
+have limiting upper bound one, and radial transport $T$ is unitary;
+the identity
+\[
+ \|F_n^*f-T^*f\|^2\le\|F_n\|^2\|f\|^2
+                 -2\Re\langle f,F_nT^*f\rangle+\|f\|^2
+\]
+gives adjoint-strong convergence. The localized interaction is compact
+by source and observation truncation and local Rellich compactness;
+the image and dual estimates above give norm convergence of every
+compact and finite-rank term in
+\eqref{eq:short-causal-damped-complement}. Lemma~\ref{lem:short-compact-duhamel}
+therefore compares the full-minus-free remainders in norm. If the
+limiting full relative bound is $C_0e^{-hB}$, choose $B$ so that
+$C_0e^{-hB}+2e^{-\gamma B}<1/4$, then $b$ large, then $\nu$ small.
+Each full block contracts by $1/2$. Uniform bounds on the remaining
+short block yield
+\begin{equation}\label{eq:short-causal-stable-moving}
+ \|S_{\rm rel}(z,t)\|\le Ce^{-h_0(z-t)},\qquad
+ b\le\theta(z)\le\theta(t)\le\nu^{-1}.
+\end{equation}
+All block products use the same ambient radial weighted norm.
+
+Write $W=E\alpha+r$, $\Lambda r=0$. The amplitude diagonals are
+$\lambda_i+\kappa_i/\theta$; angular orthogonality makes the planar
+off-diagonal $D$ pairing zero. The direct errors are bounded by
+\[
+ \delta_*(\theta)=C\{e_c/\theta+e_c e^{-b_2\theta/e_c}\},
+\]
+and both amplitude--complement couplings by
+$C(\theta^{-1}+\delta_*)$. Divide each amplitude by
+$e^{\lambda_i(r_0-\theta)}(r_0/\theta)^{\kappa_i}$ and the
+complement by their common modulus. Equation
+\eqref{eq:short-causal-stable-moving} bounds its stable convolution.
+For small $\nu$, enlarge constants to bound the coupling by
+$\eta(z)=C(1+e_c)/\theta(z)$ and the direct error by
+$\delta(z)=Ce_c/\theta(z)$. The Gaussian error is absorbed in
+these bounds. If $A_*(z)$ is the running maximum of the normalized
+amplitude, the stable convolution gives
+$\|r(z)\|\le Ce^{-h_0(z-t)}\|r(t)\|+C\eta(z)A_*(z)$.
+The initial-complement term in the amplitude is integrable with
+bound $C\|r(t)\|/b$. Equivalently, for the double convolution,
+$\eta'/\eta=1/\theta\le1/b$ and $b\ge2/h_0$ give
+$\int_u^z\eta(v)e^{-h_0(v-u)}dv\le(2/h_0)\eta(u)$.
+Substitution into the amplitude equation and scalar Gronwall give
+an exponential of
+\[
+ C\int_b^{1/\nu}[\delta_*(r)+(r^{-1}+\delta_*(r))^2]dr
+ \le C/b+Ce_c\log(1/(\nu b))+Ce_c/b+Ce_c^2/b+o(1).
+\]
+The initial complement contributes only a uniformly bounded decaying
+convolution. The displayed budget is uniformly bounded. We obtain,
+on the entire zero-mass space and with no input symmetry restriction,
+\begin{equation}\label{eq:short-causal-long-forward}
+ \|U_{\rm mov}(\theta,r_0)\|_{X_{m,d(r_0)}\to X_{m,d(\theta)}}
+ \le C_b e^{\gamma(r_0-\theta)}(r_0/\theta)^{\Re\kappa}.
+\end{equation}
+
+\emph{Weak sources and the polynomial loss.}
+Choose the core endpoint
+\[
+ H=s_b=\nu^{-1}((\nu b)^{-1}-1),\qquad a_b=(\nu b)^{-1}.
+\]
+For $J_aW(x)=a^{-2}W(x/\sqrt a)$, change of variables gives
+\begin{equation}\label{eq:short-causal-scales}
+ \|J_a\|_{X_{m,d}\to X_{m,c}}\le a^{(m-3)/2},\qquad
+ \|J_a^{-1}\|_{X_{m,c}\to X_{m,d}}\le a^{3/2},\qquad
+ \|J_a^{-1}\|_{(H^1_{-m,c})^*\to(H^1_{-m,d})^*}\le a^{3/2}.
+\end{equation}
+For the last inequality,
+$\langle J_a^{-1}f,\phi\rangle=a\langle f,\phi(\cdot/\sqrt a)\rangle$
+and $\|\phi(\cdot/\sqrt a)\|_{H^1_{-m,c}}
+\le\sqrt a\|\phi\|_{H^1_{-m,d}}$. At two endpoints
+$1\le a_t\le a_s\le a_b$, the product of the first two factors is
+at most $a_b^{m/2}$. Normalizing both physical cell norms by $c^{-1}$
+does not change this operator estimate.
+
+For short weak smoothing use only here the equivalent periodic weight
+\[
+ p_d=[1+y_2^2+(d/\pi)^2\sin^2(\pi y_1/d)]^m.
+\]
+Its first two logarithmic spatial derivatives are uniformly bounded,
+$|\partial_z\log p_d|\le C_m/\theta$, and
+$|y\cdot\nabla\log p_d|\le C_m$. The rescaled train and its first
+two derivatives are uniformly bounded for $\theta\ge b$.
+The adjoint localized interaction maps $X_{-m,d}$ to $H^1_{-m,d}$
+uniformly: its localized source has uniformly bounded $L^1$ and
+$L^2$ norms by weighted Cauchy--Schwarz; split the Biot--Savart kernel
+into its integrable near part and bounded far part, and use the
+uniform order-zero multiplier bound for its derivative, including
+the horizontal mean. This also proves the stated bound for the
+actual train perturbation.
+
+For the reverse-time adjoint let $E_j$ be its squared weighted
+$H^j_{-m}$ energy. On $\Delta z\le1$, with
+$\beta=\theta^{-1}$, Reynolds cancellation and differentiated
+weighted energy give
+\[
+ E_0'+\beta_{\min}E_1\le C_bE_0,\qquad
+ E_1'+\beta_{\min}E_2\le C_b(E_1+E_0).
+\]
+The diffusion-weight errors have coefficient $C_m\beta$ and the
+transport and compact terms have coefficient $C_b$; no negative
+power of $\nu$ occurs in a Gronwall coefficient. Moreover
+$\beta_{\max}/\beta_{\min}\le1+1/b$ on such an interval.
+Integrate the first inequality and then the inequality for $rE_1(r)$
+to get $E_1(\Delta z)\le C_b(\beta_{\min}\Delta z)^{-1}E_0(0)$.
+By duality, the moving weak-to-strong norm is at most
+$C_b(\beta_{\min}\Delta z)^{-1/2}$.
+
+For $0<s-t\le1$, the clock identities are exactly
+\[
+ \Delta z=\frac{s-t}{a_sa_t},\qquad
+ \beta_{\min}=\nu a_t,\qquad
+ \beta_{\min}\Delta z=\frac{\nu(s-t)}{a_s}.
+\]
+Combining with \eqref{eq:short-causal-scales} gives the physical
+weak-to-strong cost $C_b\nu^{-(m+2)/2}(s-t)^{-1/2}$.
+For a longer gap factor at $t+1/2$ in moving coordinates and apply
+\eqref{eq:short-causal-long-forward} after the short smoothing step.
+The two intermediate maps $J_{a_{t+1/2}}^{-1}J_{a_{t+1/2}}$
+cancel \emph{before} taking norms. Thus only one endpoint cost
+$\nu^{-m/2}$ occurs, the smoothing costs at most $C_b\nu^{-1}$,
+and the long-clock algebraic factor costs $\nu^{-|\Re\kappa|}$.
+For the fixed integer
+\[
+ M_s=\left\lceil m/2+|\Re\kappa|+2\right\rceil
+\]
+we have on $0<t<s\le H$
+\begin{equation}\label{eq:short-causal-weak-forward}
+ \left\|\frac{g(t)}{g(s)}U(s,t)\right\|_{Z^{-1}_{m,c}\to X_{m,c}}
+ \le C_b\nu^{-M_s}\{1+(s-t)^{-1/2}\}.
+\end{equation}
+Zero mass is preserved by the conservative physical equation and
+then by continuous extension in the actual weighted dual source norm.
+
+\end{proof}

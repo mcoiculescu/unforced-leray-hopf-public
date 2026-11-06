@@ -1,0 +1,161 @@
+\section{Thin and repair stress spaces}
+\label{sec:stress-spaces-short}
+
+Fix the exact background from Section~\ref{short-bg:section}. The goal is
+its nonzero periodic energy mode $b$ with exponent $0<\sigma<1/4$.
+The planar Gaussian eigenpair supplies transient train amplification
+and a signed integrated stress response. The three-dimensional pressure
+interaction returns a strain to the young rings and closes the loop.
+The singular limit compares these response operators as curvature and
+viscosity decrease together; the final characteristic zero belongs to
+the exact three-dimensional operator, with its full pressure and repair.
+
+We first establish the causal near inverse and all-age moments, then
+identify the returned strain and control its errors, and finally solve
+the rank-one scalar return equation. The background and geometry remain
+fixed as we vary the real Floquet exponent.
+
+Use the exact background
+$U=V+r_b$, where $V=U_{\rm raw}+E_\epsilon\alpha_{\rm bg}$
+and $r_b$ is the energy repair. Set $c=\nu^{-2}$, $R=\epsilon^{-1}$,
+and retain component order $(r,\phi,z)$. In the cylinder chart
+\[
+ s=R^2/\rho^2,\qquad q=R\log(\rho/R)+R\tau/2,\qquad
+ \eta=Rz/\rho,
+\]
+put $d\varsigma=ds\,dq/c\,d\eta$ and
+\[
+ H=L^2(s^{-3/2}d\varsigma),\qquad
+ H_T=L^2(s^{-1/2}d\varsigma;\operatorname{Sym}_3).
+\]
+The natural velocity and tensor lifts are
+$\mathcal N_vb=\sqrt{s}\,b$ and $\mathcal N_TT=sT$.
+Changing variables in the normalized phase/spatial integral gives
+\begin{equation}\label{stress-short:lifts}
+ \|\mathcal N_vb\|_{Y_2}^2=\pi R^2\|b\|_H^2,\qquad
+ \|\mathcal N_TT\|_{Y_2}^2=\pi R^2\|T\|_{H_T}^2.
+\end{equation}
+Indeed the physical space Jacobian after azimuthal integration is
+$\pi R^2s^{-5/2}ds\,d\eta$ and normalized phase becomes $dq/c$.
+The physical divergence and Leray projection remain in the free inverse;
+these formulas only identify its Hilbert spaces.
+
+Fix $m_Z>3/2$, for example $m_Z=2$, and define
+\[
+ W=\left\langle\eta/\sqrt{1+s}\right\rangle^{m_Z},\qquad
+ Z_1=L^2(s^{-1/2}W^2d\varsigma),\qquad
+ Z=Z_1\oplus\rho_b^{-1/2}H_T.
+\]
+The norm on $Z$ is the sum norm
+$\|(T_1,T_2)\|_Z=\|T_1\|_{Z_1}+\rho_b^{-1/2}\|T_2\|_{H_T}$.
+Here
+\[
+ \rho_b=P_\nu\epsilon^{3/11}e^{m_0/\nu}
+\]
+is a fixed upper bound from the exact-background construction,
+chosen so that
+$\sup_\tau(\|r_b(\tau)\|_{11/4}+\|r_b(\tau)\|_\infty)\le\rho_b$.
+It is not the radial coordinate. The stress inverse acts on
+$T_1+T_2$; the second entry is not assigned a transverse weight.
+
+Write $v=s^{-1/2}V$ and $v_b=s^{-1/2}r_b$. The train heat expansion,
+transverse bounds, and compact-age inlet construction imply
+\begin{equation}\label{stress-short:coefficients}
+ \begin{aligned}
+ \sup\sqrt{s}\,W|v|&\le P_\nu,&
+ \sup_{s>S}\sqrt{s}\,W|v|&\le P_\nu(S^{-1/2}+\epsilon),\\
+ \sup_{s<\sigma}\sqrt{s}\,W|v|&\le P_\nu\sqrt{\sigma},
+       &&0<\sigma\le1,\\
+ \|Wv(s)\|_{L^2_\eta L^\infty_q}
+       &\le P_\nu[(1+s)^{-3/4}
+                         +\epsilon(1+s)^{-1/4}].
+ \end{aligned}
+\end{equation}
+Here $S$ is larger than the compact-age inlet support. To check the
+age powers, the mean stream and its fixed weighted derivatives have
+size $(1+s)^{-1/2}$ on transverse scale $\sqrt{1+s}$.
+One transverse derivative gives the velocity size $(1+s)^{-1}$.
+The stream completion
+$\epsilon(1-\eta\partial_\eta-2s\partial_s)\psi$ has size
+$P_\nu\epsilon(1+s)^{-1/2}$. Its slower decay is retained.
+The $L^2_\eta$ norm adds the factor $(1+s)^{1/4}$.
+Fluctuations have exponential decay after overlap; before overlap
+the Gaussian comparison gives the same polynomial bounds.
+The finite inlet is absorbed by $P_\nu$, and early smoothness gives
+the third bound. Multiplying by any further fixed power of
+$\langle\eta/\sqrt{1+s}\rangle$ leaves these conclusions unchanged,
+by the weighted train expansion.
+
+If $S=\epsilon^{-b}$ and $D_\perp>0$ is fixed, the coefficient can
+also be localized to
+\[
+ |\eta|\le L_\perp=C_\perp(c/\nu+\sqrt S+1)
+\]
+with
+\begin{equation}\label{stress-short:transverse}
+ \sup_{s<S,\ |\eta|>L_\perp}
+ \sqrt{s}\,W(|v|+|v_{\rm flat}|)
+       \le e^{-D_\perp/\nu}.
+\end{equation}
+The Gaussian vorticity tail controls the heat-width part.
+The nonzero horizontal stream kernels
+$e^{-|k_n||\eta|}/(2|k_n|)$, $|k_n|\ge2\pi/c$, control the
+$c/\nu$ part. The zero mode has decaying heat primitives.
+Increasing $C_\perp$ absorbs the fixed weights, derivative budgets,
+and the finite inlet's stream tail. No such localization is claimed
+for $r_b$.
+
+Define the exact split multiplier by
+\[
+ \mathcal M_Ub=(v\otimes b+b\otimes v,\
+                         v_b\otimes b+b\otimes v_b).
+\]
+The flat multiplier uses the actual planar train in its first entry
+and zero in its second entry. Since the ratio of stress and velocity
+age densities is $s$, \eqref{stress-short:coefficients} gives
+\begin{equation}\label{stress-short:multiplier}
+ \|\mathcal M_Ub\|_Z\le P_\nu\|b\|_H,\qquad
+ \|(\mathcal M_Ub)_2\|_{\rho_b^{-1/2}H_T}
+                         \le2\sqrt{\rho_b}\|b\|_H.
+\end{equation}
+Its thin old and young restrictions have respectively norms
+$P_\nu(S^{-1/2}+\epsilon)$ and $P_\nu\sqrt{\sigma}$.
+Indeed $|a\otimes b+b\otimes a|\le2|a||b|$, so the thin
+multiplier norm is at most $2\sup\sqrt{s}W|v|$.
+For the repair, $\sqrt{s}v_b=r_b$ and multiplication followed by
+the factor $\rho_b^{-1/2}$ gives the second estimate.
+These bounds also hold after multiplication of both sides by any
+common positive age weight, in particular the gain $g(s)^{-1}$.
+
+For $A\ge1$ the thin source has the absolute old moment bound
+\begin{equation}\label{stress-short:moment}
+ \mathcal N_1(1_{s>A}T):=
+ \int_A^\infty s^{-3/2}\int
+ (1+|\eta|/\sqrt{s})\|T(s,\cdot,\eta)\|_{L^2(dq/c)}\,d\eta\,ds
+ \le C_{m_Z}A^{-1/2}\|1_{s>A}T\|_{Z_1}.
+\end{equation}
+Transverse Cauchy--Schwarz gives
+\[
+ \int(1+|\eta|/\sqrt{s})\|T(s,\cdot,\eta)\|_{L^2_q}\,d\eta
+       \le C_{m_Z}s^{1/4}\|WT(s)\|_{L^2_{q,\eta}},
+\]
+because $\int\langle x\rangle^{2-2m_Z}dx<\infty$.
+The remaining time integral is
+$\int_A^\infty s^{-5/4}\|WT(s)\|_2ds$.
+Cauchy--Schwarz against $s^{-1/2}ds$ leaves
+$\int_A^\infty s^{-2}ds=A^{-1}$, proving
+\eqref{stress-short:moment}.
+
+In outer coordinates $x'=y'/R$, $u=|x'|^{-2}$ and
+$Y=\eta/\sqrt u$, the thin physical tensor is represented by
+$F=uT$. Directly,
+\[
+ \int(1+|Y|)\|F(x',Y,\cdot)\|_{L^2(dq/c)}\,dx'\,dY
+       =\pi\mathcal N_1(T).
+\]
+Thus \eqref{stress-short:moment} supplies exactly the first moment
+used in the separated-kernel approximation. It also justifies
+extending an old annulus to the axis by moment-norm approximation.
+All cutoffs multiply the tensor before its distributional divergence;
+no artificial boundary force is removed. The broad repair is instead
+estimated by its physical $L^{11/4}$ coefficient and energy bounds.

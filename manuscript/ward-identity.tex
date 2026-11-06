@@ -1,0 +1,195 @@
+\section{The exact Ward change on the multiplier range}
+\label{sec:short-ward}
+
+Fix the exact real unforced profile $U$ and its full pressure $p$:
+\[
+ D_0U+U\cdot\nabla U+\nabla p=0,\qquad
+ D_\mu=\partial_\tau-\tfrac12y\cdot\nabla-\nu\Delta
+                       +\mu-\tfrac12,\qquad \operatorname{div}U=0.
+\]
+Use normalized phase measure $d\tau/P$, the prescribed orthogonal
+symmetry, and the whole-space free inverses
+$R_\mu=D_\mu^{-1}$ and $S_\mu=R_\mu\mathbb P\operatorname{div}$.
+Here $R_\mu$ acts on divergence-free body forces. Fix
+$K\Subset(0,1/4)$ and all geometric parameters. Put
+\[
+ M_Uw=U\otimes w+w\otimes U,\qquad
+ \mathcal D_\mu^T=I+M_US_\mu.
+\]
+We use only physical stresses $T=M_Uw$ represented in the actual
+pair graph of the final return. Its velocity witness $w\in Y_2$
+has the stated symmetry and need not be divergence-free. Since $U$ is
+bounded, $T\in Y_2$; its old thin part has finite first transverse
+moment $N_1$, and its old repair part belongs to
+$L^2_\tau L^{22/19}$. The multiplier, moment and repair-product
+bounds establish these facts and are preserved by approximation.
+
+\subsection{The full old source and its outward stream cutoff}
+
+Let $r=|y'|$, $s=R^2/r^2$ and $R=\epsilon^{-1}$. Take smooth cutoffs
+\[
+ \chi_o=0\ (s\le1.2/\nu),\quad \chi_o=1\ (s\ge1.5/\nu),
+ \qquad
+ \chi_y=1\ (s\le0.8/\nu),\quad \chi_y=0\ (s\ge1/\nu).
+\]
+Thus the old source disk $r\le R\sqrt{\nu/1.2}$ is separated
+from the young receiver $r\ge R\sqrt\nu$. Set
+\begin{equation}\label{ward:displacement}
+ W_\mu=-S_\mu(\chi_oT),\qquad
+ X_0=W_\mu-W_{\mu+1},\qquad
+ X=\mathcal C_yX_0,\quad Y=D_{\mu+1}X,\quad h=[U,X].
+\end{equation}
+Here $[U,X]=U\cdot\nabla X-X\cdot\nabla U$, and the tensor
+$\chi_oT=\chi_oM_Vw+\chi_oM_{r_b}w$ is identical in both
+resolvents. In particular the full repair stress enters before
+inversion and before taking divergence.
+
+For these radially separated divergence-free fields define directly
+\[
+ \Psi_Z(r,z)=-\int_r^\infty\rho Z_z(\rho,z)\,d\rho,
+ \qquad
+ \mathcal C_y Z=\chi_yZ+\frac{\chi_y'}r\Psi_Z e_z.
+\]
+The phase is suppressed. The separated-kernel estimates prove convergence
+of this primitive and its differentiated versions for the thin
+$N_1$ and repair $L^2_\tau L^{22/19}$ sources. Their decay makes
+the boundary term $rZ_r$ at infinity vanish. Hence
+$\partial_r\Psi_Z=rZ_z$ and $\partial_z\Psi_Z=-rZ_r$.
+The cutoff is divergence-free, equals $Z$ on its plateau and vanishes
+in the old region; define it by zero where $\chi_y=0$.
+The same kernels control the stream correction and commutators,
+so $X,DX,Y\in Y_2$ and, since $U,DU$ are bounded, $h\in Y_2$.
+These are fixed-parameter bounds on the actual multiplier range.
+
+The full free resolvent identity gives
+\begin{equation}\label{ward:shifted-resolvent}
+ X_0=R_{\mu+1}W_\mu,\qquad D_{\mu+1}X_0=W_\mu.
+\end{equation}
+Consequently the exact cutoff identity is
+\begin{equation}\label{ward:cutoff-source}
+ Y=\mathcal C_yW_\mu+[D_{\mu+1},\mathcal C_y]X_0.
+\end{equation}
+It follows first for smooth graph inputs and then by the moment,
+repair-product and separated-kernel bounds. For example direct
+integration of the outward primitive gives
+$\Psi_{AZ}=A\Psi_Z+\Psi_Z$ for $A=-y\cdot\nabla/2$, and
+$\Psi_{\Delta Z}=(\partial_r^2-r^{-1}\partial_r+\partial_z^2)\Psi_Z$;
+the same decay removes the boundary terms. Thus this identity does
+not require a choice of stream primitive near the axis.
+Relative to a scalar-cutoff reference return, both
+$(\mathcal C_y-\chi_y)W_\mu$ and
+$[D_{\mu+1},\mathcal C_y]X_0$ remain. They are supported on the
+transition annulus and are separately estimated below.
+
+\subsection{Derivation with the exact pressure}
+
+We derive the identity before projecting. In physical coordinates let
+$u$ solve the unforced Navier--Stokes equation with pressure $p_{\rm phys}$,
+let $\mathsf X$ be divergence-free, and set
+\[
+ \mathsf D=\partial_t-\nu\Delta,\quad k(t)=\mu/t,
+ \quad \mathsf Y=(\mathsf D+k)\mathsf X,
+ \quad \mathsf h=[u,\mathsf X].
+\]
+Repeated indices are summed, and $(D\mathsf X)_{ij}=\partial_j\mathsf X_i$.
+The product rule yields
+\[
+ (\mathsf D+k)\mathsf h_i
+ =[\mathsf Du,\mathsf X]_i+[u,\mathsf Y]_i-2\nu\mathsf C_i,
+ \quad
+ \mathsf C_i=\sum_{j,l}
+ \bigl[(\partial_ju_l)\partial_{jl}\mathsf X_i
+       -(\partial_j\mathsf X_l)\partial_{jl}u_i\bigr].
+\]
+For $N=u\cdot\nabla u$, expansion and cancellation give
+\[
+ -[N,\mathsf X]_i+u_j\partial_j\mathsf h_i
+             +\mathsf h_j\partial_ju_i
+       =u_ju_l\partial_{jl}\mathsf X_i.
+\]
+The pressure identity is
+\[
+ -[\nabla p_{\rm phys},\mathsf X]_i
+ =\partial_i(\mathsf X_j\partial_jp_{\rm phys})
+  -(\partial_j\mathsf X_i+\partial_i\mathsf X_j)
+                                      \partial_jp_{\rm phys}.
+\]
+Using $\mathsf Du=-N-\nabla p_{\rm phys}$ and
+$[u,\mathsf Y]=-(u\cdot\nabla\mathsf Y+
+\mathsf Y\cdot\nabla u)+2u\cdot\nabla\mathsf Y$, these formulas
+prove the desired identity. The global Leray projection removes
+precisely $\nabla(\mathsf X\cdot\nabla p_{\rm phys})$.
+
+Now substitute
+\[
+ u=t^{-1/2}U(y,\tau),\quad
+ \mathsf X=\sqrt t\,X(y,\tau),\quad
+ p_{\rm phys}=t^{-1}p(y,\tau),\quad
+ y=x/\sqrt t,\quad\tau=\log t.
+\]
+Then $\mathsf Y=t^{-1/2}D_{\mu+1}X$ and
+$\mathsf h=t^{-1/2}[U,X]$; every term in the differential identity
+has factor $t^{-3/2}$. Consequently, in profile variables,
+\begin{equation}\label{ward:physical-identity}
+ D_\mu h+\mathbb P\operatorname{div}M_Uh
+ =-\mathbb P\operatorname{div}M_UY+\mathbb P\widetilde E_\mu,
+\end{equation}
+where the full unprojected residual is
+\begin{align}
+ \widetilde E_\mu
+   &=2U\cdot\nabla Y-2\nu C_{\rm diff}
+       +(U\otimes U):D^2X-(DX+DX^{\mathsf T})\nabla p,
+       \label{ward:residual}\\
+ (C_{\rm diff})_i
+   &=\sum_{j,l}\bigl[(\partial_jU_l)\partial_{jl}X_i
+              -(\partial_jX_l)\partial_{jl}U_i\bigr].\notag
+\end{align}
+All four terms are retained. In particular the pressure is the exact
+global pressure of $U$, including the repair. A spatially constant
+displacement has zero residual; spatial derivatives of the returned
+displacement and velocity produce the remaining force.
+
+For actual graph inputs this identity holds distributionally by
+symmetry-preserving smooth approximation of $w$, followed by the
+multiplier, moment, repair-product and separated-kernel bounds.
+The energy field $h+S_\mu M_U(Y+h)$ has distributional
+$D_\mu$ equal to $\mathbb P\widetilde E_\mu$.
+The actual-range body estimates below show
+$\widetilde E_\mu\in Y_2$: the repair part is bounded directly,
+and the thin part differs from its Gaussian affine body by a
+$Y_2$ error. Free weak uniqueness therefore gives
+\[
+ h+S_\mu M_U(Y+h)=R_\mu\mathbb P\widetilde E_\mu.
+\]
+Multiplying by $M_U$ and adding $M_UY$ yields precisely the
+stress identity used in the final return:
+\begin{equation}\label{ward:stress-normal}
+ \mathcal D_\mu^T M_U(Y+h)
+       =M_UY+M_UR_\mu\mathbb P\widetilde E_\mu.
+\end{equation}
+
+\subsection{Support and invertibility on the actual range}
+
+Both $Y$ and $h$ are divergence-free and supported in $s\le1/\nu$:
+$D_{\mu+1}$ preserves the divergence-free condition, the bracket of divergence-free
+fields is divergence-free, and these operations are local after the
+stream cutoff. No projection is applied to $Y+h$. Thus
+\begin{equation}\label{ward:support-zero}
+ \chi_oM_U(Y+h)=0.
+\end{equation}
+The change $H_oT=M_U(Y[T]+h[T])$ maps the actual multiplier
+range to itself by the multiplier bounds. It depends only on
+$\chi_oT$ and has young support, so $H_o^2=0$ and its inverse
+change is $I-H_o$. The same argument applies after adding the
+later affine correction: it depends only on old data and is
+supported in $s\le1.1/\nu$, still disjoint from the old source.
+No smallness of these changes is required.
+
+In particular a nonzero actual stress $T$ gives a nonzero
+$T'=(I+H)T$. If the transformed equation gives
+$\mathcal D_\mu^T T'=0$, then $b=-S_\mu T'$ satisfies
+$T'=M_Ub$ and is a nonzero divergence-free energy field. This implication
+uses neither injectivity of $M_U$ nor an isomorphism of full ambient
+velocity and stress kernels. The final return below supplies the
+nonzero $T$ and retains both stream transitions, the full pressure,
+and all old repair terms in its exact error decomposition.

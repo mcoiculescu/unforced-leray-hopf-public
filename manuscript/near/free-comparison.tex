@@ -1,0 +1,258 @@
+\subsection{Free comparison with global tensor inputs}
+
+Let \(R=\epsilon^{-1}\), \(P=2\epsilon c\le1\), and use
+\[
+ s=R^2/\rho^2,\qquad q=R\log(\rho/R)+R\tau/2,
+ \qquad \eta=Rz/\rho.
+\]
+The velocity and tensor measures are
+\(H=L^2(s^{-3/2}ds\,dq/c\,d\eta)\) and
+\(H_T=L^2(s^{-1/2}ds\,dq/c\,d\eta;\operatorname{Sym}_3)\).
+The natural lifts \(b\mapsto\sqrt{s}\,b\) and \(T\mapsto sT\)
+both multiply norms by \(\sqrt\pi R\). All vector fields are
+axisymmetric without swirl, and tensors have no component with exactly
+one azimuthal index. Set
+\[
+ S=s\partial_s,\quad K=2S+\eta\partial_\eta,\quad
+ Q_\epsilon=\partial_q-\epsilon(K+1),\quad E=\operatorname{diag}(1,1,0).
+\]
+Direct Cartesian differentiation gives
+\begin{align*}
+ A_\epsilon&=-S+\nu s[(Q_\epsilon^2+\partial_\eta^2)I-\epsilon^2E],
+ &A_0&=-S+\nu s\Delta_{q,\eta},\\
+ \operatorname{div}(\sqrt{s}\,b)
+ &=s[(\partial_q-\epsilon K)b_r+\partial_\eta b_z],\\
+ (\operatorname{div}_\epsilon T)_r
+ &=Q_\epsilon T_{rr}+\partial_\eta T_{rz}-\epsilon T_{\phi\phi},
+ &(\operatorname{div}_\epsilon T)_z
+ &=Q_\epsilon T_{zr}+\partial_\eta T_{zz}.
+\end{align*}
+Thus the full tensor divergence, including the hoop traction, is retained.
+The domains of \(A_\epsilon\) and its adjoint are the exact Cartesian
+domains under these lifts. No boundary is introduced at either age end.
+Let \(P_\epsilon\) be the conjugated Cartesian Leray projection and
+\(P_0\) the ordinary planar cylinder projection. Write
+\[
+ T_\epsilon=(\mu-A_\epsilon)^{-1}P_\epsilon,
+ \qquad \mathcal S_\epsilon=T_\epsilon s\operatorname{div}_\epsilon.
+\]
+The tensor map means completion from smooth tensors. The free Cartesian
+energy estimate, and its flat age-energy counterpart, give uniformly
+for \(0\le\epsilon\le1\) and \(\mu\) in a compact subset of
+\(\operatorname{Re}\mu>-1/4\),
+\begin{equation}\label{near:free-energy}
+ \|b\|_H+\sqrt\nu\|(Q_\epsilon b,\partial_\eta b,
+                    \epsilon b_r)\|_{H_T}
+ \le C\nu^{-1/2}\|M\|_{H_T},\qquad b=\mathcal S_\epsilon M.
+\end{equation}
+The flat equation is
+\((\partial_s+\mu/s-\nu\Delta)b=P_0\operatorname{div}_0M\).
+Pairing it with \(s^{-1/2}\bar b\) gives the coercive constant
+\(\operatorname{Re}\mu+1/4\) and proves its completion independently
+of comparison. Bounded measurable partitions of \(M\) are therefore
+allowed before divergence; their distributional interface terms remain.
+
+\begin{proposition}\label{near:compact-free-comparison}
+Let \(\chi\) be supported in \(\sigma\le s\le H_1\),
+\(|\eta|\le L_1\), and let \(\chi_1\) equal one on a larger
+neighborhood. There is a fixed integer \(k\) such that
+\begin{equation}\label{near:compact-free-rates}
+ \|\chi(T_\epsilon-T_0)\|_{H\to H}
+       \le C\Gamma^k\epsilon^{1/14},\qquad
+ \|\chi(\mathcal S_\epsilon-\mathcal S_0)\|_{H_T\to H}
+       \le C\Gamma^k\epsilon^{1/50},
+\end{equation}
+where \(\gamma_*=\inf(\operatorname{Re}\mu+1/4)>0\) over the fixed
+parameter set and
+\[
+ \Gamma=2+\nu+\nu^{-1}+c+c^{-1}+\sigma^{-1}+H_1+L_1
+ +\sup|\mu|+\gamma_*^{-1}
+ +\|\chi\|_{C^8}+\|\chi_1\|_{C^8}.
+\]
+The integer is fixed before any window is allowed to depend on
+\(\epsilon\). Inputs are global and arbitrary in their indicated spaces.
+\end{proposition}
+
+\begin{proof}
+First compare the projections on smooth tests. On each nonzero
+\(q\)-frequency, a flat divergence-free field and gradient have forms
+\((-\psi_\eta,\psi_q)\), \((\varphi_q,\varphi_\eta)\).
+Their exact counterparts are
+\[
+ (-\psi_\eta,(\partial_q-\epsilon K)\psi+\epsilon\psi),
+ \qquad ((\partial_q-\epsilon K)\varphi,\varphi_\eta).
+\]
+The first has zero exact divergence; the second lifts to a Cartesian
+gradient. The inverse \(q\)-derivative costs at most \(c/(2\pi)\).
+Also, for the flat Fourier multiplier,
+\(|\partial_\xi^jP_0(k,\xi)|\le C_j|k|^{-j}\), \(j=1,2\),
+so one or two transverse moments of the projected field cost only
+fixed powers of \(c\). All projection operations commute with \(S\).
+
+For the zero frequency, the radial component is divergence-free and the
+axial component is a gradient. Take the corresponding primitives to
+vanish at \(\eta=0\), and cut them off at \(|\eta|\sim L_0\).
+Their suprema, including one \(S\) derivative, are bounded by
+\(C\|\langle\eta\rangle f\|_2\) and
+\(C\|\langle\eta\rangle Sf\|_2\).
+Cutoff differentiation costs \(L_0^{-1/2}\), geometric correction
+costs \(\epsilon L_0^{1/2}\), and the omitted field tail costs
+\(L_0^{-1}\). Choose \(L_0=\epsilon^{-1}\).
+Distances to the exact gradient and divergence-free subspaces, both closed
+orthogonal subspaces of \(H\), now give
+\begin{equation}\label{near:leray-test}
+ \|(P_\epsilon-P_0)f\|_H
+ \le p(1+c+c^{-1})\sqrt\epsilon
+              \sum_{a,j=0}^1\|\eta^jS^af\|_H.
+\end{equation}
+Initially use finite Fourier sums, compact log-age support and Schwartz
+transverse profiles. The exact corrections lift to annular fields.
+Cutoff, mollification and Fourier truncation are dense in the displayed
+norm, after \(x=\log s\), \(u=e^{-x/4}f(e^x)\).
+Thus \eqref{near:leray-test} holds on its full stated domain and retains
+the zero mode.
+
+Next obtain uniform local regularity of the outputs.
+The unitary lift conjugates \(\mathcal T-3/4\) to \(S-1/4\).
+The Cartesian estimate \eqref{free:half-drift} therefore gives
+\[
+ \||S-1/4|^{1/2}\mathcal S_\epsilon M\|_H
+           \le C\nu^{-1/2}\|M\|_{H_T}\qquad(\epsilon>0).
+\]
+At \(\epsilon=0\), a compact-age cutoff \(u\) of the flat solution
+satisfies \(u\in L_s^2H^1\), \(u_s\in L_s^2H^{-1}\) by
+\eqref{near:free-energy} and its equation. Fourier Cauchy--Schwarz gives
+\(\||\partial_s|^{1/2}u\|_2^2\le
+\|u_s\|_{L_s^2H^{-1}}\|u\|_{L_s^2H^1}\).
+All local constants are polynomial in \(\Gamma\).
+
+In log age the conjugate of \(Q_\epsilon\), shifted by \(\epsilon\),
+is the skew operator
+\(\widetilde Q_\epsilon=\partial_q-2\epsilon\partial_x
+                     -\epsilon(\eta\partial_\eta+1/2)\).
+Its three constituent flows commute. Multiplication by a smooth cutoff
+preserves the half age derivative: its difference quotient splits into
+the cutoff times the quotient of the function and its first derivative
+times a translated function. Both terms have the stated polynomial bound.
+For a compactly supported
+cutoff \(f\) of \(e^{-x/4}b(e^x)\), their unitary flow identities give
+\[
+ \|f(q+h)-f(q)\|_2
+ \le |h|\|\widetilde Q_\epsilon f\|_2
+ +C|\epsilon h|^{1/2}\||\partial_x|^{1/2}f\|_2
+ +|\epsilon h|\|(\eta\partial_\eta+1/2)f\|_2.
+\]
+For \(|h|\le1\), square and integrate against \(|h|^{-3/2}\);
+for larger \(h\), use \(2\|f\|_2\). The half age derivative
+and full transverse derivative already have bounds. Directional Fourier
+inequalities and the smooth log-age change prove
+\begin{equation}\label{near:local-smoothing}
+ \|\chi\mathcal S_\epsilon M\|_{H^{1/4}(s,q,\eta)}
+       \le C\Gamma^k\|M\|_{H_T}.
+\end{equation}
+For a body source the graph controls \(Sb\), and the gradient controls
+\(Q_\epsilon b,\partial_\eta b\). Since
+\(\partial_s=s^{-1}S\) and
+\(\partial_q=Q_\epsilon+\epsilon(2S+\eta\partial_\eta+1)\),
+the body output has a full local \(H^1\) bound.
+The flat body graph follows directly by cutting off its heat equation
+on dyadic intervals \([a/2,4a]\): the Fourier heat estimate controls
+\(\nu s\Delta b\), the equation controls \(Sb\), and finite overlap
+sums these bounds. Periodic extension over many cells followed by division
+by their number gives constants independent of the number of cells.
+
+It remains to compare smooth adjoint observations globally. For a smooth
+test \(z\) in the observation box, put \(h=P_0z\) and \(v=T_0^*z\).
+Exactly,
+\[
+ v(s)=\int_s^\infty(s/t)^{\bar\mu+1/2}
+                e^{\nu(t-s)\Delta}h(t)\,\frac{dt}{t}.
+\]
+It vanishes for \(s>H_1\). With \(a=\bar\mu+1/2\),
+\[
+ Sv=av-\nu s\Delta v-h,\qquad
+ S^2v=a^2v-\nu s(2a+1)\Delta v+\nu^2s^2\Delta^2v
+                         -ah+\nu s\Delta h-Sh.
+\]
+In log age the integral is a heat contraction followed by translation,
+with scalar kernel \(e^{-(\bar\mu+1/4)r}\), \(r>0\).
+Minkowski bounds it by the inverse coercivity gap. The identities
+\[
+ \eta e^{t\Delta}=e^{t\Delta}(\eta-2t\partial_\eta),\qquad
+ \eta^2e^{t\Delta}=e^{t\Delta}
+       (\eta^2-4t\eta\partial_\eta-2t+4t^2\partial_\eta^2)
+\]
+control two transverse moments since the heat time is at most \(\nu H_1\).
+The multiplier estimate used in \eqref{near:leray-test} transfers these
+moments through \(P_0\). The preceding two age identities therefore give,
+with \(\Lambda=K+1\),
+\begin{equation}\label{near:adjoint-polynomial}
+ \|\nu s\Lambda\partial_qv\|_H+\|\nu s\Lambda^2v\|_H+\|\nu sEv\|_H
+ +\|\eta\partial_\eta v\|_H
+ +\sum_{a,j=0}^1\|\eta^jS^av\|_H
+ \le C\Gamma^k\|z\|_{H^6}.
+\end{equation}
+Indeed \(\Lambda^2=4S^2+4S\eta\partial_\eta+4S+
+\eta^2\partial_\eta^2+3\eta\partial_\eta+1\).
+At most two age differentiations, two moment commutations and six test
+derivatives occur. Below the test support all norms are integrable by
+\(\int_0^\sigma s^{2\operatorname{Re}\mu-1/2}ds<\infty\).
+Thus the degree \(k\) is fixed independently of later windows.
+
+The exact generator difference is
+\(A_\epsilon-A_0=\nu s[-2\epsilon\Lambda\partial_q+
+\epsilon^2\Lambda^2-\epsilon^2E]\), also for adjoints. If
+\(w=T_\epsilon^*z-v\), then
+\[
+ (\bar\mu-A_\epsilon^*)w
+ =(P_\epsilon-P_0)z+(A_\epsilon^*-A_0^*)v.
+\]
+The right side has \(H\) norm at most
+\(C\Gamma^k\sqrt\epsilon\|z\|_{H^6}\).
+The exact componentwise free adjoint energy estimate bounds \(w\)
+and its physical gradient by this quantity (with a polynomial viscosity
+cost). There is no projection before the second source term.
+The domain application is legitimate because
+\eqref{near:adjoint-polynomial} puts \(v\) in the actual maximal adjoint
+graph; its lift vanishes near the axis, without any assumption that
+\(v\) is divergence-free for finite \(\epsilon\).
+
+Let \(G_\epsilon\) be the negative weighted symmetric gradient adjoint
+to \(s\operatorname{div}_\epsilon\). Then
+\[
+ (\mathcal S_\epsilon^*-\mathcal S_0^*)z
+   =G_\epsilon w+(G_\epsilon-G_0)v.
+\]
+The divergence formula at the start shows that the second term is
+\(\epsilon\) times \(Sv,\eta\partial_\eta v,v\) and frame terms.
+Consequently
+\begin{equation}\label{near:smooth-adjoint-comparison}
+ \|(T_\epsilon^*-T_0^*)z\|_H
+ +\|(\mathcal S_\epsilon^*-\mathcal S_0^*)z\|_{H_T}
+ \le C\Gamma^k\sqrt\epsilon\|z\|_{H^6}.
+\end{equation}
+
+Place the output support in a larger periodic box in \(s,\eta\),
+retaining the original normalized \(q\) measure. Fourier projection
+to frequencies at most \(N\), and the local \(H^1\) and
+\(H^{1/4}\) bounds, give high-frequency errors \(C\Gamma^kN^{-1}\)
+and \(C\Gamma^kN^{-1/4}\). A unit low-frequency dual vector corresponds
+to the compact smooth \(H\)-test \(s^{3/2}\chi F_Nh\), with
+\(H^6\) norm at most \(C\Gamma^kN^6\). Thus the full operator
+differences are at most
+\[
+ C\Gamma^k(N^{-1}+\sqrt\epsilon N^6),\qquad
+ C\Gamma^k(N^{-1/4}+\sqrt\epsilon N^6).
+\]
+Choose \(N=\epsilon^{-1/14}\) and \(N=\epsilon^{-2/25}\), respectively.
+No Fourier mode-count factor is used. This proves
+\eqref{near:compact-free-rates}.
+\end{proof}
+
+The argument uses only normalized phase averages. The imported Cartesian
+graph bound is obtained by averaging fixed-size heat windows over their
+centers, so it has no inverse-period loss. Every remaining operation
+above is a spatial or age identity. Hence the comparison remains valid
+when \(P=2\epsilon\nu^{-2}\) tends to zero. Exact Cartesian divergence,
+the pressure projection, the zero cylinder mode and tensor interface
+terms have all been retained.

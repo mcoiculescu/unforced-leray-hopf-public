@@ -1,0 +1,587 @@
+\section{Repair, pressure and transition errors on the generated range}
+
+Write $R=\epsilon^{-1}$, $c=\nu^{-2}$,
+$g(s)=\exp\{\gamma s/(1+\nu s)\}$ and
+$N_\nu=e^{\lambda/\nu}\nu^{-\kappa}$, where $\Re\lambda=\gamma>0$.
+The geometry satisfies
+\[
+ \epsilon=C_*\nu^r e^{-d_0/\nu},\qquad d_0=\gamma/3,
+ \qquad \epsilon^3|N_\nu|\nu^{5+2\mu}\asymp1.
+\]
+All constants below are uniform for $\mu$ in a fixed compact subset
+of $(0,1/4)$ and for the stipulated compact ranges of $C_*,r$.
+The gain-band assertions refer to parameter triples satisfying the
+displayed relation. At fixed $\nu,\epsilon$ the final spectral scan
+is only an interval of width $O(|\log\nu|^{-1})$; no positive gain
+bound is asserted on a nonshrinking spectral interval for that fixed
+background.
+$P_\nu$ denotes a fixed polynomial in $\nu^{-1}$. The exact
+background is $U=V+r_b$, $V=U_{\rm raw}+E\alpha_{\rm bg}$, with the unprojected raw residual and
+coefficient bounds of the background construction. In particular
+\[
+ \|r_b\|_{C_\tau L^{11/4}}+\|r_b\|_{W^{1,\infty}}
+  +\sum_{j=1}^2\|D^jr_b\|_{Y_{11/4}}
+ \le P_\nu\rho,\qquad
+ \rho=\epsilon^{3/11}e^{m_0/\nu}.
+\]
+Fixed additional viscosity powers are included in $P_\nu$.
+For an arbitrary axisymmetric physical velocity $w$ without swirl put
+\[
+ G(w)=R^{-1}\|g^{-1}w\|_{Y_2}.
+\]
+
+\subsection{Normalize the full old stress before inversion}
+
+Let $\chi_o$ vanish on $s\le1.2/\nu$ and equal one on
+$s\ge1.5/\nu$. The old source must be
+\[
+ T_o=\chi_o(U\otimes w+w\otimes U),
+\]
+including the repair. Define $W_\mu=-S_\mu T_o$,
+$X=\mathcal C_\chi(W_\mu-W_{\mu+1})$,
+$Y=L_{{\rm free},\mu+1}X$ and $h=[U,X]$, where
+$\mathcal C_\chi$ is the divergence-free stream cutoff supported on
+$s\le1/\nu$. All operators are applied in physical units here.
+The tensor in the two shifted resolvents is identical.
+
+The thin part is controlled by its first transverse moment. If
+$w=\mathcal N_v b$ and $A=1.2/\nu$, weighted Cauchy--Schwarz gives
+\[
+ N_1(\chi_o M_vb)
+ \le P_\nu A^{-1/2}\|b\|_H
+ \le P_\nu |N_\nu|G(w).
+\]
+For the repair, use instead the global product estimate
+\begin{equation}\label{repair:source}
+ F_r:=\|\chi_o(r_b\otimes w+w\otimes r_b)\|_{L^2_\tau L^{22/19}}
+ \le P_\nu\rho R|N_\nu|G(w).
+\end{equation}
+This follows from H\"older's inequality and $g\le e^{\gamma/\nu}$.
+The fixed power relating $e^{\gamma/\nu}$ to $|N_\nu|$ is absorbed
+in $P_\nu$. No moment is assigned to the repair source.
+
+The general separated kernels give $X,DX,Y\in Y_2$ for both
+source classes. For example the repair source-to-$L^2$ bound uses
+the order-four kernel in $L^{11/7}$, with norm
+$CD^{-23/11}$ outside distance $D$. Hence
+$w\mapsto H_ow:=Y+h$ is bounded at fixed parameters.
+Its output has young support. Consequently $H_o^2=0$ and
+$(I+H_o)^{-1}=I-H_o$ by the disjoint old and young supports.
+
+For $T=M_Uw$, the later full affine correction gives
+$\widehat w=w+Y[T]+h[T]-h_{\mathcal LT}$. The added correction has
+young support and depends only on old data. Hence
+\begin{equation}\label{repair:old-invariance}
+ \chi_oM_U\widehat w=\chi_oM_Uw.
+\end{equation}
+Thus every old-source estimate below applies literally to the new
+unknown $w$. No gain norm of the possibly large young correction is
+inserted into the old repair product.
+
+\subsection{The repair source and exact pressure give a positive margin}
+
+Let $\widetilde E(U;X,Y)$ be the full unprojected Ward residual,
+\[
+ 2U\cdot\nabla Y-2\nu C_{\rm diff}
+ +(U\otimes U):D^2X-(DX+DX^T)\nabla p.
+\]
+Here $p$ is the exact pressure. For the old repair source, the
+pointwise gradient kernel has $L^{22/3}$ norm $CD^{-101/22}$.
+At age $s\le1/\nu$ this gives
+\[
+ \|DX(s)\|_{L^2_\tau L^\infty_y}
+ +\|DY(s)\|_{L^2_\tau L^\infty_y}
+ \le P_\nu\epsilon^{101/22}s^{101/44}F_r,
+\]
+with the spatial supremum understood on that age surface. The
+global gradient estimate into $L^{22/3}$ uses the kernel exponent
+$11/3$ and is
+\begin{equation}\label{repair:phase-gradient}
+ \|DX\|_{L^\infty_\tau L^{22/3}}
+ +\|DY\|_{L^\infty_\tau L^{22/3}}
+ \le P_\nu\epsilon^{46/11}F_r.
+\end{equation}
+The phase supremum follows from the free equations for
+$(\partial_\tau-y\cdot\nabla/2)DX$ and $DY$ and the normalized
+phase estimate over $P\le1$. The instantaneous projected tensor
+divergence is separated from the receiver and has the same kernel
+bound. This argument differentiates no source in phase.
+
+To estimate $V\cdot\nabla Y$, use $V=\sqrt{s}v$ and the physical
+Jacobian $\pi R^2s^{-5/2}ds\,d\eta$. Its squared normalized norm
+is bounded by
+\[
+ P_\nu\epsilon^{101/11}F_r^2
+ \int_0^{1/\nu}s^{34/11}
+             \|\sup_q|v(s,q,\cdot)|\|_2^2\,ds.
+\]
+The integral is finite at zero and polynomial in $\nu^{-1}$.
+For the remaining thin-coefficient terms use
+$R^{-1}(\|DV\|_2+\|D^2V\|_2+\|V\otimes V\|_2)\le P_\nu$.
+Here their products with the returned derivatives use the ordinary
+$L^\infty_\tau L^\infty_y$ bound on the cutoff fields, of size
+$P_\nu\epsilon^{101/22}F_r$ for a first derivative. To obtain it,
+apply the same phase norm argument at its $q=\infty$ endpoint:
+dilation is an isometry on $L^\infty$, so along its characteristics
+the norm difference is bounded by the integral of the $L^\infty$
+norm of $BZ$. Young's inequality bounds both $Z$ and $BZ$ in
+$L^2_\tau L^\infty_y$. Thus no product of two merely phase-$L^2$
+factors is used for the global pressure term below.
+Define the canonical pressure by
+$\nabla p_V=-(I-\mathbb P)(V\cdot\nabla V)$. It obeys
+$\|\nabla p_V\|_2\le C\|V\|_\infty\|DV\|_2$.
+Therefore
+\[
+ R^{-1}\|\widetilde E(V;X,Y)\|_{Y_2}
+ \le P_\nu\epsilon^{101/22}F_r
+ \le P_\nu\epsilon^{85/22}|N_\nu|e^{m_0/\nu}G(w).
+\]
+
+The exact pressure correction is
+\[
+ \nabla(p-p_V)=-(I-\mathbb P)
+ (V\cdot\nabla r_b+r_b\cdot\nabla V+r_b\cdot\nabla r_b),
+\]
+whose $Y_{11/4}$ norm is at most $P_\nu\rho$.
+By H\"older's inequality, \eqref{repair:phase-gradient} bounds all
+products with a phase-average coefficient, including
+$D^2r_bDX$ and $DX\nabla(p-p_V)$. They contribute at most
+\[
+ P_\nu R^{-1}\rho\epsilon^{46/11}F_r
+ \le P_\nu\epsilon^{52/11}|N_\nu|e^{2m_0/\nu}G(w).
+\]
+Terms with $D^2X$ have an additional curvature power. This proves
+the old repair bound on the entire source interval, including every
+large age and every spatial pressure tail.
+
+For a thin old source, replacing the exact background pressure by
+the flat lifted pressure has the same first error size. Indeed the
+unprojected residual gives
+\[
+ \nabla(p_{\rm raw}-p_{\rm lift})
+       =-(I-\mathbb P)F_{\rm raw}.
+\]
+The entrance convection terms and the explicit radial pressure
+completion then give
+$\|\nabla p-G_{\rm flat}\|_{Y_{11/4}}
+ \le P_\nu\epsilon^{3/11}e^{m_0/\nu}$.
+The general thin-source estimate is
+$\|DX\|_{L^\infty_\tau L^{22/3}}
+ \le P_\nu\epsilon^{57/22}N_1$.
+H\"older's inequality and $R^{-1}=\epsilon$ give the factor
+$\epsilon^{85/22}$. Nonpressure repair and entrance
+coefficient changes are bounded in the same way or have a larger
+curvature power. Thus the combined error $f_r$ satisfies
+\begin{equation}\label{repair:body-error}
+ R^{-1}\|f_r\|_{Y_2}
+ \le P_\nu |N_\nu|G(w)
+ \left(\epsilon^{85/22}e^{m_0/\nu}
+       +\epsilon^{52/11}e^{2m_0/\nu}\right).
+\end{equation}
+All the unprojected forces here have young support, because every
+term contains a derivative of $X$ or $Y$. Applying the Leray
+projection does not change their curl, so these forces do not create
+a direct vorticity-source moment at old ages.
+
+\subsection{Both transition terms and the other age rectangles}
+
+Let the near operator remove only the original far mask
+$s<S$, $t>e^\delta s$, with $S=\epsilon^{-b}$ and
+$0<\delta<\log(6/5)$. The young-old rectangle is contained in this
+mask. Its complement is exactly the late-output part
+$(1-\chi_y)F_{\rm far}$ and the early-source part
+$\chi_yF_{\rm far}(1-\chi_o)$. Neither is identified with a local
+causal inverse. The two differences produced by the stream cutoff
+are also retained:
+\[
+ (\mathcal C_\chi-\chi)W_\mu,
+ \qquad [L_{{\rm free},\mu+1},\mathcal C_\chi]
+                   (W_\mu-W_{\mu+1}).
+\]
+They are supported on $0.8/\nu<s<1/\nu$.
+
+On late output, $g(s)^{-1}\le e^{-4\gamma/(9\nu)}$; on early
+source, $g(t)\le e^{3\gamma/(5\nu)}$. The general separated
+kernel bounds, followed by the actual product estimate
+\eqref{repair:source}, give the following weakest curvature powers
+for the four source/receiver combinations, in the split stress norm:
+\[
+ \begin{array}{c|cc}
+   &\text{thin receiver}&\text{scaled repair receiver}\\ \hline
+ \text{thin source}&\epsilon^2&
+      \epsilon^{49/22}e^{m_0/(2\nu)}\\
+ \text{repair source}&\epsilon^{63/22}e^{m_0/\nu}&
+      \epsilon^{79/22}e^{3m_0/(2\nu)}.
+ \end{array}
+\]
+Each entry has a common fixed polynomial $P_\nu S^k$, and is
+multiplied by $G(w)|N_\nu|e^{-4\gamma/(9\nu)}$ for late output,
+or by $G(w)e^{3\gamma/(5\nu)}$ for early source. For example,
+the thin-to-repair entry uses the order-four kernel from $L^2$ to
+$L^{22/3}$, with off-diagonal norm $D^{-23/11}$, followed by
+$\sqrt\rho$. The repair-to-thin entry uses the pointwise exponent
+$79/22$, followed by $\rho R$. The repair-to-repair entry uses
+the source $L^{22/19}$ norm and the $L^{11/3}$ kernel. The
+outward stream primitive has the same norm powers, so both
+transition terms have the late-output bound.
+The thin-to-thin estimate at age zero does not use a first-moment
+bound with a fixed positive lower source age. Use the mass estimate
+$N_0(a)\le C(a^{-3/4}+a^{-1/2})\|T\|_{Z_1}$ proved below instead.
+The separated pointwise velocity is at most
+$P_\nu\epsilon^2s^2N_0(e^\delta s)$. After the normalized velocity
+lift and thin multiplication, the square root of the output stress
+age density is bounded by
+\[
+ P_\nu\epsilon^2s^{5/4}V_m(s)N_0(e^\delta s)
+ \le P_\nu\epsilon^2(s^{1/2}+s^{3/4})V_m(s)\|T\|_{Z_1}.
+\]
+Its square is integrable at zero, and the integral up to $S$ is
+polynomial in $S$. This supplies the first table entry on the full
+age interval.
+
+The two weakest exponential margins are
+\[
+ 2d_0-\gamma+4\gamma/9=\gamma/9,
+ \qquad 2d_0-3\gamma/5=\gamma/15.
+\]
+For completeness the thin-to-repair margins are
+$37\gamma/198$ and $47\gamma/330$, before its $m_0/2$ loss;
+the repair-to-thin margins are $79\gamma/198$ and
+$39\gamma/110$, before its $m_0$ loss. Thus, if $\delta T_a$
+is the total stress correction from these regions and both stream
+transitions,
+\begin{equation}\label{repair:age-error}
+ \|g^{-1}\delta T_a\|_Z
+ \le P_\nu
+  \exp\!\left[-\frac{\gamma/15-kbd_0-3m_0/2}{\nu}\right]G(w).
+\end{equation}
+
+\subsection{The whole thin geometric residual and the actual affine lift}
+
+We now include the terms remaining in the exact transformed equation,
+not just the repair and age errors. Write $T=(T_1,T_2)=M_Uw$ in
+the split stress space, so $T_1=M_Vw$ is the thin component and the
+physical repair tensor represented by $T_2$ is $M_{r_b}w$.
+Let $X_1,Y_1$ denote the response to $\chi_oT_1$ alone and let
+$X^{\rm mt},Y^{\rm mt}=D_{\mu+1}X^{\rm mt}$ be its phase-mean,
+zero-transverse-width Newton response, with the same stream cutoff.
+The uncut Newton fields are harmonic outside the old source disk;
+their shifted dilation identity therefore gives the same displayed
+commutator formula for $Y^{\rm mt}$. In particular the Laplacian
+of the stream-cutoff field is retained even though the uncut fields
+are harmonic there.
+Set
+\[
+ A_T(s)=\mathcal L T_1(s)
+       =D_yX^{\rm mt}(R/\sqrt s,0,0),\qquad
+ B_T=A_T'+\mu A_T/s.
+\]
+The full Cartesian matrix is retained, including its hoop entry.
+The first stream cutoff $\chi_y$ is supported in $s\le1/\nu$;
+the affine source cutoff $\chi_f$ equals one there and vanishes for
+$s\ge1.1/\nu$. Hence $\chi_f A_T=A_T$ exactly. In particular the
+source $F_{A_T}$ uses $B_T$, without a second cutoff derivative.
+
+Put $N=N_1(\chi_oT_1)$. The explicit separated kernels imply,
+for $0\le j\le6$,
+\begin{equation}\label{repair:actual-jet}
+ |(s\partial_s)^j A_T(s)|\le C_j\epsilon^3s^{5/2}N,
+ \qquad A_T(s)=0\quad(s\ge1/\nu).
+\end{equation}
+Indeed the gradient Newton kernel has degree $-5$, and the ratio of
+the old source radius to the young receiver radius is at most
+$1/\sqrt{1.2}<1$. Each $s\partial_s=-r\partial_r/2$ derivative
+keeps degree $-5$ after its factor $r$ is included. The outward
+stream primitive has the same degree. Fixed conormal derivatives
+of $\widehat\chi_y(\nu s)$ are bounded. This proves the displayed
+bound directly, without first passing through the exponentially
+weighted smooth-source norm.
+
+For clarity we give the geometric comparison that is needed for
+arbitrary thin inputs. One phase primitive in the dilation variable,
+with its dilation-one boundary term retained, gives
+\[
+ \|D_yX_1-D_yX^{\rm mt}\|_{L^2_\tau}
+ +\|D_yY_1-D_yY^{\rm mt}\|_{L^2_\tau}
+       \le P_\nu\epsilon^4s^{5/2}N.
+\]
+The same bound includes the finite transverse width and the
+heat-to-Newton error: Taylor's formula costs the first transverse
+moment, and the strict radial gap holds along every Taylor segment.
+The initially stronger age power $s^3$ is bounded by
+$P_\nu s^{5/2}$ on the young interval. For $Y$ use the exact formula
+\[
+ Y=\mathcal C_{\chi_y}W_\mu+
+ [D_{\mu+1},\mathcal C_{\chi_y}](W_\mu-W_{\mu+1}).
+\]
+Apply the spatial kernel comparison to these terms separately.
+Thus no phase derivative of the improved bound, or of the source,
+is taken. These are normalized phase $L^2$ estimates; the raw-train
+coefficients multiplying them are bounded in phase with all the
+finite transverse weights used below.
+
+The mean transverse Taylor estimate and the Hessian estimate are
+\[
+ \begin{split}
+ |D_yX^{\rm mt}(s,\eta)-A_T(s)|
+ +|D_yY^{\rm mt}(s,\eta)-sB_j(s)|
+   &\le P_\nu\epsilon^4s^{5/2}|\eta|N,\\
+ \|D_y^2X_1(s,\eta)\|_{L^2_\tau}
+   &\le P_\nu\epsilon^4s^3N,
+ \qquad B_j=s^{-1}D_yY^{\rm mt}(R/\sqrt s,0,0).
+ \end{split}
+\]
+There is an exact clock correction, including on the cutoff annulus:
+\begin{equation}\label{repair:exact-jet-clock}
+ B_T=B_j+\frac\nu sD_y\Delta_yX^{\rm mt}(R/\sqrt s,0,0),
+ \qquad |B_T-B_j|\le P_\nu\nu\epsilon^5s^{5/2}N.
+\end{equation}
+To check its sign and constant, differentiate
+$Y^{\rm mt}=(B-\nu\Delta+\mu+1/2)X^{\rm mt}$, use
+$D_yB=BD_y-D_y/2$, and evaluate the phase-independent matrix at
+$z=0$, where $B D_yX^{\rm mt}=sA_T'$. All stream-cutoff terms
+are already in $Y^{\rm mt}$; none are omitted from this identity.
+
+The exact ring-chart rules give
+$U_{\rm raw}=\sqrt s(v+\epsilon H e_z)$,
+$DU_{\rm raw}=s(D_{\rm flat}v+\epsilon C_1)$ and
+$D^2U_{\rm raw}=s^{3/2}(D_{\rm flat}^2v+\epsilon C_2)$.
+Here $H,C_1,C_2$ have the finite weighted train bounds supplied by
+the explicit chart differentiation and the young train construction.
+Substitution into the four terms of the Ward residual gives the
+affine expression
+\[
+ s^{3/2}\{2B_Tv+2\nu A_T:D_{\rm flat}^2v
+                      -(A_T+A_T^T)\nabla_{\rm flat}p_{\rm cyl}\}.
+\]
+The error in $2U\cdot\nabla Y$ has size
+$P_\nu\epsilon^4s^3N$ times a weighted train coefficient.
+The errors in $DXD^2U$, $DX\nabla p$, $DUD^2X$ and
+$(U\otimes U):D^2X$ have size
+$P_\nu\epsilon^4s^4N$. The clock error has the smaller size
+$P_\nu\nu\epsilon^5s^4N$. In physical units the squared body
+norm divided by $R^2$ uses the density $\pi s^{-5/2}ds\,d\eta$;
+the remaining powers $s^{7/2}$ and $s^{11/2}$ are integrable at
+zero and give only viscosity polynomials at $1/\nu$. This also
+covers coordinate factors $q-jc$ in an alternative fixed-center
+Taylor expansion, since they are Gaussian moments of fixed order.
+
+Replacing the actual train and its decaying pressure by the summed
+Gaussian profiles costs $P_\nu\epsilon^3\delta_{\rm base}N$.
+Here the young-train comparison supplies the quantitative envelope
+\[
+ \delta_{\rm base}\le
+       P_\nu\exp(C_G/\nu-b_G/\nu^4),\qquad b_G>0,
+\]
+for the fixed derivative and transverse-weight budget on
+$0\le s\le1.1/\nu$, with $C_G,b_G$ independent of the small
+parameters. It follows directly from the Gaussian train separation
+$c=\nu^{-2}$. This is the bound used when absorbing its contribution
+in an exponential curvature margin below.
+The exact-pressure and repair-coefficient errors were estimated
+above, using the ordinary phase-supremum gradient bound, not a
+phase derivative of the extra-$\epsilon$ comparison. Consequently,
+with $E_{A_T}$ the Gaussian residual of the physical affine identity,
+\begin{equation}\label{repair:thin-complete}
+ R^{-1}\|E(U;X_1,Y_1)-E_{A_T}\|_{Y_2}
+ \le P_\nu N\bigl(\epsilon^4+
+       \epsilon^{85/22}e^{m_0/\nu}
+                         +\epsilon^3\delta_{\rm base}\bigr).
+\end{equation}
+The $85/22$ term retains the entire Cartesian pressure correction.
+
+Apply the explicit physical affine lifting identity to the actual
+jet $A_T$. Its proof uses at most three conormal derivatives of the
+matrix, so \eqref{repair:actual-jet} gives directly
+\begin{equation}\label{repair:actual-affine-remainder}
+ R^{-1}\|r_{A_T}\|_{Y_2}
+ \le P_\nu\epsilon^3N
+       (\epsilon+\rho+\delta_{\rm base}).
+\end{equation}
+This follows by inserting the displayed conormal bounds into each
+Gaussian product in that identity. Geometric terms have one extra
+$\epsilon$, the exact-background convection difference is
+$(U-U_{\rm raw})\cdot\nabla\widehat h_{A_T}
++\widehat h_{A_T}\cdot\nabla(U-U_{\rm raw})$, and its bound is
+$P_\nu\rho$ times the normalized $H^1$ bracket bound. The explicit
+lifted pressure potential is a global gradient plus its
+$\epsilon$ radial completion. Thus no projection tail is dropped.
+There is no factor $e^{1.1a_s/\nu}$ in this actual-range estimate;
+that factor is needed only for a generic source in $\mathscr A$.
+
+Since $N\le P_\nu|N_\nu|\|g^{-1}T\|_Z$, the new thin and
+affine body errors have exponential margins at least
+$\gamma/3$, $19\gamma/66-m_0$ and $\gamma/11-m_0$.
+All exceed the weakest age stress margin $\gamma/15$ when the
+stipulated losses are small.
+
+\subsection{The direct near solver and an actual-range pair norm}
+
+The direct zero-entrance near inverse satisfies
+\[
+ \|g^{-1}D_L^{-1}g\|_{Z\to Z}\le P_\nu,
+ \quad
+ \|g^{-1}M_UR_\mu f\|_Z\le P_\nu R^{-1}\|f\|_{Y_2},
+ \quad
+ \|g^{-1}S_{\rm near}g\|_{H_T\to H}
+       \le P_\nu e^{\eta_\delta/\nu}.
+\]
+For $D_LT=M_UR_\mu f$, the exact equation gives
+\[
+ T=M_Uw,\qquad w=R_\mu f-S_{\rm near}T.
+\]
+It follows that $G(w)\le P_\nu e^{\eta_\delta/\nu}
+R^{-1}\|f\|_{Y_2}$. No homogeneous entrance appears. For a general
+product datum $M_Uv$, however, the reconstruction is
+$w=v-S_{\rm near}T$. Its velocity norm must retain the norm of $v$;
+a small stress norm does not imply a small velocity witness.
+
+On the distinguished gain band, \eqref{repair:body-error} has
+operator size at most
+\[
+ P_\nu\left[e^{-(19\gamma/66-m_0)/\nu}
+             +e^{-(19\gamma/33-2m_0)/\nu}\right]
+\]
+from the gain-energy norm to the normalized body norm. For the full
+actual affine bracket, \eqref{repair:actual-affine-remainder} and
+$\epsilon^3N\le P_\nu A$ give the background-error margin
+$\gamma/11-m_0$. Geometric lift errors with an extra $\epsilon$
+have the larger margin $\gamma/3$.
+
+Here is the additional estimate needed to propagate actual-range
+witnesses. Let $A=\|g^{-1}T\|_Z$, with $T=M_Uw$. For an unweighted
+thin stress and $a>0$, its old physical mass divided by $\pi R^2$ is
+\[
+ N_0(a)=\int_a^\infty t^{-3/2}\int\|T(t,\cdot,\eta)\|_{L^2_q}
+                  \,d\eta\,dt
+ \le C(a^{-3/4}+a^{-1/2})\|T\|_{Z_1}.
+\]
+Indeed transverse Cauchy--Schwarz contributes $(1+t)^{1/4}$,
+and the remaining squared age integral is
+$\int_a^\infty t^{-5/2}(1+t)^{1/2}dt$. Partition the output ages
+into logarithmic bins of width $h<\delta/2$. On a bin of upper age
+$s_j$, all source ages exceed $e^{\delta-h}s_j$, so there is a
+uniform radial gap $D_j\asymp R/\sqrt{s_j}$. The order-four
+kernel has spatial $L^2$ norm $CD_j^{-5/2}$. Minkowski and the
+mass estimate therefore bound the normalized velocity on that bin by
+\[
+ C\epsilon^{3/2}(s_j^{1/2}+s_j^{3/4})\|T\|_{Z_1}.
+\]
+Summing geometric bins down to age zero is convergent. Up to a fixed
+polynomial in $S$, the far thin-source velocity operator has norm
+$P_\nu S^k\epsilon^{3/2}$ from $Z_1$ to the normalized physical
+$L^2$ space. The outward stream primitive obeys the same bound.
+This proves the estimate for both stream transitions as well.
+
+Thus the late-output thin velocity has possible growth
+$e^{\gamma/(18\nu)}$ after gain weighting, and the early-source
+thin velocity has possible growth $e^{\gamma/(10\nu)}$:
+\[
+ \tfrac32d_0-\gamma+4\gamma/9=-\gamma/18,
+ \qquad \tfrac32d_0-3\gamma/5=-\gamma/10.
+\]
+For an actual repair source, Young's $L^{22/19}\to L^2$ bound
+instead gives normalized velocity
+$P_\nu S^k\rho\epsilon^{23/11}$ times its gain. Its late and early
+margins are respectively $23\gamma/99$ and $31\gamma/165$, before
+the $m_0$ loss. These bounds include the full old interval.
+
+Put $\omega_b=kbd_0$, increasing the fixed $k$ if necessary.
+The error families proved in this section have a physical velocity
+witness $v_e$, with stress $M_Uv_e$, satisfying
+\begin{align*}
+ \|g^{-1}M_Uv_e\|_Z&\le\delta_A A+\delta_G G(w),\\
+ R^{-1}\|g^{-1}v_e\|_{Y_2}&\le\chi_A A+\chi_G G(w),
+\end{align*}
+where it suffices to take
+\begin{align*}
+ \delta_A&=P_\nu e^{-(\gamma/15-\omega_b-3m_0/2)/\nu},&
+ \delta_G&=P_\nu e^{-(19\gamma/66-\omega_b-3m_0/2)/\nu},\\
+ \chi_A&=P_\nu e^{(\gamma/10+\omega_b+3m_0/2)/\nu},&
+ \chi_G&=P_\nu e^{-(31\gamma/165-\omega_b-3m_0/2)/\nu}.
+\end{align*}
+The pressure and Ward body-force contributions use $v_e=R_\mu f_e$,
+whose energy norm is bounded by the normalized body norm. Their thin
+source bounds use $A$, whereas the repair source bounds use $G(w)$.
+The full affine bracket's background error is bounded by
+\eqref{repair:actual-affine-remainder} and is included in $\delta_A$.
+The actual jet has the direct bound \eqref{repair:actual-jet}; on
+the unit gain band $\epsilon^3N_1\le P_\nu A$.
+
+Let $Q=P_\nu$ and $K_s=P_\nu e^{\eta_\delta/\nu}$
+be the direct near bounds. For one correction solve
+$D_LT_+=-M_Uv_e$ and set $w_+=-v_e-S_{\rm near}T_+$.
+Then $T_+=M_Uw_+$ exactly, and
+\[
+ A_+\le Q(\delta_A A+\delta_G G),\qquad
+ G_+\le\chi_A A+\chi_G G+K_s A_+.
+\]
+This proves closure on the generated range, with no replacement of
+the velocity witness by its stress norm. More precisely, use the
+closed graph space
+\begin{equation}\label{repair:pair-space}
+ \mathcal E_\nu=\{(T,w):g^{-1}T\in Z,\ g^{-1}w\in Y_2,
+                       \ T=M_Uw\}.
+\end{equation}
+The velocities in this graph have the required orthogonal symmetry
+but need not be divergence-free. Boundedness of the thin multiplier and
+the repair multiplier proves that the graph is closed. Thus the pair
+norm below makes it a Banach space. The displayed update preserves
+this graph exactly; the divergence-free condition is recovered from the full
+physical kernel equation, not from the masked near reconstruction.
+Choose $a=\gamma/8$ and use the pair norm $A+e^{-a/\nu}G$.
+The four matrix coefficients are
+\[
+ Q\delta_A,\quad Q\delta_Ge^{a/\nu},\quad
+ e^{-a/\nu}\chi_A+e^{-a/\nu}K_sQ\delta_A,\quad
+ \chi_G+K_sQ\delta_G.
+\]
+All tend to zero exponentially if
+$\eta_\delta,\omega_b,m_0$ are sufficiently small. For example
+each less than $\gamma/1000$ leaves a margin larger than
+$\gamma/50$ before absorbing fixed viscosity powers. The narrowest
+new margin is $a-\gamma/10=\gamma/40$. An initial body-forced
+column has pair norm at most $P_\nu e^{\eta_\delta/\nu}$, so
+the resulting correction series also tends to zero under the bounded
+old smooth-jet observation.
+
+\begin{proposition}\label{repair:complete-graph-error}
+Let $\mathcal E_\nu$ have the pair norm just defined. Define the exact error
+velocity and its graph correction by
+\[
+ v_Q(T)=S_{\rm far}T+Y[T]
+       +R_\mu\mathbb P\{E[T]-E_{\mathcal LT}-r_{\mathcal LT}\},
+ \qquad \mathcal Q(T,w)=-\mathcal J(v_Q(T)).
+\]
+Here $E[T]$ uses the full old source, $\mathcal LT$ uses its thin
+part, and all projections and cutoffs are the ones specified above.
+Every term of this exact $v_Q$ is covered by the preceding estimates.
+If $\eta_\delta,\omega_b,m_0<\gamma/1000$ and the background
+and train envelopes satisfy the stated bounds, then, for sufficiently
+small $\nu$ on the distinguished gain band,
+\[
+ \|\mathcal Q\|_{\mathcal E_\nu\to\mathcal E_\nu}
+           \le P_\nu e^{-\gamma/(100\nu)}.
+\]
+For each fixed geometry this is a real operator-norm-continuous
+family in $\mu$ on the stipulated compact interval.
+\end{proposition}
+\begin{proof}
+The decomposition of $S_{\rm far}T+Y[T]$ consists exactly of the
+early-source and late-output regions and the two stream transitions.
+For the body term, linearity splits the full old response into its
+thin and repair responses. The repair response is
+\eqref{repair:body-error}; its thin counterpart is
+\eqref{repair:thin-complete}; the final subtraction is
+\eqref{repair:actual-affine-remainder}. These exhaust the displayed
+definition, including finite width, oscillatory phase, the exact
+matrix clock, pressure and the physical affine lift. The graph
+lift gives precisely the four pair-norm coefficients above.
+Their smallest unperturbed exponent is $\gamma/40$. The specified
+losses leave more than $\gamma/50$, hence the stated weaker
+$\gamma/100$ bound absorbs every fixed viscosity polynomial.
+Continuity follows from the resolvent identity, the dominated
+separated dilation kernels and the polynomial near inverse; the
+products and finite conormal affine construction are continuous.
+No differentiation of a rough source in phase is required.
+\end{proof}

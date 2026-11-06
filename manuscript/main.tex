@@ -1,0 +1,650 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,bm,microtype}
+\usepackage{enumitem,longtable,booktabs,array,tabularx,graphicx}
+\usepackage{xparse,url,needspace}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{plain}
+\newtheorem{targettheorem}{Theorem}
+\NewDocumentEnvironment{namedtheorem}{m o}
+ {\renewcommand{\thetargettheorem}{#1}\IfNoValueTF{#2}
+    {\begin{targettheorem}}{\begin{targettheorem}[#2]}}
+ {\end{targettheorem}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Lsig}{L^2_\sigma(\R^3)}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ip}[2]{\langle#1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\esssup}{ess\,sup}
+\allowdisplaybreaks[2]
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{1}
+\setlength{\emergencystretch}{3em}
+\Urlmuskip=0mu plus 1mu
+\raggedbottom
+\newcommand{\CompleteCandidate}{1}
+\newcommand{\ProofModule}[2]{%
+  \IfFileExists{#1}{\input{#1}}{%
+    \par\medskip\noindent\textbf{Unproved dependency.} #2
+    The proof of this step is not supplied in this draft.\par\medskip
+    \PackageWarningNoLine{complete-candidate}{Missing proof module: #1}}}
+\title{Non-Uniqueness of Leray--Hopf Solutions to the Unforced\\
+Three-Dimensional Navier--Stokes Equations}
+\author{Tristan Buckmaster \and Matei P. Coiculescu \and Chen Li}
+\date{November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove that the incompressible Navier--Stokes equations in $\R^3$,
+without external force, admit a continuum of distinct suitable weak
+solutions in the Leray--Hopf class with the same initial datum. The datum is compactly supported,
+axisymmetric without swirl, and smooth away from the origin; it lies in
+$L^{3,\infty}$ and in $L^q$ for every $q<3$, but not in $L^3$. The
+solutions are axisymmetric without swirl and smooth at positive times,
+and they satisfy the local and global energy equalities. Any two
+of them separate in $L^2$ at the rate $t^{1/4+\sigma}$, for a fixed
+$0<\sigma<1/4$. The proof follows the program of Jia and \v Sver\'ak,
+with a discretely self-similar background in place of a self-similar one.
+The background is an exact unforced solution built from a train of thin
+vortex rings, which we obtain by lifting a periodic row of planar vortices
+with Gaussian stream function. We construct a growing Floquet mode of its
+linearization directly, from the angular-two instability of the planar
+vortex, and conclude by a nonlinear correction and a localization of the
+datum.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+\label{sec:intro}
+
+We consider the incompressible Navier--Stokes equations in $\R^3$
+without external force:
+\begin{equation}\label{eq:ns}
+ \partial_tu+\operatorname{div}(u\otimes u)-\Delta u+\nabla p=0,
+ \qquad \operatorname{div}u=0,\qquad u(0)=u_0.
+\end{equation}
+Here $u$ is the velocity, $p$ is the pressure, and the viscosity is
+normalized to one. For every divergence-free $u_0\in L^2(\R^3)$,
+Leray~\cite{leray1934} constructed a global weak solution that satisfies
+the energy inequality
+\[
+ \frac12\|u(t)\|_2^2+\int_0^t\|\nabla u(s)\|_2^2\,ds
+ \le\frac12\|u_0\|_2^2,
+\]
+and Hopf~\cite{hopf1951} gave the corresponding construction in bounded
+domains. We call such solutions Leray--Hopf solutions. Whether they are
+uniquely determined by their datum is a basic question that goes back to
+Leray's work. In this paper we prove that, without force, uniqueness fails
+in the axisymmetric class without swirl: Theorem~A below gives a compactly
+supported datum from which a continuum of distinct Leray--Hopf solutions
+emanates. The proof is analytic. Recent results on the same question are
+discussed in Section~\ref{sec:intro-nonuniqueness}.
+
+\subsection{Uniqueness and regularity}
+\label{sec:intro-uniqueness}
+
+Uniqueness holds as long as one of the solutions is regular. If a
+Leray--Hopf solution lies in $L^r(0,T;L^q)$ with $2/r+3/q=1$ and
+$3<q\le\infty$, then every Leray--Hopf solution with the same datum
+coincides with it on $[0,T]$. This weak--strong uniqueness theorem is due
+to Prodi~\cite{prodi1959}, Serrin~\cite{serrin1963} and
+Ladyzhenskaya~\cite{ladyzhenskaya1967}; Kozono and
+Sohr~\cite{kozono-sohr1996} treated the endpoint $L^\infty(0,T;L^3)$.
+Such regular solutions exist for data in the critical space $L^3$:
+Kato~\cite{kato1984} constructed solutions for data in $L^3$, local in
+time for large data and global for small data. Koch and Tataru~\cite{koch-tataru2001} obtained global
+solutions for small data in $BMO^{-1}$. Escauriaza, Seregin and
+\v Sver\'ak~\cite{ess2003} proved that Leray--Hopf solutions bounded in
+$L^\infty(0,T;L^3)$ are smooth. For a general Leray--Hopf solution only
+partial regularity is known. Scheffer~\cite{scheffer1976} bounded the
+size of the singular set at the first singular time, and Caffarelli, Kohn
+and Nirenberg~\cite{ckn1982} proved that suitable weak solutions, those
+satisfying the local energy inequality, are smooth outside a closed set of
+zero one-dimensional parabolic Hausdorff measure.
+We refer to the monograph~\cite{lemarie2016} for these results.
+
+The critical spaces are those invariant under the scaling
+$u\mapsto\lambda u(\lambda x,\lambda^2t)$ of~\eqref{eq:ns}. The datum of
+Theorem~A lies in the weak Lebesgue space $L^{3,\infty}$ but not in
+$L^3$; near the origin it is of size $|x|^{-1}$. For such data the theory
+is incomplete. Seregin and \v Sver\'ak~\cite{seregin-sverak2017}
+studied global weak solutions with large data in $L^3$, and Barker,
+Seregin and \v Sver\'ak~\cite{bss2018} constructed, for data in
+$L^{3,\infty}$, global weak solutions that are stable under weak-$*$
+convergence of the data; their uniqueness is not known.
+For a scale-invariant datum it is natural to look for a self-similar
+solution $u(x,t)=t^{-1/2}U(x/\sqrt t)$. Jia and \v Sver\'ak~\cite{jia-sverak2014} proved
+that every scale-invariant datum that is smooth away from the origin,
+of any size, gives rise to at least one forward self-similar solution.
+Discretely self-similar data, invariant only under
+$u_0(x)\mapsto\lambda u_0(\lambda x)$ for one $\lambda>1$, also admit
+discretely self-similar solutions: Tsai~\cite{tsai2014} constructed them
+for $\lambda$ close to one, and Bradshaw and Tsai~\cite{bradshaw-tsai2017}
+and Chae and Wolf~\cite{chae-wolf2018} for every $\lambda>1$. Our solutions are built around a
+discretely self-similar solution of this kind.
+
+In the axisymmetric class without swirl the theory is more complete.
+Ladyzhenskaya~\cite{ladyzhenskaya1968} and Ukhovskii and
+Yudovich~\cite{ukhovskii-yudovich1968} proved that smooth, sufficiently
+decaying axisymmetric data without swirl give global smooth solutions, and
+Leonardi, M\'alek, Ne\v cas and Pokorn\'y~\cite{lmnp1999} relaxed the
+regularity of the data. Feng and \v Sver\'ak~\cite{feng-sverak2015}
+constructed solutions whose initial vorticity is a vortex ring, a measure
+supported on circles, and Gallay and \v Sver\'ak~\cite{gallay-sverak2019}
+proved that the solution emanating from a circular vortex filament is
+unique. The datum of Theorem~A is axisymmetric without swirl and smooth
+away from the origin. Theorem~A therefore shows that a singularity at one
+point, of the critical size $|x|^{-1}$, is enough for uniqueness to fail
+in this class.
+
+\subsection{Non-uniqueness}
+\label{sec:intro-nonuniqueness}
+
+Two methods have produced non-unique solutions of the equations of fluid
+mechanics. The first is convex integration.
+Buckmaster and Vicol~\cite{buckmaster-vicol2019} proved that weak solutions of the
+Navier--Stokes equations with finite kinetic energy are not unique.
+Buckmaster, Colombo and Vicol~\cite{bcv2022} constructed non-unique weak
+solutions that are smooth outside a set of singular times of Hausdorff
+dimension less than one, and Cheskidov and Luo~\cite{cheskidov-luo2022}
+proved non-uniqueness on the torus in $L^p_tL^\infty_x$ for every $p<2$,
+which is sharp in view of the Ladyzhenskaya--Prodi--Serrin criterion; we
+refer to the survey~\cite{buckmaster-vicol2021}. These solutions do not satisfy the energy inequality, so they are not
+Leray--Hopf solutions, and convex integration leaves the question open for
+Leray--Hopf solutions.
+
+The second method is instability. In self-similar variables, an unstable
+eigenvalue of the linearization around a self-similar solution becomes,
+after the change back to physical variables, a second solution with the
+same datum. Vishik~\cite{vishik2018a,vishik2018b} carried this out for the
+two-dimensional Euler equations with vorticity in $L^p$, with a force in
+$L^1_t(L^1\cap L^p)_x$; a complete account is given by Albritton, Bru\'e,
+Colombo, De~Lellis, Giri, Janisch and Kwon~\cite{abcdgjk2024}. Albritton,
+Bru\'e and Colombo~\cite{abc2022} adapted the method to the
+three-dimensional Navier--Stokes equations and proved non-uniqueness of
+Leray--Hopf solutions with a force; their unstable profile is a smooth
+compactly supported vortex ring whose cross-section is a modification of
+Vishik's unstable vortex. Castro, Faraco, Mengual and
+Solera~\cite{cfms2026} obtained sharp non-uniqueness with forcing for the
+$\alpha$-SQG equations, which include the Euler equations, using smooth
+compactly supported unstable vortices. In all of these results the force is chosen so that an unstable profile
+is an exact solution of the forced equation. Without force, the
+background must be an exact solution, and constructing an exact solution
+whose linearization is provably unstable is the main difficulty; see the
+discussion in~\cite{coiculescu2026a}. For the unforced two-dimensional
+Euler equations, Coiculescu~\cite{coiculescu2026b} constructed non-unique
+solutions with vorticity in $L^1\cap L^p$ by perturbing a stationary
+radial solution, with the spectral input verified by rigorous interval
+arithmetic. Choi~\cite{choi2026} constructed two solutions with the same
+initial vorticity in every finite $L^p$, using a cascade of quadrupoles
+across infinitely many scales. For the Navier--Stokes
+equations, Coiculescu and Palasek~\cite{coiculescu-palasek2026}
+constructed data in $BMO^{-1}$ with two distinct global solutions, both
+smooth at positive times, which shows that the small-data theorem of Koch
+and Tataru is sharp.
+
+For the unforced Navier--Stokes equations, Jia and
+\v Sver\'ak~\cite{jia-sverak2015} proposed the following program. Take a
+scale-invariant datum and a forward self-similar solution emanating from
+it, which exists by~\cite{jia-sverak2014}. If the linearization around
+this solution in self-similar variables has an unstable eigenvalue, then,
+under a further spectral condition, there are two distinct Leray--Hopf
+solutions with the same datum, and a localization of the datum makes it
+of finite energy. The spectral condition concerns a non-self-adjoint
+operator around a large solution that is not explicit. Guillod and
+\v Sver\'ak~\cite{guillod-sverak2023} computed self-similar solutions for
+a one-parameter family of axisymmetric scale-invariant data and found a
+symmetry-breaking bifurcation at large data, which would give
+non-uniqueness through this program.
+
+Ionescu, Jia and Palasek~\cite{ijp2026} constructed
+numerically, with pointwise residuals of order $10^{-10}$, unstable
+self-similar solutions in the axisymmetric class without swirl. Binz and
+Coiculescu~\cite{binz-coiculescu2026} proved that, for sufficiently
+regular data, there are no nontrivial homothetic self-similar solutions in
+three dimensions.
+
+Theorem~A carries out a version of the program of Jia and \v Sver\'ak in
+which the self-similar solution is replaced by a discretely self-similar
+one and the unstable eigenvalue by a Floquet exponent; both are
+constructed here. The proof uses no computer assistance, and the solutions
+have no swirl.
+
+\subsection{The main result}
+\label{sec:intro-result}
+
+Write $L^2_{\rm div}=\{u\in L^2(\R^3;\R^3):\operatorname{div}u=0\}$ and
+$H^k_{\rm div}=H^k\cap L^2_{\rm div}$. The weak Lebesgue space
+$L^{3,\infty}$ has the quasinorm
+$\|f\|_{3,\infty}=\sup_{s>0}s|\{x:|f(x)|>s\}|^{1/3}$.
+We include the initial condition in the weak formulation: for a viscosity
+$\nu>0$, a pair $(u,p)$ solves the equation with datum $u_0$ on $[0,T)$ if,
+for every real $\varphi\in C_c^\infty(\R^3\times[0,T);\R^3)$,
+\begin{equation}\label{eq:initial-weak-form}
+ \int_0^T\!\int_{\R^3}
+ \bigl(u\cdot\partial_t\varphi+(u\otimes u):\nabla\varphi
+       +\nu u\cdot\Delta\varphi+p\operatorname{div}\varphi\bigr)\,dx\,dt
+ +\int_{\R^3}u_0\cdot\varphi(x,0)\,dx=0.
+\end{equation}
+Equation~\eqref{eq:ns} is the case $\nu=1$; a general viscosity is used
+for intermediate constructions.
+The main theorem of this paper is the following.
+
+\begin{namedtheorem}{A}\label{thm:finite-energy-target}
+There are
+\(T>0\), a nonzero compactly supported datum \(u_0\in L^2_{\rm div}\),
+and real solutions \((u^{(\alpha)},p^{(\alpha)})\), \(0\le\alpha\le1\),
+of the unforced equation with viscosity one and the same datum. The datum
+is smooth away from zero and satisfies
+\[
+ u_0\in L^{3,\infty}(\R^3)\cap\bigcap_{1\le q<3}L^q(\R^3),
+ \qquad u_0\notin L^3(\R^3).
+\]
+Each solution is smooth at positive times and satisfies
+\[
+ \begin{aligned}
+ u^{(\alpha)}&\in C([0,T];L^2_{\rm div})\cap L^2(0,T;H^1),\\
+ u^{(\alpha)}&\in C([\delta,T];H^2_{\rm div})\quad(0<\delta<T),\qquad
+ p^{(\alpha)}\in L^{5/3}(\R^3\times(0,T)).
+ \end{aligned}
+\]
+All solutions have the strong \(L^2\) trace \(u_0\) at zero and
+satisfy \eqref{eq:initial-weak-form} with \(\nu=1\). For every
+\(0\le t_0\le t_1\le T\),
+\[
+ \frac12\|u^{(\alpha)}(t_1)\|_2^2+
+ \int_{t_0}^{t_1}\|\nabla u^{(\alpha)}(t)\|_2^2\,dt
+ =\frac12\|u^{(\alpha)}(t_0)\|_2^2.
+\]
+They also satisfy the local energy equality. Writing
+$u=u^{(\alpha)}$, $p=p^{(\alpha)}$ and $e=|u|^2/2$, for every real
+$\phi\in C_c^\infty(\R^3\times[0,T))$,
+\begin{equation}\label{short-loc:local-energy}
+ \begin{aligned}
+ \int_0^T\!\int_{\R^3}|\nabla u|^2\phi\,dx\,dt
+ ={}&\int_0^T\!\int_{\R^3}
+       \bigl[e(\partial_t\phi+\Delta\phi)
+                    +(e+p)u\cdot\nabla\phi\bigr]\,dx\,dt\\
+ &+\frac12\int_{\R^3}|u_0|^2\phi(x,0)\,dx.
+ \end{aligned}
+\end{equation}
+In particular, the solutions are suitable. Moreover,
+\[
+ \sup_{0\le\alpha\le1}\|u^{(\alpha)}\|_{L^\infty(0,T;L^{3,\infty})}<\infty,
+ \qquad
+ \sup_{0\le\alpha\le1}\|u^{(\alpha)}\|_{L^r(0,T;L^q)}<\infty
+\]
+for every $1\le r\le\infty$, $2\le q\le\infty$ with $2/r+3/q>1$.
+There are constants $0<c_*\le C_*<\infty$ and $0<\sigma<1/4$ such that,
+for every $\alpha,\alpha'\in[0,1]$ and $0<t\le T$,
+\[
+ c_*|\alpha-\alpha'|t^{\sigma+1/4}
+ \le\|u^{(\alpha)}(t)-u^{(\alpha')}(t)\|_2
+ \le C_*|\alpha-\alpha'|t^{\sigma+1/4}.
+\]
+In particular,
+\[
+ \int_0^T\|u^{(\alpha)}-u^{(\alpha')}\|_2^2\,dt
+ \ge\frac{c_*^2|\alpha-\alpha'|^2T^{2\sigma+3/2}}{2\sigma+3/2}.
+\]
+Thus the family consists of pairwise distinct Leray--Hopf solutions.
+The datum and all solutions are axisymmetric without swirl: they are
+invariant under rotations about the \(x_3\)-axis, and their azimuthal
+components vanish.
+\end{namedtheorem}
+
+The integrability in Theorem~A is sharp on the scale of mixed Lebesgue
+spaces. Every solution of the family is bounded in $L^r(0,T;L^q)$ for
+all $1\le r\le\infty$ and $2\le q\le\infty$ with $2/r+3/q>1$. By the
+weak--strong uniqueness theorem~\cite{prodi1959,serrin1963,ladyzhenskaya1967},
+none of them lies in $L^r(0,T;L^q)$ with $2/r+3/q=1$ and
+$3<q\le\infty$, since otherwise all of them would coincide. Similarly,
+the uniform bound in $L^\infty(0,T;L^{3,\infty})$ cannot be improved to
+$L^\infty(0,T;L^3)$: the strong $L^2$ trace would then put $u_0$ in $L^3$.
+
+The rate $t^{\sigma+1/4}$ has a simple origin. To leading order the
+difference of two solutions is a multiple of
+$t^{\sigma-1/2}b_*(x/\sqrt t,\log t)$, where $b_*$ is the periodic
+profile of a Floquet mode with exponent $\sigma$ (see
+Section~\ref{sec:intro-construction}); its $L^2$ norm is a multiple of
+$t^{\sigma+1/4}$.
+
+\subsection{The construction}
+\label{sec:intro-construction}
+
+We follow the program of Jia and \v Sver\'ak~\cite{jia-sverak2015}.
+In the similarity variables $y=x/\sqrt t$ and $\tau=\log t$, write
+$u(x,t)=t^{-1/2}U(x/\sqrt t,\log t)$. Equation~\eqref{eq:ns} becomes
+\[
+ \partial_\tau U=\Delta U+\tfrac12y\cdot\nabla U+\tfrac12U
+ -\mathbb P\operatorname{div}(U\otimes U),
+\]
+where $\mathbb P$ is the Leray projection, and the initial time $t=0$
+becomes $\tau=-\infty$. Self-similar solutions are stationary in $\tau$.
+Discretely self-similar solutions, those with
+$u(\lambda x,\lambda^2t)=\lambda^{-1}u(x,t)$ for one $\lambda>1$, are
+periodic in $\tau$ with period $2\log\lambda$. Suppose that $U_*$ is a
+periodic solution and that its linearization has a Floquet solution
+$e^{\sigma\tau}b_*$, with $\sigma>0$ and $b_*$ periodic. Since
+$e^{\sigma\tau}=t^\sigma$ vanishes at $t=0$, the fields
+$U_*+\alpha e^{\sigma\tau}b_*$, $\alpha\in\R$, all carry the datum of
+$U_*$, and one expects to correct each of them to an exact solution. The
+difficulty is to find an exact unforced periodic solution whose
+linearization provably has such a mode. Proposition~\ref{prop:unstable-background}
+in Section~\ref{sec:reduction} states the background and the mode we
+construct. The construction has four steps.
+
+\paragraph{Step 1: the planar vortex train and its Gaussian instability
+(Sections~\ref{sct:section}--\ref{sec:gaussian-evolution}).}
+The building block is the planar vortex with Gaussian stream function
+$\psi_0(x)=-2e^{-|x|^2/4}$, $x\in\R^2$. Its velocity
+$\nabla^\perp\psi_0=e^{-|x|^2/4}x^\perp$ rotates, and its vorticity
+$(2-|x|^2/2)e^{-|x|^2/4}$ changes sign and has zero integral: it is a
+shielded vortex. The instability of shielded vortices is classical in
+geophysical fluid dynamics~\cite{gent-mcwilliams1986}. We prove that the
+Euler equations linearized around $\psi_0$ have exactly one unstable pair
+of eigenvalues $\lambda,\bar\lambda$, with $\lambda=\gamma+i\omega$,
+$\gamma>0$, and eigenfunctions in angular mode two
+(Proposition~\ref{prop:short-gaussian-seed}). The count uses the index
+theorem of Lin and Zeng~\cite{lin-zeng2021} together with an explicit
+negative direction. Lin~\cite{lin2003} developed related criteria for
+instability. With a small viscosity
+$\nu>0$ the vortex diffuses: at time $s$ its vorticity is
+$a^{-2}E_0(x/\sqrt a)$, $a=1+\nu s$, where $E_0$ is the vorticity of
+$\psi_0$. The turnover clock $s/(1+\nu s)$ has total length
+$\nu^{-1}$. In the heat variables the unstable evolution has the canonical
+normalization $N_\nu=e^{\lambda/\nu}\nu^{-\kappa}$, for a constant
+$\kappa\in\C$ (Proposition~\ref{prop:short-canonical}). A fixed canonical
+age $\theta=[\nu(1+\nu s)]^{-1}>0$ corresponds to physical time
+$s=(\nu^2\theta)^{-1}-\nu^{-1}$, of order $\nu^{-2}$. The train is the
+exact solution of the planar Navier--Stokes equations with viscosity
+$\nu$ on the cylinder $(\R/c\mathbb Z)\times\R$, $c=\nu^{-2}$, whose
+initial stream function is the periodic sum
+$\sum_{n\in\mathbb Z}\psi_0(q-nc,\eta)$. It exists globally by the
+theorem of Gallay and Slijep\v cevi\'c~\cite{gallay-slijepcevic2015}.
+Until the diffusing vortices overlap the train is close to the sum of
+independently evolving vortices, and afterwards it is a decaying shear
+flow plus a part that decays exponentially (Lemma~\ref{sct:train}).
+
+\paragraph{Step 2: thin rings and the exact discretely self-similar
+background (Sections~\ref{sec:ring-lift}--\ref{short-bg:section}).}
+In cylindrical coordinates $(r,z)$ and for $R\ge2$, use the
+logarithmic ring chart
+\[
+ q=R\log(r/R),\qquad \eta=Rz/r,\qquad s=R^2t/r^2.
+\]
+The stream function $r\psi(q,\eta,s)$ of the train defines an
+axisymmetric field without swirl. The planar vortex centered at $q=nc$
+becomes a vortex ring of radius $r_n=Re^{nc/R}$ whose cross-section has
+size comparable to $r_n/R$; the rings accumulate at the origin and at
+infinity. The dilation $(r,z,t)\mapsto(\Lambda r,\Lambda z,\Lambda^2t)$
+with $\Lambda=e^{c/R}$ sends $q$ to $q+c$ and fixes $\eta$ and $s$, so
+the periodicity of the train becomes exact discrete self-similarity:
+translation becomes discrete scaling. The lifted field solves the
+Navier--Stokes equations up to a curvature residual, which is small when
+the rings are thin, $\epsilon=R^{-1}\to0$
+(Proposition~\ref{sct:lift}). In similarity variables the residual is a
+small periodic force. Since the background must be an exact unforced
+solution, we remove it: a right inverse for the linearized periodic
+problem and a nonlinear correction give an exact periodic solution
+$U_*$. Its datum $u_{\rm dss}$ is discretely self-similar and of size
+$|x|^{-1}$, and $U_*$ differs from the heat evolution of $u_{\rm dss}$
+by a remainder in $H^2$ (Section~\ref{short-bg:section}). The three
+small parameters are tied together: $c=\nu^{-2}$ and $\epsilon=e^{-d/\nu}$
+with $d$ in a fixed compact interval.
+
+\paragraph{Step 3: the direct three-dimensional Floquet construction
+(Sections~\ref{sec:stress-spaces-short}--\ref{sec:spectral-assembly}).}
+We fix the exact background and look for $0<\sigma<1/4$ and a nonzero
+periodic profile $b_*$ solving~\eqref{loc:eq:mode}. The mode comes from
+a loop through the rings. In similarity variables the rings move toward
+the origin and age as $\tau$ increases: rings far from the origin are
+young and still close to the inviscid Gaussian vortex, and rings near
+the origin are old and have diffused. A strain acting on a young ring
+excites its unstable angular-two mode, which grows by the factor
+$N_\nu$ during the life of the ring. Once the ring is old, the stress of
+the amplified perturbation generates, through the three-dimensional
+pressure, a strain on the younger rings. By discrete self-similarity this
+loop repeats in every period, and a Floquet mode is a loop that
+reproduces its input up to the factor $e^{-\sigma\mathcal T}$, where
+$\mathcal T$ is the period.
+
+We find the exponent in the spirit of the Birman--Schwinger
+principle~\cite{birman1961,schwinger1961}: instead of studying the
+spectrum of the full linearized operator, we reduce the Floquet problem to
+a scalar equation for the gain of one loop. We solve the forced
+linearized equation along the train with zero initial data and bounds polynomial in
+$\nu^{-1}$ (Section~\ref{sec:planar-response}), and rewrite the Floquet
+problem as a fixed point problem for the return operator, which maps the
+strain received by young rings to the strain they return. In the joint
+limit $\epsilon,\nu\to0$, and on a fixed space of smooth sources, this
+operator is a rank-one operator plus a remainder that tends to zero. Its
+nonzero eigenvalue, the gain of one loop for an exponent $\mu$, is
+\[
+ 2\epsilon^3\nu^{5+2\mu}\operatorname{Re}\{\mathcal C(\mu)N_\nu\}+o(1),
+\]
+where $\mathcal C$ is an explicit holomorphic function that does not
+vanish identically. The factor $\epsilon^3$ measures the weak
+three-dimensional coupling of thin rings, and $N_\nu$ is the planar
+amplification. We choose $\nu_n\to0$ so that the phase of
+$\mathcal C N_{\nu_n}$ is fixed and $\epsilon_n$ so that the gain is
+close to one, construct the background once at these parameters, and vary
+only $\mu$ in a window of width $|\log\nu_n|^{-1}$. Across the window the
+gain moves from about $e$ to about $e^{-1}$. Its crossing of one gives a
+Floquet exponent $\sigma_n$ of the exact three-dimensional operator, with
+its full pressure and the correction of Step~2
+(Section~\ref{sec:spectral-assembly}). The planar response only supplies
+the limit of the return operator; the mode is constructed for the exact
+operator.
+
+\paragraph{Step 4: nonlinear correction and localization
+(Section~\ref{sec:localization}).}
+With the background and the mode in hand we follow the instability and
+localization argument of Jia and \v Sver\'ak~\cite{jia-sverak2015},
+adapted to a profile periodic in $\tau$. We replace the infinite-energy
+datum $u_{\rm dss}$ by a compactly supported divergence-free truncation
+that equals $u_{\rm dss}$ near the origin. The resulting common heat
+correction $K$ satisfies $\|K(\tau)\|_{W^{2,\infty}}=O(e^{\tau/2})$.
+For each amplitude $\alpha\in[0,1]$ we seek a profile
+$U_*+K+\alpha e^{\sigma\tau}b_*+z_\alpha$ with
+$\|z_\alpha(\tau)\|_{H^2}=O(e^{\beta\tau})$ as $\tau\to-\infty$,
+where $\sigma<\beta<2\sigma<1/2$. We choose $\beta$ so that no Floquet
+multiplier has modulus $e^{\beta\mathcal T}$ and split the periodic
+evolution at this rate. The resulting right inverse accounts for every
+faster unstable mode, so no maximal-growth assumption on $\sigma$ is
+needed. Both forcing rates $2\sigma$ and $1/2$ exceed $\beta$, and a
+contraction gives the nonlinear corrections. Their Lipschitz dependence
+on $\alpha$, uniformly on one interval $[0,T]$, gives the two-sided
+separation estimate of Theorem~A.
+
+\paragraph{Organization.}
+Section~\ref{sec:reduction} fixes conventions and states
+Proposition~\ref{prop:unstable-background}. Sections~\ref{sct:section}--\ref{sec:localization} carry out the four steps above, and the proof of
+Theorem~A is completed at the end of Section~\ref{sec:localization}.
+
+\paragraph{Formalization.}
+A Lean formalization of this work is forthcoming at
+\url{https://github.com/mcoiculescu/unforced-leray-hopf-public}.
+
+\subsection*{Declaration on the use of large language models}
+\addcontentsline{toc}{subsection}{Declaration on the use of large language models}
+
+This work was carried out with extensive use of the large language models
+Claude (Anthropic) and Codex (OpenAI). The models were used to search for
+the construction, to write and revise the proofs, and to check them.
+
+While exploring the instability of an exact self-similar profile as a
+mechanism, among others, for nonuniqueness, GPT-6 Astra proposed using a
+planar unstable vortex as a building block to lift to an unstable
+profile. We found this approach promising and pushed the model to
+complete the construction of an exact discretely self-similar solution
+with a growing mode.
+
+The argument first appeared in a draft of about 200 pages, written largely
+by the models, whose exposition was poor and highly redundant. We then
+realized that the construction does not need swirl; working in the
+axisymmetric class without swirl reduced the draft to about 150 pages.
+Finally, we replaced the original proof of the existence of the Floquet
+exponent by a more standard argument in the spirit of the Birman--Schwinger
+principle, which reduces the Floquet problem to a scalar equation for the
+gain of one loop (Section~\ref{sec:intro-construction}). This cut the
+length of the proof in half, to about 70 pages.
+
+The authors take full responsibility for the content of this paper.
+
+\section{Conventions and the reduction to a growing mode}
+\label{sec:reduction}
+
+We use $(u\otimes v)_{ij}=u_iv_j$,
+$(\operatorname{div}T)_i=\partial_jT_{ij}$,
+$R_j=\partial_j(-\Delta)^{-1/2}$ and the Cartesian Leray projection
+$\mathfrak P=\mathbb P$. The pressure is the global choice
+$p=\sum_{i,k}R_iR_k(u_i u_k)$. A vector field is axisymmetric without
+swirl if it is invariant under rotations about the $x_3$-axis and its
+azimuthal component vanishes.
+For intermediate constructions the viscosity is $\nu>0$, and the initial
+condition is included through~\eqref{eq:initial-weak-form}.
+
+The construction uses the similarity variables $y=x/\sqrt t$,
+$\tau=\log t$. For a period $\mathcal T>0$, set
+\[
+ \mathcal Y_q=L^q([0,\mathcal T],d\tau/\mathcal T;L^q(\mathbb R^3)),
+ \qquad \mathcal T_0=\partial_\tau-\tfrac12y\cdot\nabla.
+\]
+Periodic spaces identify their endpoints. The analytic construction
+needed for localization is stated below.
+
+\begin{proposition}\label{prop:unstable-background}
+There exist \(\nu>0\), \(\mathcal T>0\), and a nonzero real divergence-free
+field \(u_{\rm dss}\) on \(\mathbb R^3\), smooth away from zero, satisfying
+\begin{equation}
+ u_{\rm dss}(e^{\mathcal T/2}x)=e^{-\mathcal T/2}u_{\rm dss}(x),\qquad
+ |D^\alpha u_{\rm dss}(x)|\le C_\alpha |x|^{-1-|\alpha|}
+ \quad (x\ne0,\ |\alpha|\le4).
+ \label{loc:eq:dss}
+\end{equation}
+Set
+\[
+ H_\nu[u_{\rm dss}](y,\tau)=e^{\tau/2}
+       [e^{\nu e^\tau\Delta}u_{\rm dss}](e^{\tau/2}y).
+\]
+There is a real divergence-free \(\mathcal T\)-periodic distributional
+solution \(U_*\) of
+\begin{equation}
+ \partial_\tau U_*=\nu\Delta U_*+\tfrac12 y\cdot\nabla U_*+\tfrac12 U_*-\mathfrak P\operatorname{div}(U_*\otimes U_*),
+ \qquad U_*=H_\nu[u_{\rm dss}]+r_{\rm heat},\quad r_{\rm heat}\in C_{\rm per}H^2(\mathbb R^3).
+ \label{loc:eq:background}
+\end{equation}
+
+There are \(0<\sigma<1/4\) and a nonzero real \(\mathcal T\)-periodic
+divergence-free field \(b_*\) satisfying
+\begin{equation}
+ b_*\in\mathcal Y_{2,\rm div},\qquad \nabla b_*\in\mathcal Y_2.
+ \label{loc:eq:energy-mode}
+\end{equation}
+The second space is tensor-valued. The periodic field \(b_*\) is the
+Floquet profile: \(e^{\sigma\tau}b_*\) solves the linearized equation
+and has multiplier \(e^{\sigma\mathcal T}>1\) over one period.
+The equation for the profile is
+\begin{equation}
+ \begin{gathered}
+ \sigma b_*+\mathcal T_0 b_*-\nu\Delta b_*-\tfrac12 b_*
+ +\mathfrak P\operatorname{div}(U_*\otimes b_*+b_*\otimes U_*)=0\\
+ \hbox{in }\mathcal D'(\R^3\times\R/\mathcal T\mathbb Z).
+ \end{gathered}
+ \label{loc:eq:mode}
+\end{equation}
+The fields \(u_{\rm dss}\), \(U_*\) and \(b_*\) are axisymmetric
+without swirl.
+
+\end{proposition}
+
+Proposition~\ref{short-loc:reduction} in Section~\ref{sec:localization}
+shows that Proposition~\ref{prop:unstable-background} implies Theorem~A.
+Constants denoted by $P_\nu$ or $\mathcal P_\nu$ are fixed polynomials
+in $\nu^{-1}$ and the specified polynomial cell parameters. Each
+exponential loss is kept separately until the final parameter
+inequalities are imposed.
+
+\ProofModule{seed-train/train.tex}{The exact periodic planar train and
+its complete velocity, pressure and heat-tail estimates are needed.}
+
+\section{The Gaussian instability and canonical evolution}
+\label{sec:gaussian-evolution}
+\ProofModule{seed-train/lin-seed.tex}{The Gaussian seed, its direct and
+adjoint couplings, and the complementary Euler evolution are needed.}
+\ProofModule{seed-train/canonical.tex}{The canonical heat branch
+and nonzero Mellin coupling are needed.}
+
+\ProofModule{seed-train/ring-lift.tex}{The divergence-free ring lift, discrete
+scaling, small residual and inlet bounds are needed.}
+
+\section{The common free equation and local comparison}
+\ProofModule{free-foundation.tex}{The common Cartesian body and stress
+inverses, maximal domains, phase traces and adjoint graph are needed.}
+\ProofModule{near/free-comparison.tex}{The global-input compact-output
+Hilbert body and tensor comparisons are needed.}
+\ProofModule{background/free-comparison.tex}{The common-measure body
+$L^{11/4}$ comparison is needed.}
+\ProofModule{background/short-background.tex}{The ordinary mixed solve,
+exact unforced background and common heat remainder are needed.}
+\ProofModule{stress-spaces.tex}{The split thin/repair stress spaces,
+their exact coefficient multipliers and complete age-moment bounds
+are needed.}
+
+\section{Planar amplification, the full age tail, and the causal inverse}
+\label{sec:planar-response}
+\ProofModule{near/full-clock.tex}{The full actual-cylinder propagator
+and its all-clock polynomial gain bounds are needed.}
+\ProofModule{tails/canonical-transfer.tex}{The actual canonical column,
+all-age kinetic and moment transfer, Mellin limit and stress defects
+are needed.}
+\ProofModule{near/flat-causal.tex}{The direct zero-entrance flat
+weak-stress solver with polynomial gain bounds is needed.}
+\ProofModule{separated-kernels.tex}{The split stress spaces,
+multipliers, complete separated Cartesian kernels and moment bounds
+are needed.}
+\ProofModule{near/equation-comparison.tex}{The exact direct near
+inverse and its physical forced-column comparison are needed.}
+
+\ProofModule{ward-identity.tex}{The complete physical translation
+identity, pressure residual, shifted-resolvent cutoff formula and
+nilpotent factor are needed.}
+\ProofModule{tails/young-response.tex}{The tested response from young
+forcing to the complete old stress is needed.}
+\ProofModule{return/flat-return.tex}{The signed reference return and
+its nonzero canonical coefficient are needed.}
+\ProofModule{return/source-class.tex}{Uniform return estimates on
+one fixed smooth-source space are needed.}
+\ProofModule{return/physical-affine.tex}{The exact physical affine
+force, including its hoop component and cutoff terms, is needed.}
+\ProofModule{repair/proposition.tex}{The repair, pressure, transitions,
+other age rectangles and repeated-error bounds are needed.}
+\ProofModule{mixed-return-lemma.tex}{The real two-norm return lemma
+is needed.}
+\ProofModule{spectral-assembly.tex}{The exact return reduction,
+parameter selection, continuity, real root and energy-mode
+reconstruction are needed.}
+\ProofModule{localization.tex}{The nonlinear construction and
+finite-energy localization proving Theorem~A are needed.}
+
+\input{references.tex}
+
+\end{document}
