@@ -1,0 +1,16 @@
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_of
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_1
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_2
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_3
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_5
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_6
+
+set_option autoImplicit false
+
+namespace UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst
+
+theorem smoothForceClassical : SmoothForceClassical :=
+  smoothForceClassical_of sfcRep sfcGradMeas sfcZero sfcEnergy sfcWeak sfcDiv
+
+end UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst

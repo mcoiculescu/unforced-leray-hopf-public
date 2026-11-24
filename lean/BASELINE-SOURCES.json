@@ -1,0 +1,42 @@
+{
+  "repository": "https://github.com/openai/NavierStokesAndEuler",
+  "commit": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "NavierStokes/ProblemStatement.lean",
+      "source_path": "NavierStokes/ProblemStatement.lean",
+      "sha256": "d2f5cdf24a060acd41011b50492e89058991965e18d2cb797c58d915f95af633"
+    },
+    {
+      "path": "NavierStokes/R3/ProblemStatement.lean",
+      "source_path": "NavierStokes/R3/ProblemStatement.lean",
+      "sha256": "8b0a28b3b93fb8dfcf967d0082a5a2829a5e5f079de6662c846417057b0856d7"
+    },
+    {
+      "path": "NavierStokes/PeriodicIntegration.lean",
+      "source_path": "NavierStokes/PeriodicIntegration.lean",
+      "sha256": "4f637ee61edc17fd3e99da4c407f13a9c749bf7e6f6a2c49a85396e7a56eec1a"
+    },
+    {
+      "path": "NavierStokes/PeriodicUniqueness.lean",
+      "source_path": "NavierStokes/PeriodicUniqueness.lean",
+      "sha256": "fa8f82a4f4fabb6bd6b6c8d0d450152ab7fa540f9bf22235ea8eb70931a30558"
+    },
+    {
+      "path": "NavierStokes/R3/ComparisonSetup.lean",
+      "source_path": "NavierStokes/R3/ComparisonSetup.lean",
+      "sha256": "2c1335d9da753d25c73b2b102b0c7686648c8928ddfac416d87284bb9b20fbde"
+    },
+    {
+      "path": "NavierStokes/R3/ComparisonCutoffs.lean",
+      "source_path": "NavierStokes/R3/ComparisonCutoffs.lean",
+      "sha256": "a4fba9b793ad51dca007cc6d8f6adf30f06b4f79c9c9811384ec299da230ab6b"
+    },
+    {
+      "path": "NavierStokes/R3/SmoothSobolevL6.lean",
+      "source_path": "NavierStokes/R3/SmoothSobolevL6.lean",
+      "sha256": "1c89ed275a84d3ccfac47f573e4d5039c86c9fe9be7642aecbc84c83a4c2bace"
+    }
+  ]
+}

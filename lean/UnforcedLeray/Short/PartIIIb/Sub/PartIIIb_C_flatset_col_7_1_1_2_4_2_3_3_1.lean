@@ -1,0 +1,15 @@
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_dec
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_s1
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_s2
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_s3
+
+set_option autoImplicit false
+
+noncomputable section
+
+namespace UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst
+
+theorem p0SliceSmooth : P0SliceSmooth :=
+  p0SliceSmooth_of p0SmoothRegK cylEmbedK periodicContUnique
+
+end UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst

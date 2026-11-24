@@ -1,0 +1,7 @@
+import UnforcedLeray.Short.PartIIb.Sub.PartIIb_G2_3
+import UnforcedLeray.Short.PartIIb.Tasks.TailOperatorBounds.FlatNormTransfer
+import UnforcedLeray.Short.PartIIb.Tasks.TailOperatorBounds.FlatKYoungProfile
+import UnforcedLeray.Short.PartIIb.Tasks.TailOperatorBounds.FlatKLateProfile
+
+theorem flatK0opYoungLateBounds_proof : UnforcedLeray.Short.IIb.FlatK0opYoungLateBounds :=
+  UnforcedLeray.Short.IIb.flatK0opYoungLateBounds_of flatNormTransfer_proof flatKYoungProfile_proof UnforcedLeray.Short.IIb.flatKLateProfile_proof

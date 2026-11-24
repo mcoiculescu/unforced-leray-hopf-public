@@ -1,0 +1,17 @@
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_1
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_1.L1
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_1.L2
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_1.L3
+
+set_option autoImplicit false
+
+noncomputable section
+
+open MeasureTheory Set
+
+namespace UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst
+
+theorem smoothSupK_proof : SmoothSupK :=
+  smoothSupK_of iteratedFDerivByWords_proof cellL2ByNorm_proof morreyTwoDerivs_proof
+
+end UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst

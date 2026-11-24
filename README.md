@@ -5,7 +5,12 @@ Tristan Buckmaster, Matei P. Coiculescu, and Chen Li.
 - [Read the manuscript (PDF)](unforced-leray-hopf-shorter-proof.pdf)
 - [LaTeX source](manuscript/main.tex)
 
-A Lean formalization is forthcoming in this repository.
+## Lean formalization
+
+The [audited Lean sources](lean/) prove the two-solution Theorem A in the
+[73-page reference manuscript](reference/73-page-reference.pdf).
+A Lean formalization in one-to-one correspondence with the proof in that
+reference manuscript is forthcoming.
 
 ## Build the manuscript
 

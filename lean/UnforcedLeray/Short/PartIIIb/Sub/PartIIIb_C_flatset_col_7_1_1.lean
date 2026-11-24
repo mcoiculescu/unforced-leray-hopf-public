@@ -1,0 +1,14 @@
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_of
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_1
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_3
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_4
+
+set_option autoImplicit false
+
+namespace UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst
+
+theorem bodyColumnSmoothSeq : BodyColumnSmoothSeq :=
+  bodyColumnSmoothSeq_of smoothForceDense smoothForceClassical smoothForcePairing hspNormLintegral
+
+end UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst

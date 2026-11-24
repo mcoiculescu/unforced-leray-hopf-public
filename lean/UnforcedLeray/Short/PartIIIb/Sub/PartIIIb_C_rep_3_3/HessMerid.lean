@@ -1,0 +1,670 @@
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_rep_3_3
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_rep_2_5.Pointwise.Decay
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_rep_2_5.Pointwise.Cutoff
+import UnforcedLeray.Short.PartIIIb.Concrete.ReturnRepair.Sub.PartIIIb_C_rep_8_1.HessianBound.StreamCutHess
+import UnforcedLeray.Short.PartIIIb.Concrete.ReturnRepair.Sub.PartIIIb_C_rep_8_1.HessianBound.ZActJet
+
+/-!
+# `PartIII-b:C/rep/3/3/2`: meridional Hessian bound for the stream-cut field `sepWX`
+
+Proves the meridional pointwise Hessian bound `sepWXHessMeridPointwise_pow4` for `sepWX = 𝒞_y X₀`
+at `!₂[ϱ y, 0, y 2]` by combining `streamCutHess` (`StreamCutHess.lean`), `wgx_sepX0_contDiffOn`
+and `wgx_sepX0_partials` (`Pointwise/Decay.lean`), and the operator-norm comparison lemmas
+`gradSize_le_iteratedFDeriv`, `hessSize_le_iteratedFDeriv` (`ZActJet.lean`).
+
+Note on scaling: on the transition annulus `L ≤ r ≤ R√(5ν/4)` (`L = R√ν`), the outward-primitive
+coefficient `tcF0 ν R χy r = (deriv χy (ν R²/r²)) (-2ν R²/r⁴)` has second radial derivative
+`O(r⁻⁴) = O(L⁻⁴)` (`StreamCutHess.lean` line 90, `StreamCutHessWith` line 36), while `Ψ_{X₀}` has
+dimension `L² [X₀]`; thus the primitive term in the Hessian of `𝒞_y X₀` carries `(R * √ν)⁻¹ ^ 4`
+(still bounded in `sepJetMeridSlice_of` by `hY57 : L ^ (-57/11) ≤ ν⁻¹ * L ^ (-46/11)` since
+`-4 + (-13/11) = -57/11`).
+-/
+
+set_option autoImplicit false
+
+noncomputable section
+
+open MeasureTheory Set Filter Topology UnforcedLeray.Axi
+open scoped ENNReal
+
+namespace UnforcedLeray.Short.PartIIIb.Concrete
+
+open GeomXAsm
+
+private lemma physPd2_congr_of_eventuallyEq {f g : Space → Space} {x : Space}
+    (h : f =ᶠ[nhds x] g) (j l : Fin 3) :
+    physPd2 f j l x = physPd2 g j l x := by
+  have h1 : (fun z => fderiv ℝ f z (coordinateVector l)) =ᶠ[nhds x]
+      (fun z => fderiv ℝ g z (coordinateVector l)) := by
+    filter_upwards [(h.fderiv : fderiv ℝ f =ᶠ[nhds x] fderiv ℝ g)] with z hz
+    rw [hz]
+  unfold physPd2 physPd
+  rw [h1.fderiv_eq]
+
+private lemma hessSize_congr_of_eventuallyEq {f g : Space → Space} {x : Space}
+    (h : f =ᶠ[nhds x] g) :
+    hessSize f x = hessSize g x := by
+  unfold hessSize
+  refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun l _ => ?_
+  rw [physPd2_congr_of_eventuallyEq h j l]
+
+private lemma hessSize_zero (x : Space) :
+    hessSize (fun _ : Space => (0 : Space)) x = 0 := by
+  unfold hessSize physPd2 physPd
+  simp
+
+/-- Corrected statement of `SepWXHessMeridPointwise` with the homogeneous `L⁻⁴` scaling on the
+second derivative of the `O(L⁻²)` primitive coefficient `tcF0`. -/
+def SepWXHessMeridPointwisePow4 : Prop :=
+  ∀ σ₁ σ₂ : ℝ, -(1 / 4) < σ₁ → ∀ χy : ℝ → ℝ, IsStreamCutoff χy → ∃ C : ℝ, 0 ≤ C ∧
+    ∀ (ν μ R P : ℝ), 0 < ν → ν ≤ 1 → 1 ≤ R → 0 < P → P ≤ 1 → μ ∈ Icc σ₁ σ₂ →
+      ∀ T, IIIa.IsSepSource P (R * Real.sqrt (5 * ν / 6)) T → SepMoment P T → IsAxiSource T →
+        ∀ (τ : ℝ) (y : Space), 0 < ϱ y →
+          ENNReal.ofReal (hessSize (sepWX ν μ R χy T τ) !₂[ϱ y, 0, y 2]) ≤
+            ENNReal.ofReal C *
+              (wgxJet 2 ν μ (R * Real.sqrt ν) T τ !₂[ϱ y, 0, y 2] +
+                ENNReal.ofReal (R * Real.sqrt ν)⁻¹ *
+                  wgxJet 1 ν μ (R * Real.sqrt ν) T τ !₂[ϱ y, 0, y 2] +
+                ENNReal.ofReal ((R * Real.sqrt ν)⁻¹ ^ 2) *
+                  wgxJet 0 ν μ (R * Real.sqrt ν) T τ !₂[ϱ y, 0, y 2] +
+                ENNReal.ofReal ((R * Real.sqrt ν)⁻¹ ^ 4) *
+                  wgxPsi ν μ R T τ !₂[ϱ y, 0, y 2])
+
+theorem sepWXHessMeridPointwise_pow4 : SepWXHessMeridPointwisePow4 := by
+  intro σ₁ σ₂ hσ χy hχ
+  obtain ⟨C₀, hC₀, hSCH⟩ := streamCutHess χy hχ
+  refine ⟨9 * C₀ + 9, by positivity, ?_⟩
+  intro ν μ R P hν _hν1 hR1 hP0 _hP1 hμ T hS hM hAx τ y hy
+  have hR : 0 < R := by linarith
+  set L : ℝ := R * Real.sqrt ν with hLdef
+  have hsν : 0 < Real.sqrt ν := Real.sqrt_pos.2 hν
+  have hL : 0 < L := by rw [hLdef]; positivity
+  have hLsq : ν * R ^ 2 = L ^ 2 := by
+    rw [hLdef, mul_pow, Real.sq_sqrt hν.le]; ring
+  have hμ' : -(1 / 4) < μ := lt_of_lt_of_le hσ hμ.1
+  have hr0 : 0 ≤ R * Real.sqrt (5 * ν / 6) := by positivity
+  have hrL : R * Real.sqrt (5 * ν / 6) < L := by
+    rw [hLdef]
+    exact mul_lt_mul_of_pos_left (Real.sqrt_lt_sqrt (by positivity) (by linarith)) hR
+  have hage : ∀ z : Space, ν * age R z = L ^ 2 / ϱ z ^ 2 := by
+    intro z; unfold age; rw [← hLsq]; ring
+  set m : Space := !₂[ϱ y, 0, y 2] with hm_def
+  have hρm : ϱ m = ϱ y := varrho_meridPt y
+  have hm0 : 0 < ϱ m := by rw [hρm]; exact hy
+  by_cases ha : ϱ y < L
+  · -- `sepWX = 0` near `m`
+    have ha_m : ϱ m < L := by rw [hρm]; exact ha
+    have hU : IsOpen {z : Space | 0 < ϱ z ∧ ϱ z < L} :=
+      (isOpen_lt continuous_const continuous_ϱ).inter (isOpen_lt continuous_ϱ continuous_const)
+    have hev : sepWX ν μ R χy T τ =ᶠ[nhds m] fun _ => (0 : Space) := by
+      filter_upwards [hU.mem_nhds ⟨hm0, ha_m⟩] with z ⟨hz0, hzL⟩
+      have ht : 1 < ν * age R z := by
+        rw [hage]
+        exact (one_lt_div (by positivity)).2 (pow_lt_pow_left₀ hzL hz0.le two_ne_zero)
+      unfold sepWX wardStreamCut
+      rw [hχ.zero _ ht.le, (wgx_deriv_zero_gt hχ ht).1]
+      simp
+    rw [hessSize_congr_of_eventuallyEq hev, hessSize_zero, ENNReal.ofReal_zero]
+    exact zero_le
+  · have hL_le : L ≤ ϱ y := not_lt.1 ha
+    have hL_le_m : L ≤ ϱ m := by rw [hρm]; exact hL_le
+    have hm_young : m ∈ youngOpen ν R := by
+      show R * Real.sqrt (5 * ν / 6) < ϱ m
+      exact lt_of_lt_of_le hrL hL_le_m
+    have hU_young : IsOpen (youngOpen ν R) := isOpen_lt continuous_const continuous_ϱ
+    have hZ_smooth : ContDiffOn ℝ 2 (sepX0 ν μ T τ) (youngOpen ν R) :=
+      wgx_sepX0_contDiffOn hν hμ' hr0 hP0 hS hM τ
+    have hj2 : wgxJet 2 ν μ L T τ m = ENNReal.ofReal ‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖ := by
+      simp [wgxJet, hL_le_m, ← ofReal_norm]
+    have hj1 : wgxJet 1 ν μ L T τ m = ENNReal.ofReal ‖iteratedFDeriv ℝ 1 (sepX0 ν μ T τ) m‖ := by
+      simp [wgxJet, hL_le_m, ← ofReal_norm]
+    have hj0 : wgxJet 0 ν μ L T τ m = ENNReal.ofReal ‖sepX0 ν μ T τ m‖ := by
+      simp [wgxJet, hL_le_m, ← ofReal_norm, norm_iteratedFDeriv_zero]
+    have h_hess_Z : hessSize (sepX0 ν μ T τ) m ≤ 9 * ‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖ :=
+      ZActJetAux.hessSize_le_iteratedFDeriv hU_young hZ_smooth hm_young
+    have h_grad_Z : gradSize (sepX0 ν μ T τ) m ≤ 3 * ‖iteratedFDeriv ℝ 1 (sepX0 ν μ T τ) m‖ :=
+      ZActJetAux.gradSize_le_iteratedFDeriv (sepX0 ν μ T τ) m
+    by_cases hb : R * Real.sqrt (5 * ν / 4) < ϱ y
+    · -- `sepWX = sepX0` near `m`
+      have hb_m : R * Real.sqrt (5 * ν / 4) < ϱ m := by rw [hρm]; exact hb
+      have hU : IsOpen {z : Space | R * Real.sqrt (5 * ν / 4) < ϱ z} :=
+        isOpen_lt continuous_const continuous_ϱ
+      have hev : sepWX ν μ R χy T τ =ᶠ[nhds m] sepX0 ν μ T τ := by
+        filter_upwards [hU.mem_nhds hb_m] with z hz
+        have hz0 : 0 < ϱ z := lt_of_lt_of_le (by positivity) hz.le
+        have ht : ν * age R z < 4 / 5 := by
+          rw [hage, div_lt_iff₀ (by positivity)]
+          have hQs : (R * Real.sqrt (5 * ν / 4)) ^ 2 = R ^ 2 * (5 * ν / 4) := by
+            rw [mul_pow, Real.sq_sqrt (by positivity)]
+          have h2 : (R * Real.sqrt (5 * ν / 4)) ^ 2 < ϱ z ^ 2 :=
+            pow_lt_pow_left₀ hz (by positivity) two_ne_zero
+          nlinarith [hQs, hLsq]
+        unfold sepWX wardStreamCut
+        rw [hχ.one _ ht.le, (wgx_deriv_zero_lt hχ ht).1]
+        simp
+      rw [hessSize_congr_of_eventuallyEq hev]
+      have hle : hessSize (sepX0 ν μ T τ) m ≤
+          (9 * C₀ + 9) * ‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖ := by
+        have : 0 ≤ 9 * C₀ * ‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖ := by positivity
+        linarith
+      calc ENNReal.ofReal (hessSize (sepX0 ν μ T τ) m)
+          ≤ ENNReal.ofReal ((9 * C₀ + 9) * ‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖) :=
+            ENNReal.ofReal_le_ofReal hle
+        _ = ENNReal.ofReal (9 * C₀ + 9) * wgxJet 2 ν μ L T τ m := by
+            rw [hj2, ENNReal.ofReal_mul (by positivity)]
+        _ ≤ ENNReal.ofReal (9 * C₀ + 9) *
+            (wgxJet 2 ν μ L T τ m +
+              ENNReal.ofReal L⁻¹ * wgxJet 1 ν μ L T τ m +
+              ENNReal.ofReal (L⁻¹ ^ 2) * wgxJet 0 ν μ L T τ m +
+              ENNReal.ofReal (L⁻¹ ^ 4) * wgxPsi ν μ R T τ m) := by
+            gcongr
+            exact le_add_of_le_of_nonneg (le_add_of_le_of_nonneg
+              (le_add_of_nonneg_right zero_le) zero_le) zero_le
+    · -- `m ∈ streamAnn ν R`
+      have hb_le : ϱ y ≤ R * Real.sqrt (5 * ν / 4) := not_lt.1 hb
+      have hm_ann : m ∈ streamAnn ν R := by
+        show L ≤ ϱ m ∧ ϱ m ≤ R * Real.sqrt (5 * ν / 4)
+        rw [hρm]
+        exact ⟨hL_le, hb_le⟩
+      have hpsi : wgxPsi ν μ R T τ m =
+          ENNReal.ofReal |outPrim (sepX0 ν μ T) τ (ϱ y) (y 2)| := by
+        unfold wgxPsi
+        have hm2 : m 2 = y 2 := by simp [hm_def]
+        rw [Set.indicator_of_mem hm_ann, hρm, hm2]
+      have ht1 : ν * (R ^ 2 / ϱ y ^ 2) ≤ 1 := by
+        have h1 : ν * (R ^ 2 / ϱ y ^ 2) = L ^ 2 / ϱ y ^ 2 := by rw [← hLsq]; ring
+        rw [h1, div_le_one (by positivity)]
+        exact pow_le_pow_left₀ hL.le hL_le 2
+      have h_sch := hSCH ν R (sepX0 ν μ T) τ (ϱ y) (y 2) hν hR hy ht1 hZ_smooth
+        (fun r' z' hr' => wgx_sepX0_partials hν hR hμ' hP0 hS hM hAx τ r' z' hr')
+      have hm_hpt : hpt (ϱ y) (y 2) = m := rfl
+      rw [hm_hpt] at h_sch
+      have hinv1 : (ϱ y)⁻¹ ≤ L⁻¹ := inv_anti₀ hL hL_le
+      have hinv2 : (ϱ y)⁻¹ ^ 2 ≤ L⁻¹ ^ 2 := pow_le_pow_left₀ (by positivity) hinv1 2
+      have hinv4 : (ϱ y)⁻¹ ^ 4 ≤ L⁻¹ ^ 4 := pow_le_pow_left₀ (by positivity) hinv1 4
+      have h_grad_nn : 0 ≤ gradSize (sepX0 ν μ T τ) m :=
+        Finset.sum_nonneg fun _ _ => norm_nonneg _
+      have h_hess_nn : 0 ≤ hessSize (sepX0 ν μ T τ) m :=
+        Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => norm_nonneg _
+      have h_step1 :
+          hessSize (sepWX ν μ R χy T τ) m ≤
+            C₀ * (9 * ‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖ +
+              L⁻¹ * (3 * ‖iteratedFDeriv ℝ 1 (sepX0 ν μ T τ) m‖) +
+              L⁻¹ ^ 2 * ‖sepX0 ν μ T τ m‖ +
+              L⁻¹ ^ 4 * |outPrim (sepX0 ν μ T) τ (ϱ y) (y 2)|) := by
+        refine h_sch.trans (mul_le_mul_of_nonneg_left ?_ hC₀)
+        have t1 : (ϱ y)⁻¹ * gradSize (sepX0 ν μ T τ) m ≤
+            L⁻¹ * (3 * ‖iteratedFDeriv ℝ 1 (sepX0 ν μ T τ) m‖) :=
+          mul_le_mul hinv1 h_grad_Z h_grad_nn (by positivity)
+        have t2 : (ϱ y)⁻¹ ^ 2 * ‖sepX0 ν μ T τ m‖ ≤ L⁻¹ ^ 2 * ‖sepX0 ν μ T τ m‖ :=
+          mul_le_mul_of_nonneg_right hinv2 (norm_nonneg _)
+        have t4 : (ϱ y)⁻¹ ^ 4 * |outPrim (sepX0 ν μ T) τ (ϱ y) (y 2)| ≤
+            L⁻¹ ^ 4 * |outPrim (sepX0 ν μ T) τ (ϱ y) (y 2)| :=
+          mul_le_mul_of_nonneg_right hinv4 (abs_nonneg _)
+        linarith
+      have h_step2 :
+          hessSize (sepWX ν μ R χy T τ) m ≤
+            (9 * C₀ + 9) * (‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖ +
+              L⁻¹ * ‖iteratedFDeriv ℝ 1 (sepX0 ν μ T τ) m‖ +
+              L⁻¹ ^ 2 * ‖sepX0 ν μ T τ m‖ +
+              L⁻¹ ^ 4 * |outPrim (sepX0 ν μ T) τ (ϱ y) (y 2)|) := by
+        refine h_step1.trans ?_
+        have p2 : 0 ≤ ‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖ := norm_nonneg _
+        have p1 : 0 ≤ L⁻¹ * ‖iteratedFDeriv ℝ 1 (sepX0 ν μ T τ) m‖ := by positivity
+        have p0 : 0 ≤ L⁻¹ ^ 2 * ‖sepX0 ν μ T τ m‖ := by positivity
+        have pP : 0 ≤ L⁻¹ ^ 4 * |outPrim (sepX0 ν μ T) τ (ϱ y) (y 2)| := by positivity
+        nlinarith
+      rw [hj2, hj1, hj0, hpsi]
+      have hL1_nn : 0 ≤ L⁻¹ := by positivity
+      have hL2_nn : 0 ≤ L⁻¹ ^ 2 := by positivity
+      have hL4_nn : 0 ≤ L⁻¹ ^ 4 := by positivity
+      rw [← ENNReal.ofReal_mul hL1_nn, ← ENNReal.ofReal_mul hL2_nn, ← ENNReal.ofReal_mul hL4_nn]
+      have s1_nn : 0 ≤ ‖iteratedFDeriv ℝ 2 (sepX0 ν μ T τ) m‖ := norm_nonneg _
+      have s2_nn : 0 ≤ L⁻¹ * ‖iteratedFDeriv ℝ 1 (sepX0 ν μ T τ) m‖ := by positivity
+      have s3_nn : 0 ≤ L⁻¹ ^ 2 * ‖sepX0 ν μ T τ m‖ := by positivity
+      have s4_nn : 0 ≤ L⁻¹ ^ 4 * |outPrim (sepX0 ν μ T) τ (ϱ y) (y 2)| := by positivity
+      rw [← ENNReal.ofReal_add s1_nn s2_nn,
+        ← ENNReal.ofReal_add (add_nonneg s1_nn s2_nn) s3_nn,
+        ← ENNReal.ofReal_add (add_nonneg (add_nonneg s1_nn s2_nn) s3_nn) s4_nn,
+        ← ENNReal.ofReal_mul (by positivity)]
+      exact ENNReal.ofReal_le_ofReal h_step2
+
+open UnforcedLeray.Blueprint.Planar (PlanarData)
+
+private lemma rj4_varrho_merid (y : Space) : ϱ !₂[ϱ y, 0, y 2] = ϱ y := by
+  have : !₂[ϱ y, 0, y 2] = meridPt y := rfl
+  rw [this, varrho_meridPt]
+
+private lemma rj4_gradSize_le_three_fderiv (f : Space → Space) (y : Space) :
+    ENNReal.ofReal (gradSize f y) ≤ ENNReal.ofReal 3 * ENNReal.ofReal ‖fderiv ℝ f y‖ := by
+  rw [← ENNReal.ofReal_mul (by norm_num)]
+  refine ENNReal.ofReal_le_ofReal ?_
+  have h := ZActJetAux.gradSize_le_iteratedFDeriv f y
+  rwa [norm_iteratedFDeriv_one] at h
+
+private lemma rj4_L_inv_le_nu_inv {ν R : ℝ} (hν : 0 < ν) (hν1 : ν ≤ 1) (hR1 : 1 ≤ R) :
+    (R * Real.sqrt ν)⁻¹ ≤ ν⁻¹ := by
+  refine inv_anti₀ hν ?_
+  have h1 : ν ≤ Real.sqrt ν := by
+    have hs : 0 ≤ Real.sqrt ν := Real.sqrt_nonneg ν
+    nlinarith [Real.sq_sqrt hν.le, Real.sqrt_le_one.2 hν1]
+  nlinarith [Real.sqrt_pos.2 hν]
+
+private lemma rj4_sum3 (C m1 m2 m3 Y : ℝ) (F : ℝ≥0∞) (hC : 0 ≤ C) (h1 : 0 ≤ m1) (h2 : 0 ≤ m2)
+    (h3 : 0 ≤ m3) (hY : 0 ≤ Y) :
+    ENNReal.ofReal C * (ENNReal.ofReal (m1 * Y) * F + ENNReal.ofReal (m2 * Y) * F +
+        ENNReal.ofReal (m3 * Y) * F) =
+      ENNReal.ofReal ((C * (m1 + m2 + m3)) * Y) * F := by
+  have e : (C * (m1 + m2 + m3)) * Y = C * (m1 * Y + m2 * Y + m3 * Y) := by ring
+  rw [e, ENNReal.ofReal_mul hC, ENNReal.ofReal_add (by positivity) (by positivity),
+    ENNReal.ofReal_add (by positivity) (by positivity)]
+  simp only [add_mul, mul_add, mul_assoc]
+
+private lemma rj4_sum4 (C m1 m2 m3 m4 Y : ℝ) (F : ℝ≥0∞) (hC : 0 ≤ C) (h1 : 0 ≤ m1) (h2 : 0 ≤ m2)
+    (h3 : 0 ≤ m3) (h4 : 0 ≤ m4) (hY : 0 ≤ Y) :
+    ENNReal.ofReal C * (ENNReal.ofReal (m1 * Y) * F + ENNReal.ofReal (m2 * Y) * F +
+        ENNReal.ofReal (m3 * Y) * F + ENNReal.ofReal (m4 * Y) * F) =
+      ENNReal.ofReal ((C * (m1 + m2 + m3 + m4)) * Y) * F := by
+  have e : (C * (m1 + m2 + m3 + m4)) * Y = C * (m1 * Y + m2 * Y + m3 * Y + m4 * Y) := by ring
+  rw [e, ENNReal.ofReal_mul hC, ENNReal.ofReal_add (by positivity) (by positivity),
+    ENNReal.ofReal_add (by positivity) (by positivity),
+    ENNReal.ofReal_add (by positivity) (by positivity)]
+  simp only [add_mul, mul_add, mul_assoc]
+
+private lemma rj4_sum_final (MY MX MH ν L Y : ℝ) (F : ℝ≥0∞)
+    (hMY : 0 ≤ MY) (hMX : 0 ≤ MX) (hMH : 0 ≤ MH) (hY0 : 0 ≤ Y)
+    (hY : Y = ν⁻¹ * L ^ (-(46 / 11 : ℝ))) :
+    (ENNReal.ofReal (MY * Y) * F + ENNReal.ofReal (MX * Y) * F) +
+        ENNReal.ofReal (MH * Y) * F =
+      ENNReal.ofReal ((MY + MX + MH) * ν⁻¹ * L ^ (-(46 / 11 : ℝ))) * F := by
+  have h1 : 0 ≤ MY * Y := mul_nonneg hMY hY0
+  have h2 : 0 ≤ MX * Y := mul_nonneg hMX hY0
+  have h3 : 0 ≤ MH * Y := mul_nonneg hMH hY0
+  have e : (MY + MX + MH) * ν⁻¹ * L ^ (-(46 / 11 : ℝ)) =
+      (MY * Y + MX * Y) + MH * Y := by rw [hY]; ring
+  rw [e, ENNReal.ofReal_add (add_nonneg h1 h2) h3, ENNReal.ofReal_add h1 h2]
+  simp only [add_mul]
+
+set_option maxHeartbeats 800000 in
+/-- Slice `L^{22/3}` bound on `y ↦ meanJetDens (sepWX ...) (sepWY ...) !₂[ϱ y, 0, y 2]`
+from `SepWXHessMeridPointwisePow4` and `SepJetMeridEq`. -/
+theorem sepJetMeridSlice_of_pow4 (hH : SepWXHessMeridPointwisePow4) (hEq : SepJetMeridEq)
+    (σ₁ σ₂ : ℝ) (hσ : -(1 / 4 : ℝ) < σ₁) (χy : ℝ → ℝ) (hχ : IsStreamCutoff χy) :
+    ∃ (C : ℝ), 0 ≤ C ∧
+      ∀ (ν μ R P : ℝ), 0 < ν → ν ≤ 1 → 1 ≤ R → 0 < P → P ≤ 1 → μ ∈ Icc σ₁ σ₂ →
+        ∀ T, IIIa.IsSepSource P (R * Real.sqrt (5 * ν / 6)) T → SepMoment P T → IsAxiSource T →
+          ∀ τ : ℝ,
+            lqNorm (22 / 3) (fun y : Space =>
+                ENNReal.ofReal
+                  (meanJetDens (sepWX ν μ R χy T τ) (sepWY ν μ R χy T τ) !₂[ϱ y, 0, y 2])) ≤
+              ENNReal.ofReal (C * ν⁻¹ * (R * Real.sqrt ν) ^ (-(46 / 11 : ℝ))) *
+                IIIa.ltauLq P (22 / 19) (IIIa.srcNorm T) := by
+  obtain ⟨Cx, hCx, hPtX⟩ := wgxPointwise σ₁ σ₂ hσ χy hχ
+  obtain ⟨Cy1, Cy2, hCy1, hCy2, hPtY⟩ := wgyPointwise σ₁ σ₂ hσ χy hχ
+  obtain ⟨Ch, hCh, hPtH⟩ := hH σ₁ σ₂ hσ χy hχ
+  obtain ⟨CW0, hCW0, HW0⟩ := wgy_jet_phase σ₁ σ₂ hσ 0 (by norm_num)
+  obtain ⟨CW1, hCW1, HW1⟩ := wgy_jet_phase σ₁ σ₂ hσ 1 (by norm_num)
+  obtain ⟨D0, hD0, H0⟩ := sepX0PhaseBound σ₁ σ₂ hσ 0 (by norm_num)
+  obtain ⟨D1, hD1, H1⟩ := sepX0PhaseBound σ₁ σ₂ hσ 1 (by norm_num)
+  obtain ⟨D2, hD2, H2⟩ := sepX0PhaseBound σ₁ σ₂ hσ 2 (by norm_num)
+  obtain ⟨Co, hCo, Ho⟩ := outPrimPhaseBound σ₁ σ₂ hσ
+  set c0 : ℝ := 1 - Real.sqrt (5 / 6) with hc0
+  have hs56 : Real.sqrt (5 / 6) < 1 := by rw [Real.sqrt_lt' one_pos]; norm_num
+  have hc0pos : 0 < c0 := by rw [hc0]; linarith
+  have hc0n : 0 ≤ c0 := hc0pos.le
+  set e0 : ℝ := -4 - ((0 : ℕ) : ℝ) + 9 / 11 with he0
+  set e1 : ℝ := -4 - ((1 : ℕ) : ℝ) + 9 / 11 with he1
+  set e2 : ℝ := -4 - ((2 : ℕ) : ℝ) + 9 / 11 with he2
+  set MY : ℝ := (1 * (CW1 * c0 ^ e1)) + (Cy1 * (CW0 * c0 ^ e0)) + (Cy1 * Co) +
+      Cy2 * ((1 * (D0 * c0 ^ e0)) + (1 * (D1 * c0 ^ e1)) + (1 * (D2 * c0 ^ e2)) +
+        (1 * (D1 * c0 ^ e1)) + (1 * Co))
+  set MX : ℝ := 3 * ((1 * (D1 * c0 ^ e1)) + (Cx * (D0 * c0 ^ e0)) + (Cx * Co))
+  set MH : ℝ := Ch * ((1 * (D2 * c0 ^ e2)) + (1 * (D1 * c0 ^ e1)) +
+      (1 * (D0 * c0 ^ e0)) + (1 * Co))
+  refine ⟨MY + MX + MH, by positivity, ?_⟩
+  intro ν μ R P hν hν1 hR1 hP0 hP1 hμ T hT hSM hAx τ
+  have hR : 0 < R := by linarith
+  have hμ' : -(1 / 4 : ℝ) < μ := lt_of_lt_of_le hσ hμ.1
+  set L : ℝ := R * Real.sqrt ν with hL
+  have hLpos : 0 < L := by rw [hL]; positivity
+  set F : ℝ≥0∞ := IIIa.ltauLq P (22 / 19) (IIIa.srcNorm T) with hF
+  have hLsq : ν * R ^ 2 = L ^ 2 := by rw [hL, mul_pow, Real.sq_sqrt hν.le]; ring
+  have hrO : R * Real.sqrt (5 * ν / 6) = Real.sqrt (5 / 6) * L := by
+    rw [hL, show 5 * ν / 6 = 5 / 6 * ν by ring, Real.sqrt_mul (by norm_num)]; ring
+  have hD : L - R * Real.sqrt (5 * ν / 6) = c0 * L := by rw [hrO, hc0]; ring
+  have hrOnn : 0 ≤ R * Real.sqrt (5 * ν / 6) := by positivity
+  have hlt : R * Real.sqrt (5 * ν / 6) < L := by
+    have : 0 < c0 * L := mul_pos hc0pos hLpos
+    linarith
+  set X : ℝ := L ^ (-(46 / 11 : ℝ)) with hX
+  set Y : ℝ := ν⁻¹ * X with hY
+  have hX0 : 0 ≤ X := Real.rpow_nonneg hLpos.le _
+  have hν1' : 1 ≤ ν⁻¹ := (one_le_inv₀ hν).2 hν1
+  have hY0 : 0 ≤ Y := by positivity
+  have hY1 : X ≤ Y := by
+    calc X = 1 * X := (one_mul X).symm
+      _ ≤ ν⁻¹ * X := mul_le_mul_of_nonneg_right hν1' hX0
+  have hLinv_le : L⁻¹ ≤ ν⁻¹ := rj4_L_inv_le_nu_inv hν hν1 hR1
+  have hY57 : L ^ (-(57 / 11 : ℝ)) ≤ Y := by
+    have h1 : L ^ (-(57 / 11 : ℝ)) = L⁻¹ * X := by
+      rw [hX, ← Real.rpow_neg_one L, ← Real.rpow_add hLpos]; congr 1; norm_num
+    rw [h1]
+    exact mul_le_mul_of_nonneg_right hLinv_le hX0
+  have hY2 : L ^ (-(68 / 11 : ℝ)) ≤ Y := by
+    have h2 : L ^ (-(68 / 11 : ℝ)) = L ^ (-2 : ℝ) * X := by
+      rw [hX, ← Real.rpow_add hLpos]; congr 1; norm_num
+    have h3 : L ^ (-2 : ℝ) ≤ ν⁻¹ := by
+      have : L ^ (-2 : ℝ) = (L ^ 2)⁻¹ := by
+        rw [Real.rpow_neg hLpos.le]; norm_cast
+      rw [this, ← hLsq]
+      refine inv_anti₀ hν ?_
+      nlinarith [mul_pos hν (pow_pos hR 2), sq_nonneg R, mul_nonneg hν.le (sq_nonneg (R - 1)),
+        mul_nonneg hν.le (sq_nonneg R)]
+    rw [h2]
+    exact mul_le_mul_of_nonneg_right h3 hX0
+  have hLinv : L⁻¹ = L ^ (-1 : ℝ) := (Real.rpow_neg_one L).symm
+  have hLinv2 : L⁻¹ ^ 2 = L ^ (-2 : ℝ) := by
+    rw [Real.rpow_neg hLpos.le, inv_pow]; norm_cast
+  have hLinv3 : L⁻¹ ^ 3 = L ^ (-3 : ℝ) := by
+    rw [Real.rpow_neg hLpos.le, inv_pow]; norm_cast
+  have hLinv4 : L⁻¹ ^ 4 = L ^ (-4 : ℝ) := by
+    rw [Real.rpow_neg hLpos.le, inv_pow]; norm_cast
+  have hmul : ∀ a b c : ℝ, a + b = c → L ^ a * L ^ b = L ^ c := fun a b c h => by
+    rw [← Real.rpow_add hLpos, h]
+  obtain ⟨m1, m0, mP⟩ := wgxMeas ν μ R P hν hR hP0 T hT hSM τ
+  obtain ⟨w1, w0, wP⟩ := wgyMeas_W ν μ R P T hT τ
+  have m2 := wgyMeas_X2 ν μ L T τ
+  have hq : (1 : ℝ) ≤ 22 / 3 := by norm_num
+  have hq0 : (0 : ℝ) < 22 / 3 := by norm_num
+  have haxis : ∀ᵐ y : Space, 0 < ϱ y := by
+    have : ∀ᵐ y : Space, y ∉ {y : Space | ϱ y = 0} :=
+      measure_eq_zero_iff_ae_notMem.1 wgxAxisNull
+    filter_upwards [this] with y hy
+    exact lt_of_le_of_ne (Real.sqrt_nonneg _) (fun h => hy h.symm)
+  have eW1 := HW1 ν μ (R * Real.sqrt (5 * ν / 6)) L P hν hμ hrOnn hlt hP0 hP1 T hT hSM τ
+  have eW0 := HW0 ν μ (R * Real.sqrt (5 * ν / 6)) L P hν hμ hrOnn hlt hP0 hP1 T hT hSM τ
+  have hE1 := H1 ν μ (R * Real.sqrt (5 * ν / 6)) L P hν hμ hrOnn hlt hP0 hP1 T hT hSM τ
+  have hE0 := H0 ν μ (R * Real.sqrt (5 * ν / 6)) L P hν hμ hrOnn hlt hP0 hP1 T hT hSM τ
+  have hE2 := H2 ν μ (R * Real.sqrt (5 * ν / 6)) L P hν hμ hrOnn hlt hP0 hP1 T hT hSM τ
+  obtain ⟨eoW, eoX⟩ := Ho ν μ R P hν hR hP0 hP1 hμ T hT hSM τ
+  rw [hD] at eW1 eW0 hE1 hE0 hE2
+  have x1 : L ^ e1 = X := by rw [hX, he1]; congr 1; norm_num
+  have x0 : L ^ (-1 : ℝ) * L ^ e0 = X := by
+    rw [hmul _ _ (-(46 / 11)) (by rw [he0]; norm_num)]
+  have x2 : L⁻¹ * L ^ e2 = L ^ (-(68 / 11 : ℝ)) := by
+    rw [hLinv, hmul _ _ (-(68 / 11)) (by rw [he2]; norm_num)]
+  have x4 : L ^ (-2 : ℝ) * L ^ e1 = L ^ (-(68 / 11 : ℝ)) := by
+    rw [hmul _ _ (-(68 / 11)) (by rw [he1]; norm_num)]
+  have x3 : L ^ (-3 : ℝ) * L ^ (-(13 / 11 : ℝ)) = X := by
+    rw [hX, hmul _ _ (-(46 / 11)) (by norm_num)]
+  have xH2 : L ^ e2 = L ^ (-(57 / 11 : ℝ)) := by rw [he2]; congr 1; norm_num
+  have xH1 : L⁻¹ * L ^ e1 = L ^ (-(57 / 11 : ℝ)) := by
+    rw [hLinv, hmul _ _ (-(57 / 11)) (by rw [he1]; norm_num)]
+  have xH0 : L ^ (-2 : ℝ) * L ^ e0 = L ^ (-(57 / 11 : ℝ)) := by
+    rw [hmul _ _ (-(57 / 11)) (by rw [he0]; norm_num)]
+  have xH3 : L ^ (-4 : ℝ) * L ^ (-(13 / 11 : ℝ)) = L ^ (-(57 / 11 : ℝ)) := by
+    rw [hmul _ _ (-(57 / 11)) (by norm_num)]
+  -- DY terms
+  have t1 : lqNorm (22 / 3) (wgyWJet 1 ν μ L T τ) ≤
+      ENNReal.ofReal ((1 * (CW1 * c0 ^ e1)) * Y) * F := by
+    simpa using wgy_term 1 (CW1 * (c0 * L) ^ e1) (1 * (CW1 * c0 ^ e1)) Y F
+      (g := wgyWJet 1 ν μ L T τ) zero_le_one
+      (mul_nonneg hCW1 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k 1 CW1 c0 L e1 Y 1 hCW1 hc0n hLpos.le zero_le_one
+        (by rw [x1, one_mul, one_mul]; exact hY1)) eW1
+  have t2 : lqNorm (22 / 3) (fun y => ENNReal.ofReal (Cy1 * L ^ (-1 : ℝ)) * wgyWJet 0 ν μ L T τ y) ≤
+      ENNReal.ofReal ((Cy1 * (CW0 * c0 ^ e0)) * Y) * F :=
+    wgy_term (Cy1 * L ^ (-1 : ℝ)) (CW0 * (c0 * L) ^ e0) (Cy1 * (CW0 * c0 ^ e0)) Y F
+      (by positivity) (mul_nonneg hCW0 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k _ CW0 c0 L e0 Y Cy1 hCW0 hc0n hLpos.le (by positivity) (by
+        rw [mul_assoc, x0]; exact mul_le_mul_of_nonneg_left hY1 hCy1)) eW0
+  have t3 : lqNorm (22 / 3) (fun y => ENNReal.ofReal (Cy1 * L ^ (-3 : ℝ)) * wgyWPsi ν μ R T τ y) ≤
+      ENNReal.ofReal ((Cy1 * Co) * Y) * F :=
+    wgy_term (Cy1 * L ^ (-3 : ℝ)) (Co * L ^ (-(13 / 11 : ℝ))) (Cy1 * Co) Y F
+      (by positivity) (by positivity)
+      (by
+        calc Cy1 * L ^ (-3 : ℝ) * (Co * L ^ (-(13 / 11 : ℝ))) =
+            (Cy1 * Co) * (L ^ (-3 : ℝ) * L ^ (-(13 / 11 : ℝ))) := by ring
+          _ ≤ (Cy1 * Co) * Y := by rw [x3]; exact mul_le_mul_of_nonneg_left hY1 (by positivity))
+      eoW
+  have q1 : lqNorm (22 / 3) (fun y => ENNReal.ofReal L⁻¹ * wgxJet 0 ν μ L T τ y) ≤
+      ENNReal.ofReal ((1 * (D0 * c0 ^ e0)) * Y) * F :=
+    wgy_term L⁻¹ (D0 * (c0 * L) ^ e0) (1 * (D0 * c0 ^ e0)) Y F (inv_nonneg.2 hLpos.le)
+      (mul_nonneg hD0 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k _ D0 c0 L e0 Y 1 hD0 hc0n hLpos.le (inv_nonneg.2 hLpos.le) (by
+        rw [hLinv, x0, one_mul]; exact hY1)) hE0
+  have q2 : lqNorm (22 / 3) (wgxJet 1 ν μ L T τ) ≤
+      ENNReal.ofReal ((1 * (D1 * c0 ^ e1)) * Y) * F := by
+    simpa using wgy_term 1 (D1 * (c0 * L) ^ e1) (1 * (D1 * c0 ^ e1)) Y F
+      (g := wgxJet 1 ν μ L T τ) zero_le_one
+      (mul_nonneg hD1 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k 1 D1 c0 L e1 Y 1 hD1 hc0n hLpos.le zero_le_one
+        (by rw [x1, one_mul, one_mul]; exact hY1)) hE1
+  have q3 : lqNorm (22 / 3) (fun y => ENNReal.ofReal L⁻¹ * wgxJet 2 ν μ L T τ y) ≤
+      ENNReal.ofReal ((1 * (D2 * c0 ^ e2)) * Y) * F :=
+    wgy_term L⁻¹ (D2 * (c0 * L) ^ e2) (1 * (D2 * c0 ^ e2)) Y F (inv_nonneg.2 hLpos.le)
+      (mul_nonneg hD2 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k _ D2 c0 L e2 Y 1 hD2 hc0n hLpos.le (inv_nonneg.2 hLpos.le) (by
+        rw [x2, one_mul]; exact hY2)) hE2
+  have q4 : lqNorm (22 / 3) (fun y => ENNReal.ofReal (L⁻¹ ^ 2) * wgxJet 1 ν μ L T τ y) ≤
+      ENNReal.ofReal ((1 * (D1 * c0 ^ e1)) * Y) * F :=
+    wgy_term (L⁻¹ ^ 2) (D1 * (c0 * L) ^ e1) (1 * (D1 * c0 ^ e1)) Y F (by positivity)
+      (mul_nonneg hD1 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k _ D1 c0 L e1 Y 1 hD1 hc0n hLpos.le (by positivity) (by
+        rw [hLinv2, x4, one_mul]; exact hY2)) hE1
+  have q5 : lqNorm (22 / 3) (fun y => ENNReal.ofReal (L⁻¹ ^ 3) * wgxPsi ν μ R T τ y) ≤
+      ENNReal.ofReal ((1 * Co) * Y) * F :=
+    wgy_term (L⁻¹ ^ 3) (Co * L ^ (-(13 / 11 : ℝ))) (1 * Co) Y F (by positivity) (by positivity)
+      (by
+        rw [hLinv3]
+        calc L ^ (-3 : ℝ) * (Co * L ^ (-(13 / 11 : ℝ))) =
+            Co * (L ^ (-3 : ℝ) * L ^ (-(13 / 11 : ℝ))) := by ring
+          _ ≤ (1 * Co) * Y := by
+              rw [x3, one_mul]
+              exact mul_le_mul_of_nonneg_left hY1 hCo)
+      eoX
+  -- DX extra terms
+  have gx0 : lqNorm (22 / 3) (fun y => ENNReal.ofReal (Cx * L ^ (-1 : ℝ)) * wgxJet 0 ν μ L T τ y) ≤
+      ENNReal.ofReal ((Cx * (D0 * c0 ^ e0)) * Y) * F :=
+    wgy_term (Cx * L ^ (-1 : ℝ)) (D0 * (c0 * L) ^ e0) (Cx * (D0 * c0 ^ e0)) Y F
+      (by positivity) (mul_nonneg hD0 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k _ D0 c0 L e0 Y Cx hD0 hc0n hLpos.le (by positivity) (by
+        rw [mul_assoc, x0]; exact mul_le_mul_of_nonneg_left hY1 hCx)) hE0
+  have gxP : lqNorm (22 / 3) (fun y => ENNReal.ofReal (Cx * L ^ (-3 : ℝ)) * wgxPsi ν μ R T τ y) ≤
+      ENNReal.ofReal ((Cx * Co) * Y) * F :=
+    wgy_term (Cx * L ^ (-3 : ℝ)) (Co * L ^ (-(13 / 11 : ℝ))) (Cx * Co) Y F
+      (by positivity) (by positivity)
+      (by
+        calc Cx * L ^ (-3 : ℝ) * (Co * L ^ (-(13 / 11 : ℝ))) =
+            (Cx * Co) * (L ^ (-3 : ℝ) * L ^ (-(13 / 11 : ℝ))) := by ring
+          _ ≤ (Cx * Co) * Y := by rw [x3]; exact mul_le_mul_of_nonneg_left hY1 (by positivity))
+      eoX
+  -- D²X extra terms
+  have h2_bd : lqNorm (22 / 3) (wgxJet 2 ν μ L T τ) ≤
+      ENNReal.ofReal ((1 * (D2 * c0 ^ e2)) * Y) * F := by
+    simpa using wgy_term 1 (D2 * (c0 * L) ^ e2) (1 * (D2 * c0 ^ e2)) Y F
+      (g := wgxJet 2 ν μ L T τ) zero_le_one
+      (mul_nonneg hD2 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k 1 D2 c0 L e2 Y 1 hD2 hc0n hLpos.le zero_le_one
+        (by rw [xH2, one_mul, one_mul]; exact hY57)) hE2
+  have h1_bd : lqNorm (22 / 3) (fun y => ENNReal.ofReal L⁻¹ * wgxJet 1 ν μ L T τ y) ≤
+      ENNReal.ofReal ((1 * (D1 * c0 ^ e1)) * Y) * F :=
+    wgy_term L⁻¹ (D1 * (c0 * L) ^ e1) (1 * (D1 * c0 ^ e1)) Y F (inv_nonneg.2 hLpos.le)
+      (mul_nonneg hD1 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k _ D1 c0 L e1 Y 1 hD1 hc0n hLpos.le (inv_nonneg.2 hLpos.le) (by
+        rw [xH1, one_mul]; exact hY57)) hE1
+  have h0_bd : lqNorm (22 / 3) (fun y => ENNReal.ofReal (L⁻¹ ^ 2) * wgxJet 0 ν μ L T τ y) ≤
+      ENNReal.ofReal ((1 * (D0 * c0 ^ e0)) * Y) * F :=
+    wgy_term (L⁻¹ ^ 2) (D0 * (c0 * L) ^ e0) (1 * (D0 * c0 ^ e0)) Y F (by positivity)
+      (mul_nonneg hD0 (Real.rpow_nonneg (mul_nonneg hc0n hLpos.le) _))
+      (wgy_k _ D0 c0 L e0 Y 1 hD0 hc0n hLpos.le (by positivity) (by
+        rw [hLinv2, xH0, one_mul]; exact hY57)) hE0
+  have hP_bd : lqNorm (22 / 3) (fun y => ENNReal.ofReal (L⁻¹ ^ 4) * wgxPsi ν μ R T τ y) ≤
+      ENNReal.ofReal ((1 * Co) * Y) * F :=
+    wgy_term (L⁻¹ ^ 4) (Co * L ^ (-(13 / 11 : ℝ))) (1 * Co) Y F (by positivity) (by positivity)
+      (by
+        rw [hLinv4]
+        calc L ^ (-4 : ℝ) * (Co * L ^ (-(13 / 11 : ℝ))) =
+            Co * (L ^ (-4 : ℝ) * L ^ (-(13 / 11 : ℝ))) := by ring
+          _ ≤ (1 * Co) * Y := by
+              rw [xH3, one_mul]
+              exact mul_le_mul_of_nonneg_left hY57 hCo)
+      eoX
+  -- Measurability of summands
+  have mA2 : AEMeasurable (fun y => ENNReal.ofReal (Cy1 * L ^ (-1 : ℝ)) * wgyWJet 0 ν μ L T τ y)
+      volume := w0.const_mul _
+  have mA3 : AEMeasurable (fun y => ENNReal.ofReal (Cy1 * L ^ (-3 : ℝ)) * wgyWPsi ν μ R T τ y)
+      volume := wP.const_mul _
+  have mB1 : AEMeasurable (fun y => ENNReal.ofReal L⁻¹ * wgxJet 0 ν μ L T τ y) volume :=
+    m0.const_mul _
+  have mB3 : AEMeasurable (fun y => ENNReal.ofReal L⁻¹ * wgxJet 2 ν μ L T τ y) volume :=
+    m2.const_mul _
+  have mB4 : AEMeasurable (fun y => ENNReal.ofReal (L⁻¹ ^ 2) * wgxJet 1 ν μ L T τ y) volume :=
+    m1.const_mul _
+  have mB5 : AEMeasurable (fun y => ENNReal.ofReal (L⁻¹ ^ 3) * wgxPsi ν μ R T τ y) volume :=
+    mP.const_mul _
+  have mX2 : AEMeasurable (fun y => ENNReal.ofReal (Cx * L ^ (-1 : ℝ)) * wgxJet 0 ν μ L T τ y)
+      volume := m0.const_mul _
+  have mX3 : AEMeasurable (fun y => ENNReal.ofReal (Cx * L ^ (-3 : ℝ)) * wgxPsi ν μ R T τ y)
+      volume := mP.const_mul _
+  have mH1 : AEMeasurable (fun y => ENNReal.ofReal L⁻¹ * wgxJet 1 ν μ L T τ y) volume :=
+    m1.const_mul _
+  have mH0 : AEMeasurable (fun y => ENNReal.ofReal (L⁻¹ ^ 2) * wgxJet 0 ν μ L T τ y) volume :=
+    m0.const_mul _
+  have mHP : AEMeasurable (fun y => ENNReal.ofReal (L⁻¹ ^ 4) * wgxPsi ν μ R T τ y) volume :=
+    mP.const_mul _
+  set fY : Space → ℝ≥0∞ := fun y =>
+    (wgyWJet 1 ν μ L T τ y + ENNReal.ofReal (Cy1 * L ^ (-1 : ℝ)) * wgyWJet 0 ν μ L T τ y +
+      ENNReal.ofReal (Cy1 * L ^ (-3 : ℝ)) * wgyWPsi ν μ R T τ y) +
+    ENNReal.ofReal Cy2 *
+      (ENNReal.ofReal L⁻¹ * wgxJet 0 ν μ L T τ y + wgxJet 1 ν μ L T τ y +
+        ENNReal.ofReal L⁻¹ * wgxJet 2 ν μ L T τ y +
+        ENNReal.ofReal (L⁻¹ ^ 2) * wgxJet 1 ν μ L T τ y +
+        ENNReal.ofReal (L⁻¹ ^ 3) * wgxPsi ν μ R T τ y)
+  set fX : Space → ℝ≥0∞ := fun y =>
+    ENNReal.ofReal 3 *
+      (wgxJet 1 ν μ L T τ y + ENNReal.ofReal (Cx * L ^ (-1 : ℝ)) * wgxJet 0 ν μ L T τ y +
+        ENNReal.ofReal (Cx * L ^ (-3 : ℝ)) * wgxPsi ν μ R T τ y)
+  set fH : Space → ℝ≥0∞ := fun y =>
+    ENNReal.ofReal Ch *
+      (wgxJet 2 ν μ L T τ y + ENNReal.ofReal L⁻¹ * wgxJet 1 ν μ L T τ y +
+        ENNReal.ofReal (L⁻¹ ^ 2) * wgxJet 0 ν μ L T τ y +
+        ENNReal.ofReal (L⁻¹ ^ 4) * wgxPsi ν μ R T τ y)
+  have mfY : AEMeasurable fY volume :=
+    ((w1.add mA2).add mA3).add
+      ((((((mB1.add m1).add mB3).add mB4).add mB5)).const_mul (ENNReal.ofReal Cy2))
+  have mfX : AEMeasurable fX volume :=
+    ((m1.add mX2).add mX3).const_mul (ENNReal.ofReal 3)
+  have mfH : AEMeasurable fH volume :=
+    (((m2.add mH1).add mH0).add mHP).const_mul (ENNReal.ofReal Ch)
+  have bA := wgy_lq_add (w1.add mA2) mA3 (wgy_lq_add w1 mA2 t1 t2) t3
+  have bB := wgy_lq_add (((mB1.add m1).add mB3).add mB4) mB5
+    (wgy_lq_add ((mB1.add m1).add mB3) mB4
+      (wgy_lq_add (mB1.add m1) mB3 (wgy_lq_add mB1 m1 q1 q2) q3) q4) q5
+  have bfY : lqNorm (22 / 3) fY ≤ ENNReal.ofReal (MY * Y) * F := by
+    calc lqNorm (22 / 3) fY
+        ≤ lqNorm (22 / 3) (fun y => wgyWJet 1 ν μ L T τ y +
+              ENNReal.ofReal (Cy1 * L ^ (-1 : ℝ)) * wgyWJet 0 ν μ L T τ y +
+              ENNReal.ofReal (Cy1 * L ^ (-3 : ℝ)) * wgyWPsi ν μ R T τ y) +
+          lqNorm (22 / 3) (fun y => ENNReal.ofReal Cy2 *
+              (ENNReal.ofReal L⁻¹ * wgxJet 0 ν μ L T τ y + wgxJet 1 ν μ L T τ y +
+                ENNReal.ofReal L⁻¹ * wgxJet 2 ν μ L T τ y +
+                ENNReal.ofReal (L⁻¹ ^ 2) * wgxJet 1 ν μ L T τ y +
+                ENNReal.ofReal (L⁻¹ ^ 3) * wgxPsi ν μ R T τ y)) :=
+          lqNorm_add_le hq ((w1.add mA2).add mA3)
+            (((((mB1.add m1).add mB3).add mB4).add mB5).const_mul (ENNReal.ofReal Cy2))
+      _ ≤ (ENNReal.ofReal ((1 * (CW1 * c0 ^ e1)) * Y) * F +
+            ENNReal.ofReal ((Cy1 * (CW0 * c0 ^ e0)) * Y) * F +
+            ENNReal.ofReal ((Cy1 * Co) * Y) * F) +
+          ENNReal.ofReal Cy2 * (ENNReal.ofReal ((1 * (D0 * c0 ^ e0)) * Y) * F +
+            ENNReal.ofReal ((1 * (D1 * c0 ^ e1)) * Y) * F +
+            ENNReal.ofReal ((1 * (D2 * c0 ^ e2)) * Y) * F +
+            ENNReal.ofReal ((1 * (D1 * c0 ^ e1)) * Y) * F +
+            ENNReal.ofReal ((1 * Co) * Y) * F) := by
+          refine add_le_add bA ?_
+          rw [lqNorm_const_mul hq0 _ ENNReal.ofReal_ne_top]
+          exact mul_le_mul_of_nonneg_left bB zero_le
+      _ = ENNReal.ofReal (MY * Y) * F :=
+          wgy_sum _ _ _ _ _ _ _ _ _ Y F (by positivity) (by positivity) (by positivity) hCy2
+            (by positivity) (by positivity) (by positivity) (by positivity) (by positivity) hY0
+  have bX_in := wgy_lq_add (m1.add mX2) mX3 (wgy_lq_add m1 mX2 q2 gx0) gxP
+  have bfX : lqNorm (22 / 3) fX ≤ ENNReal.ofReal (MX * Y) * F := by
+    unfold fX
+    rw [lqNorm_const_mul hq0 _ ENNReal.ofReal_ne_top]
+    exact (mul_le_mul_of_nonneg_left bX_in zero_le).trans
+      (rj4_sum3 3 _ _ _ Y F (by norm_num) (by positivity) (by positivity) (by positivity) hY0).le
+  have bH_in := wgy_lq_add ((m2.add mH1).add mH0) mHP
+    (wgy_lq_add (m2.add mH1) mH0 (wgy_lq_add m2 mH1 h2_bd h1_bd) h0_bd) hP_bd
+  have bfH : lqNorm (22 / 3) fH ≤ ENNReal.ofReal (MH * Y) * F := by
+    unfold fH
+    rw [lqNorm_const_mul hq0 _ ENNReal.ofReal_ne_top]
+    exact (mul_le_mul_of_nonneg_left bH_in zero_le).trans
+      (rj4_sum4 Ch _ _ _ _ Y F hCh (by positivity) (by positivity) (by positivity)
+        (by positivity) hY0).le
+  have mfYX : AEMeasurable (fun y => fY y + fX y) volume := mfY.add mfX
+  have bfYX : lqNorm (22 / 3) (fun y => fY y + fX y) ≤
+      ENNReal.ofReal (MY * Y) * F + ENNReal.ofReal (MX * Y) * F :=
+    wgy_lq_add mfY mfX bfY bfX
+  have bfYXH : lqNorm (22 / 3) (fun y => (fY y + fX y) + fH y) ≤
+      (ENNReal.ofReal (MY * Y) * F + ENNReal.ofReal (MX * Y) * F) +
+        ENNReal.ofReal (MH * Y) * F :=
+    wgy_lq_add mfYX mfH bfYX bfH
+  calc lqNorm (22 / 3) (fun y : Space =>
+          ENNReal.ofReal
+            (meanJetDens (sepWX ν μ R χy T τ) (sepWY ν μ R χy T τ) !₂[ϱ y, 0, y 2]))
+      ≤ lqNorm (22 / 3) (fun y => (fY y + fX y) + fH y) := by
+        refine lqNorm_mono_ae hq0 ?_
+        filter_upwards [haxis] with y hy
+        set y₀ : Space := !₂[ϱ y, 0, y 2]
+        have hy₀ : 0 < ϱ y₀ := by rw [rj4_varrho_merid]; exact hy
+        obtain ⟨eqX, eqW, eqPsiX, eqPsiW⟩ := hEq ν μ R P hν hR hP0 hμ' T hT hSM hAx τ y hy
+        have pY := hPtY ν μ R P hν hν1 hR1 hP0 hP1 hμ T hT hSM hAx τ y₀ hy₀
+        have pX := hPtX ν μ R P hν hν1 hR1 hP0 hP1 hμ T hT hSM hAx τ y₀ hy₀
+        have pH := hPtH ν μ R P hν hν1 hR1 hP0 hP1 hμ T hT hSM hAx τ y hy
+        rw [eqW 1, eqW 0, eqPsiW, eqX 0, eqX 1, eqX 2, eqPsiX] at pY
+        rw [eqX 1, eqX 0, eqPsiX] at pX
+        rw [eqX 2, eqX 1, eqX 0, eqPsiX] at pH
+        have pX' : ENNReal.ofReal (gradSize (sepWX ν μ R χy T τ) y₀) ≤ fX y :=
+          (rj4_gradSize_le_three_fderiv _ _).trans (mul_le_mul_of_nonneg_left pX zero_le)
+        have hsum : ENNReal.ofReal (meanJetDens (sepWX ν μ R χy T τ) (sepWY ν μ R χy T τ) y₀) =
+            ENNReal.ofReal ‖fderiv ℝ (sepWY ν μ R χy T τ) y₀‖ +
+              ENNReal.ofReal (gradSize (sepWX ν μ R χy T τ) y₀) +
+              ENNReal.ofReal (hessSize (sepWX ν μ R χy T τ) y₀) := by
+          change ENNReal.ofReal (‖fderiv ℝ (sepWY ν μ R χy T τ) y₀‖ +
+              gradSize (sepWX ν μ R χy T τ) y₀ + hessSize (sepWX ν μ R χy T τ) y₀) = _
+          have h1 : 0 ≤ ‖fderiv ℝ (sepWY ν μ R χy T τ) y₀‖ := norm_nonneg _
+          have h2 : 0 ≤ gradSize (sepWX ν μ R χy T τ) y₀ :=
+            Finset.sum_nonneg fun _ _ => norm_nonneg _
+          have h3 : 0 ≤ hessSize (sepWX ν μ R χy T τ) y₀ :=
+            Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => norm_nonneg _
+          rw [ENNReal.ofReal_add (add_nonneg h1 h2) h3, ENNReal.ofReal_add h1 h2]
+        rw [hsum]
+        exact add_le_add (add_le_add pY pX') pH
+    _ ≤ (ENNReal.ofReal (MY * Y) * F + ENNReal.ofReal (MX * Y) * F) +
+          ENNReal.ofReal (MH * Y) * F := bfYXH
+    _ = ENNReal.ofReal ((MY + MX + MH) * ν⁻¹ * L ^ (-(46 / 11 : ℝ))) * F :=
+        rj4_sum_final MY MX MH ν L Y F (by unfold MY; positivity) (by unfold MX; positivity)
+          (by unfold MH; positivity) hY0 hY
+
+/-- **`RepJet` along the concrete sequence from `RepJetChartTransfer`,
+`SepWXHessMeridPointwisePow4`, and `SepJetMeridEq`** (source 5212-5223, 5259-5268). -/
+theorem repJet_of_pow4 (hTr : RepJetChartTransfer) (hPtH : SepWXHessMeridPointwisePow4)
+    (hEq : SepJetMeridEq) (D : SeqData) {dm dp : ℝ} (hst : D.RepairStanding dm dp)
+    (_hPG : D.PhaseGradient) : RepJet D := by
+  have hσ : -(1 / 4 : ℝ) < D.σ₀ / 2 := by linarith [hst.sigma_pos]
+  obtain ⟨C, hC, hSl⟩ := sepJetMeridSlice_of_pow4 hPtH hEq (D.σ₀ / 2) ((D.σ₀ + 1 / 4) / 2) hσ
+    D.K.χy hst.chiY
+  refine ⟨C, 4, ?_⟩
+  have hev1 := mu_eventually_mem D hst.omega_ne hst.sigma_pos hst.sigma_lt
+  have hev2 := retNu_retEps_eventually_le_one hst.omega_ne hst.gamma_pos D.coeff_ne
+  have hev3 : ∀ᶠ n : ℕ in atTop, retNu D.Pl D.σ₀ n ≤ dm ^ 3 / 12 :=
+    (retNu_tendsto D.σ₀ hst.omega_ne).eventually_le_const (by have := hst.dm_pos; positivity)
+  filter_upwards [hev1, hev2, hev3, hst.actual] with n h1 h2 h3 h4 z hz
+  have hP : 2 * (D.level n).ε * cOf (D.level n).ν ≤ 1 :=
+    UnforcedLeray.Short.IIIa.period_le_one_of_small h4.regime h3
+  exact repJetAt_of repairSepBridge hTr D.Pl D.K (D.level n) (D.mu n z) hσ hC hst.chiY
+    hSl (h1 z hz) h2.1 h2.2 hP hst.C0_pos (by linarith [hst.mZ_gt])
+
+end UnforcedLeray.Short.PartIIIb.Concrete
+
+end

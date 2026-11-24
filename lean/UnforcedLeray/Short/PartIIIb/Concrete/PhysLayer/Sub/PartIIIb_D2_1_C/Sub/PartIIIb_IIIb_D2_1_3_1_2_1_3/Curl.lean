@@ -1,0 +1,14 @@
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_IIIb_D2_1_3_1_2_1_3_1.CurlCommute
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_IIIb_D2_1_3_1_2_1_3_1.AdjRemainderFormula
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_IIIb_D2_1_3_1_2_1_3_1.AdjRemainderMem
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_IIIb_D2_1_3_1_2_1_3_1.AdjRemainderSol
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_IIIb_D2_1_3_1_2_1_3_1_5.Final
+
+set_option autoImplicit false
+
+namespace UnforcedLeray.Short.PartIIIb.Concrete
+
+theorem intertwineCurl : IntertwineCurl :=
+  intertwineCurl_of curlCommute adjRemainderFormula adjRemainderMem adjRemainderSol lerayDensityL2
+
+end UnforcedLeray.Short.PartIIIb.Concrete

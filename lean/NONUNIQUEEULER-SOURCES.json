@@ -1,0 +1,103 @@
+{
+  "repository": "https://github.com/mcoiculescu/NonUniqueEuler",
+  "commit": "d81c3f456505f8a3e8211f2a9f63313d0599ed5a",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "NonUniqueEuler/Defs/Infra/CkNorm.lean",
+      "sha256": "1006da11fad308afe2c48b55305d893747322b6ac5b5fc206547467b43cdba20"
+    },
+    {
+      "path": "NonUniqueEuler/Defs/Infra/Sobolev.lean",
+      "sha256": "f255dff16cf68d1fb3c3f687ef55210824ed3280c44ee6ce505ec467ef5a3408"
+    },
+    {
+      "path": "NonUniqueEuler/Defs/Infra/SobolevOneD.lean",
+      "sha256": "d2eb5f2c74fcdac048470e4cef3b52541303db6a6f0bdd73f6c26e0ce11a8555"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/Sobolev/WeakDeriv.lean",
+      "sha256": "5f0e8c786ec9b6c2c39bb7befdc89ba8b25db49111c72e3c0b798ee11eb486d8"
+    },
+    {
+      "path": "NonUniqueEuler/I/Infra/Sobolev/WeakDeriv.lean",
+      "sha256": "0ce29179161c6b0f9adab40695181a7fad150e36ab00fad4b38e4326676082db"
+    },
+    {
+      "path": "NonUniqueEuler/H/Infra/SobolevOneD/Energy/Kernel.lean",
+      "sha256": "d7e6bbe47b2ada82ccb06391631c267e46585dd9ee3df59a51a9c48216318a29"
+    },
+    {
+      "path": "NonUniqueEuler/H/Infra/SobolevOneD/Energy/Conv.lean",
+      "sha256": "cfbfb1e3b80e48fbbe48fc5e4ee72a42d6b7e289ef8664a172b15084ae38ed0f"
+    },
+    {
+      "path": "NonUniqueEuler/H/Infra/SobolevOneD/Energy/Yukawa.lean",
+      "sha256": "c82fbf18f4948f52b9d620eb8abee71eff09d81bb4731c9e9b3693a8a81c7f61"
+    },
+    {
+      "path": "NonUniqueEuler/H/Infra/SobolevOneD/Energy/Commute.lean",
+      "sha256": "e4e0837927aea446381ff93b2786ef87e78fad7bd5d6b09f23c5971c64ad45fc"
+    },
+    {
+      "path": "NonUniqueEuler/H/Infra/SobolevOneD/Energy/Higher.lean",
+      "sha256": "cfbc57cd5f981f63484914bca0502350eba5ba0af9c23907b5de9bfbb1431a63"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/SobolevOneD/Energy.lean",
+      "sha256": "fc090e77f1430b5458c1bc4a48ecebb1c8c7fbd2580883d30d1f207ed4e2fd86"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/ConvMinkowski/Minkowski.lean",
+      "sha256": "bc8ffba90c6f79a856a18359217d27c49519b8af126108fb7da0680f39eeec78"
+    },
+    {
+      "path": "NonUniqueEuler/Defs/Infra/ODE.lean",
+      "sha256": "60dff9f2132001deacae4c5b47d17e4bc26d762b5714018459410a6346a93bad"
+    },
+    {
+      "path": "NonUniqueEuler/Vendor/ODE/GlobalPicard.lean",
+      "sha256": "bcf1319c8fb0df9464947e3a58754a986146e05beb2da545fe2efa5275e32cae"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/ODE/Existence.lean",
+      "sha256": "6a904314e5179dd835157d1820d8c01872bf83318da1faaa8a795607f678104c"
+    },
+    {
+      "path": "NonUniqueEuler/I/Infra/ODE/Existence.lean",
+      "sha256": "00f8566c31bd091547590af02819b01c93899766fd38dd8631b697ae2bb3a5db"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/ODE/Uniqueness.lean",
+      "sha256": "09cd2dc01079f8dd2977d00a20885db1dd2567140cc02f0e61145f0c4591096c"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/ODE/Smooth.lean",
+      "sha256": "e0de50f546d6c1f9125b12081f5925d43b21fbb0338f1d1bee4b4ce6f2ad2079"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/ODE/Gronwall.lean",
+      "sha256": "a0d931660d96c49262e724b79b4bd5d82471f1f735c63b1867e391b4a75e36aa"
+    },
+    {
+      "path": "NonUniqueEuler/I/Infra/ODE/Gronwall.lean",
+      "sha256": "d5613fea63b729c3d2c1e232466e9786007d07b101af64158281629b943d8c67"
+    },
+    {
+      "path": "NonUniqueEuler/I/Infra/ODE/Smooth.lean",
+      "sha256": "fd0a0f6e59b20ba3bfd1c929b0e3fd1d3cd374638d919e9d8a986dc6216e97bc"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/ODE/Param.lean",
+      "sha256": "6b8db4fac0461921a85f46ce676c46c12f931632c6d9e54cca2f1daf3e166ace"
+    },
+    {
+      "path": "NonUniqueEuler/H/Infra/ODE/Holo/Basic.lean",
+      "sha256": "d6633aa5e1ae2e70204cdc40961bc666905d4096c8dbf197a308853b87726689"
+    },
+    {
+      "path": "NonUniqueEuler/P/Infra/ODE/Holo.lean",
+      "sha256": "c01755dcdec8178a8e9a6460f8012e546cf4e4c4713aef3d5b324a4b540d73f9"
+    }
+  ]
+}

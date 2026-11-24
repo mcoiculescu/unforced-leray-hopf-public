@@ -1,0 +1,19 @@
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_2
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_2.L1
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_2.L2
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_2.L3
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1_2_2.L4
+
+set_option autoImplicit false
+
+noncomputable section
+
+open MeasureTheory Set Filter Topology
+open scoped ContDiff
+
+namespace UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst
+
+theorem extendFromSmooth_proof : ExtendFromSmooth :=
+  extendFromSmooth_of limitContDiff_proof smoothSeqH_proof ofCylSmoothSub_proof aeLimitH_proof
+
+end UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst

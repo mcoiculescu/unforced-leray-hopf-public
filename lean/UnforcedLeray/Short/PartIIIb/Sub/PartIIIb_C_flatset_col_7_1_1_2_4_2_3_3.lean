@@ -1,0 +1,15 @@
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_of
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_1
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_2
+import UnforcedLeray.Short.PartIIIb.Sub.PartIIIb_C_flatset_col_7_1_1_2_4_2_3_3_3
+
+set_option autoImplicit false
+
+noncomputable section
+
+namespace UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst
+
+theorem p0SmoothFamily : P0SmoothFamily :=
+  p0SmoothFamily_of p0SliceSmooth p0JointRep contRepMeasurable
+
+end UnforcedLeray.Short.PartIIIb.Concrete.FlatSettingInst
